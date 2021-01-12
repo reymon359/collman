@@ -12,8 +12,15 @@ model User {
   id    Int     @default(autoincrement()) @id
   name  String?
   posts Post[]
+  profile Profile?
 }
 
+model Profile {
+  id     Int     @default(autoincrement()) @id
+  bio    String?
+  userId Int     @unique
+  user   User    @relation(fields: [user], references: [id])
+}
 model Post {
   authorId  Int?
   content   String?
