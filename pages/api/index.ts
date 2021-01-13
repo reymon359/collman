@@ -28,6 +28,24 @@ const User = objectType({
           })
           .posts(),
     })
+    t.field('profile',{ type: Profile })
+  },
+})
+
+const Profile = objectType({
+  name: 'Profile',
+  definition(t) {
+    t.int('id')
+    t.string('bio')
+    t.nullable.field('user', {
+      type: 'User',
+      resolve: (parent) =>
+        prisma.profile
+          .findOne({
+            where: { id: Number(parent.id) },
+          })
+          .user(),
+    })
   },
 })
 
@@ -170,7 +188,7 @@ const Mutation = objectType({
 })
 
 export const schema = makeSchema({
-  types: [Query, Mutation, Post, User, GQLDate],
+  types: [Query, Mutation, Post, User, Profile, GQLDate],
   outputs: {
     typegen: path.join(process.cwd(), 'pages/api/nexus-typegen.ts'),
     schema: path.join(process.cwd(), 'pages/api/schema.graphql'),

@@ -22,6 +22,12 @@ type Post {
   title: String
 }
 
+type Profile {
+  bio: String
+  id: Int
+  user: User
+}
+
 type Query {
   drafts: [Post]
   feed: [Post]
@@ -34,4 +40,5 @@ type User {
   id: Int
   name: String
   posts: [Post]
+  profile: Profile
 }
