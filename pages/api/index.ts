@@ -23,12 +23,20 @@ const User = objectType({
       type: 'Post',
       resolve: (parent) =>
         prisma.user
-          .findOne({
+          .findUnique({
             where: { id: Number(parent.id) },
           })
           .posts(),
     })
-    t.field('profile',{ type: Profile })
+    t.field('profile', {
+      type: 'Profile',
+      resolve: (parent) =>
+        prisma.user
+          .findUnique({
+            where: { id: Number(parent.id) },
+          })
+          .profile(),
+    })
   },
 })
 
@@ -36,12 +44,12 @@ const Profile = objectType({
   name: 'Profile',
   definition(t) {
     t.int('id')
-    t.string('bio')
+    t.nullable.string('bio')
     t.nullable.field('user', {
       type: 'User',
       resolve: (parent) =>
         prisma.profile
-          .findOne({
+          .findUnique({
             where: { id: Number(parent.id) },
           })
           .user(),
