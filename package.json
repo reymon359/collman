@@ -18,5 +18,10 @@
   "bugs": {
     "url": "https://github.com/reymon359/enic/issues"
   },
-  "homepage": "https://github.com/reymon359/enic#readme"
+  "homepage": "https://github.com/reymon359/enic#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
 }
