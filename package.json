@@ -1,0 +1,22 @@
+{
+  "name": "enic",
+  "version": "0.0.1",
+  "description": "description enic",
+  "main": "index.ts",
+  "scripts": {
+    "test": "not yet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reymon359/enic.git"
+  },
+  "keywords": [
+    "hi"
+  ],
+  "author": "reymon359",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reymon359/enic/issues"
+  },
+  "homepage": "https://github.com/reymon359/enic#readme"
+}
