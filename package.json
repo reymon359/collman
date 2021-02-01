@@ -1,44 +1,56 @@
 {
-  "name": "hello-next",
-  "version": "1.0.0",
-  "description": "",
+  "name": "enic",
+  "version": "0.0.1",
+  "description": "description enic",
+  "main": "src/index.ts",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
-    "studio": "prisma studio",
-    "generate": "npm -s run generate:prisma && npm -s run generate:nexus",
-    "generate:prisma": "prisma generate",
-    "generate:nexus": "ts-node --transpile-only -P nexus.tsconfig.json pages/api"
+    "start": "npm run build:live",
+    "build": "tsc -p .",
+    "build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint \"src/**\"",
+    "lint:fix": "eslint --fix \"src/**\"",
+    "type-check": "tsc",
+    "type-check:watch": "tsc -w"
   },
-  "keywords": [],
-  "author": "",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "npm run lint:fix",
+      "pre-push": "npm run test && npm run type-check && npm run build"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reymon359/enic.git"
+  },
+  "keywords": [
+    "hi"
+  ],
+  "author": "reymon359",
   "license": "MIT",
-  "dependencies": {
-    "@apollo/react-hooks": "4.0.0",
-    "@apollo/react-ssr": "4.0.0",
-    "@prisma/client": "2.14.0",
-    "apollo-boost": "0.4.9",
-    "apollo-link-http": "1.5.17",
-    "apollo-link-schema": "1.2.5",
-    "apollo-server-micro": "2.19.1",
-    "express": "4.17.1",
-    "graphql": "15.4.0",
-    "graphql-iso-date": "3.6.1",
-    "graphql-tag": "2.11.0",
-    "next": "10.0.5",
-    "nexus": "1.0.0",
-    "nexus-plugin-prisma": "0.28.0",
-    "react": "17.0.1",
-    "react-apollo": "3.1.5",
-    "react-dom": "17.0.1",
-    "react-markdown": "5.0.3"
+  "bugs": {
+    "url": "https://github.com/reymon359/enic/issues"
   },
+  "homepage": "https://github.com/reymon359/enic#readme",
   "devDependencies": {
-    "@prisma/cli": "2.14.0",
-    "@types/graphql": "14.5.0",
-    "@types/node": "13.13.39",
-    "@types/react": "17.0.0",
-    "typescript": "4.1.3"
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.22",
+    "@typescript-eslint/eslint-plugin": "^4.14.2",
+    "@typescript-eslint/parser": "^4.14.2",
+    "eslint": "^7.19.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "husky": "^4.3.8",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "ts-jest": "^26.5.0",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
   }
 }
