@@ -1,7 +1,7 @@
 {
-  "name": "enic",
+  "name": "collection-manager",
   "version": "0.0.1",
-  "description": "description enic",
+  "description": "description collection manager",
   "main": "src/index.ts",
   "scripts": {
     "start": "npm run build:live",
@@ -23,7 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reymon359/enic.git"
+    "url": "git+https://github.com/reymon359/collection-manager.git"
   },
   "keywords": [
     "hi"
@@ -31,9 +31,9 @@
   "author": "reymon359",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/reymon359/enic/issues"
+    "url": "https://github.com/reymon359/collection-manager/issues"
   },
-  "homepage": "https://github.com/reymon359/enic#readme",
+  "homepage": "https://github.com/reymon359/collection-manager#readme",
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
