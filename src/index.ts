@@ -1,11 +1,4 @@
-import config from './configuration'
+import { defaultConfirguration } from './configuration'
 
-export const config = config
-
-export
-
-export const sum =
-  (...a: number[]) =>
-    a.reduce((acc, val) => acc + val, 0)
-
-
+// TODO: Check if there is a custom config in the root directory and load it instead of the default
+export const collectionConfiguration = defaultConfirguration

@@ -1,9 +1,12 @@
-import { sum } from './index'
+import { collectionConfiguration } from './index'
+import { defaultConfirguration } from './configuration'
 
-test('basic', () => {
-  expect(sum()).toBe(0)
-})
+describe('Configuration', () => {
+  it('loads the default configuration', () => {
+    // Act
+    const loadedConfiguration = collectionConfiguration
 
-test('basic again', () => {
-  expect(sum(1, 2)).toBe(3)
+    // Assert
+    expect(loadedConfiguration).toEqual(defaultConfirguration)
+  })
 })
