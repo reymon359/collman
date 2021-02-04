@@ -8,5 +8,6 @@ describe('Configuration', () => {
 
     // Assert
     expect(loadedConfiguration).toEqual(defaultConfirguration)
+    expect(loadedConfiguration).not.toBe({})
   })
 })
