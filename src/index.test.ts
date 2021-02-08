@@ -11,3 +11,17 @@ describe('Configuration', () => {
     expect(loadedConfiguration).not.toBe({})
   })
 })
+
+describe('File System', () => {
+  it('gets the input collection directory', () => {
+    // Arrange
+    const mockedInputCollection = null
+    const mockedOutputCollection = null
+
+    // Act
+    const outputCollection = processCollection(mockedInputCollection)
+
+    // Assert
+    expect(outputCollection).toEqual(mockedOutputCollection)
+  })
+})
