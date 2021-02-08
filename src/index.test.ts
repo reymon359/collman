@@ -39,3 +39,10 @@ it('process the collection properly', () => {
   // Assert
   expect(outputCollection).toEqual(mockedOutputCollection)
 })
+
+describe('Classification', () => {
+  it('gets the classifications', () => {
+  })
+  it('generates classifications folders', () => {
+  })
+})
