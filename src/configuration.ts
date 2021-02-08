@@ -1,5 +1,6 @@
 // WIP
 // export interface Classification {
+//   name: string
 //   agnosticClassificator: string
 // }
 
