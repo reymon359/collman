@@ -1,4 +1,4 @@
-import { collectionConfiguration } from './index'
+import { collectionConfiguration, getInputCollection } from './index'
 import { defaultConfirguration } from './configuration'
 
 describe('Configuration', () => {
@@ -13,15 +13,29 @@ describe('Configuration', () => {
 })
 
 describe('File System', () => {
-  it('gets the input collection directory', () => {
+  it('gets the input collection', () => {
     // Arrange
-    const mockedInputCollection = null
-    const mockedOutputCollection = null
-
+    const mockedInputCollection =
+    const mockedRootPath =
     // Act
-    const outputCollection = processCollection(mockedInputCollection)
+    const inputCollection = getInputCollection(mockedRootPath)
 
     // Assert
-    expect(outputCollection).toEqual(mockedOutputCollection)
+    expect(inputCollection).toEqual(mockedInputCollection)
   })
+
+  it('creates a docs folder', () => {
+
+  })
+})
+it('process the collection properly', () => {
+  // Arrange
+  const mockedInputCollection = null
+  const mockedOutputCollection = null
+
+  // Act
+  const outputCollection = processCollection(mockedInputCollection)
+
+  // Assert
+  expect(outputCollection).toEqual(mockedOutputCollection)
 })
