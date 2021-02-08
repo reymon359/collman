@@ -6,7 +6,7 @@ categories: ['category1', 'category3']
 
 # Title 2
 
-![Image 2](./image-2.png)
+![Image 2](image-2.png)
 
 Item 2 introduction
 
