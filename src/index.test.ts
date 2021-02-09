@@ -1,5 +1,6 @@
 import { collectionConfiguration, getInputCollection } from './index'
 import { defaultConfiguration } from './configuration'
+import defaultCollectionJson from './test/mocks/defaultCollection/defaultCollection.json'
 
 describe('Configuration', () => {
   it('loads the default configuration', () => {
@@ -12,16 +13,15 @@ describe('Configuration', () => {
   })
 })
 
-describe.skip('Input System', () => {
-  it('gets the input collection', () => {
+describe('Input System', () => {
+  it('gets the default input collection', async () => {
     // Arrange
-    // const mockedInputCollection =
-    // const mockedRootPath =
-    // // Act
-    // const inputCollection = getInputCollection(mockedRootPath)
-    //
-    // // Assert
-    // expect(inputCollection).toEqual(mockedInputCollection)
+    const mockedCollection = defaultCollectionJson
+    const mockedRootPath = 'src/test/mocks/defaultCollection/input/markdown/defaultCollection'
+    // Act
+    const inputCollection = await getInputCollection({ ...defaultConfiguration, pathRootDirectory: mockedRootPath })
+    // Assert
+    expect(inputCollection).toEqual(mockedCollection)
   })
 
   it('creates a docs folder', () => {
