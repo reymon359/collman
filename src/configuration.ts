@@ -5,18 +5,18 @@
 // }
 
 export interface Configuration{
-  collectionInputType: string
-  collectionOutputType: string
-  collectionPathRootDirectory: string // The root directory that holds the full project
-  collectionInputDirectory: string // The directory with the original collection
-  collectionOutputDirectory: string // The output directory with the collection managed
+  inputType: string
+  outputType: string
+  pathRootDirectory: string // The root directory that holds the full project
+  inputDirectory: string // The directory with the original collection
+  outputDirectory: string // The output directory with the collection managed
   // classifications: [Classification] // WIP
 }
 
 export const defaultConfiguration: Configuration = {
-  collectionInputType: 'markdown',
-  collectionOutputType: 'markdown',
-  collectionPathRootDirectory: './',
-  collectionInputDirectory: './content/',
-  collectionOutputDirectory: './docs/'
+  inputType: 'markdown',
+  outputType: 'markdown',
+  pathRootDirectory: './',
+  inputDirectory: './content/',
+  outputDirectory: './docs/'
 }
