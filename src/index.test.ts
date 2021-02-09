@@ -1,5 +1,5 @@
 import { collectionConfiguration, getInputCollection } from './index'
-import { defaultConfirguration } from './configuration'
+import { defaultConfiguration } from './configuration'
 
 describe('Configuration', () => {
   it('loads the default configuration', () => {
@@ -7,7 +7,7 @@ describe('Configuration', () => {
     const loadedConfiguration = collectionConfiguration
 
     // Assert
-    expect(loadedConfiguration).toEqual(defaultConfirguration)
+    expect(loadedConfiguration).toEqual(defaultConfiguration)
     expect(loadedConfiguration).not.toBe({})
   })
 })

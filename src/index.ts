@@ -1,9 +1,7 @@
-import { defaultConfirguration } from './configuration'
+import { defaultConfiguration } from './configuration'
 
 // TODO: Check if there is a custom config in the root directory and load it instead of the default
-export const collectionConfiguration = defaultConfirguration
-
-
+export const collectionConfiguration = defaultConfiguration
 
 // Returns the inputCollection from the root directory specified in the config
 export const getInputCollection = (inputCollectionRootPath = collectionConfiguration.collectionPathRootDirectory) => {
