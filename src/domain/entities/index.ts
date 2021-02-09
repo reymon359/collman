@@ -11,11 +11,13 @@ export interface Item {
   dateCreated?: string
   dateUpdated?: string
 }
+
 export interface Content {
   name: string // Name of the collection content. Example: Posts or Animals
   items: [Item] // Array of the Content items
 }
-export interface Index {
+
+export interface Collection {
   name: string
   description: string
   content: Content
