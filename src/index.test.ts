@@ -12,35 +12,36 @@ describe('Configuration', () => {
   })
 })
 
-describe('File System', () => {
+describe.skip('Input System', () => {
   it('gets the input collection', () => {
     // Arrange
-    const mockedInputCollection =
-    const mockedRootPath =
-    // Act
-    const inputCollection = getInputCollection(mockedRootPath)
-
-    // Assert
-    expect(inputCollection).toEqual(mockedInputCollection)
+    // const mockedInputCollection =
+    // const mockedRootPath =
+    // // Act
+    // const inputCollection = getInputCollection(mockedRootPath)
+    //
+    // // Assert
+    // expect(inputCollection).toEqual(mockedInputCollection)
   })
 
   it('creates a docs folder', () => {
 
   })
 })
-it('process the collection properly', () => {
-  // Arrange
-  const mockedInputCollection = null
-  const mockedOutputCollection = null
-
-  // Act
-  const outputCollection = processCollection(mockedInputCollection)
-
-  // Assert
-  expect(outputCollection).toEqual(mockedOutputCollection)
+it.skip('process the collection properly', () => {
+  // WIP
+  // // Arrange
+  // const mockedInputCollection = null
+  // const mockedOutputCollection = null
+  //
+  // // Act
+  // const outputCollection = processCollection(mockedInputCollection)
+  //
+  // // Assert
+  // expect(outputCollection).toEqual(mockedOutputCollection)
 })
 
-describe('Classification', () => {
+describe.skip('Classification', () => {
   it('gets the classifications', () => {
   })
   it('generates classifications folders', () => {
