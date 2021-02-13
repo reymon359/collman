@@ -1,18 +1,21 @@
 // Posible Use Cases for the future
 
-export const getClassification = (classificationId) => 'todo'
+import { Classification } from '../models'
 
-export const addClassification = (collectionId, classification) => 'todo'
+export const getClassification = (classificationId: string) => 'todo'
 
-export const updateClassification = (classificationId, classification) => 'todo'
+export const addClassification = (collectionId: string, classification: Classification) => 'todo'
 
-export const removeClassification = (classificationId) => 'todo'
+export const updateClassification = (classificationId: string, classification: Classification) => 'todo'
+
+export const removeClassification = (classificationId: string) => 'todo'
 
 // Classification Values
-export const getClassificationValues = (classificationId) => 'todo'
 
-export const addClassificationValues = (classificationId, values) => 'todo'
+export const getClassificationValues = (classificationId: string) => 'todo'
 
-export const updateClassificationValues = (classificationId, values) => 'todo'
+export const addClassificationValues = (classificationId: string, values: [string]) => 'todo'
 
-export const removeClassificationValues = (classificationId, values) => 'todo'
+export const updateClassificationValues = (classificationId: string, values: [string]) => 'todo'
+
+export const removeClassificationValues = (classificationId: string, values: [string]) => 'todo'
