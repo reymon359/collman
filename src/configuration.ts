@@ -17,6 +17,6 @@ export const defaultConfiguration: Configuration = {
   inputType: 'markdown',
   outputType: 'markdown',
   pathRootDirectory: './',
-  inputDirectory: './content/',
+  inputDirectory: './items/',
   outputDirectory: './docs/'
 }
