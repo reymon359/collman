@@ -1,12 +1,37 @@
 import { Configuration } from '../../configuration'
 import { repositories } from '../repositories'
+import { collectionConfiguration } from '../../index'
+import { Collection } from '../../domain/models'
+const { inputDirectory } = collectionConfiguration
+
+const jsonToCollectionModel= (collectionJson:{}) :Collection => {
+  const jsonItems:any = collectionJson[inputDirectory]
+  // const { index } = jsonItems
+  const { index, ...itemsToProcess } = jsonItems;
+  console.log(index, itemsToProcess)
+  // const collectionItems = processJsonItems
+
+  return {
+    name: index.name,
+    description: index.contents,
+    content: itemsToProcess
+  }
+
+}
 
 // Returns the Collection Json from the path specified
-export const getCollectionJson = async (collectionPath: string, format: string): Promise<{}> => {
-  return repositories[format].getCollectionJson(collectionPath)
+export const getCollection = async (collectionPath: string, format: string): Promise<{}> => {
+  const collectionJson = await repositories[format].getCollectionJson(collectionPath)
+
+  const collection = await jsonToCollectionModel(collectionJson)
+  return collection
+
 }
 
 export const processCollection = (collection: {}, format: string):any => {
+  // const items = getCollectionItems
+  // const index =
+
   return {} as any
 }
 

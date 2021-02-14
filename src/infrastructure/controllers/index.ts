@@ -1,8 +1,8 @@
-import { getCollectionJson, processCollection, saveCollection } from './collection'
+import { getCollection, processCollection, saveCollection } from './collection'
 
 export const controllers = {
   collection: {
-    getCollectionJson,
+    getCollection,
     processCollection,
     saveCollection
   },
