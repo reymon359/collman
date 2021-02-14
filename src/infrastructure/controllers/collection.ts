@@ -1,15 +1,12 @@
-import { Collection } from '../../domain/models'
 import { Configuration } from '../../configuration'
 import { repositories } from '../repositories'
 
-export const uploadCollection = async (collectionPath: string, format: string): Promise<Collection> => {
-  // Returns the Collection from the path specified
-  const collection = await repositories[format].getCollection(collectionPath)
-
-  return collection as Collection
+// Returns the Collection Json from the path specified
+export const getCollectionJson = async (collectionPath: string, format: string): Promise<{}> => {
+  return repositories[format].getCollectionJson(collectionPath)
 }
 
-export const processCollection = (collection: Collection, format: string):any => {
+export const processCollection = (collection: {}, format: string):any => {
   return {} as any
 }
 

@@ -4,7 +4,7 @@
 const jdown = require('jdown')
 
 // Returns the json object
-export const getCollection = async (path:string) => {
+export const getCollectionJson = async (path:string) => {
   const jsonCollection = await jdown(path)
   return jsonCollection
 }
