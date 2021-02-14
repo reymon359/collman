@@ -29,8 +29,7 @@
     },
     "index": {
       "name": "Default Collection",
-      "description": "Default Collection description",
-      "contents": ""
+      "contents": "Default Collection description"
     }
   }
 }
