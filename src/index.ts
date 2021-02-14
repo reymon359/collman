@@ -9,9 +9,9 @@ const main = async () => {
   // Get the config values needed
   const { pathRootDirectory, inputType, outputType } = configuration
   // Upload the collection, pass it to json
-  const collectionJson = await controllers.collection.getCollectionJson(pathRootDirectory, inputType)
+  const collectionUploaded = await controllers.collection.getCollection(pathRootDirectory, inputType)
   // Process it to the output specified in the config
-  const collectionProcessed = controllers.collection.processCollection(collectionJson, outputType)
+  const collectionProcessed = controllers.collection.processCollection(collectionUploaded, outputType)
   // Save it in the folder specified in the config
   controllers.collection.saveCollection(collectionProcessed, configuration)
 }
