@@ -4,7 +4,7 @@ import { collectionConfiguration } from '../../index'
 import { Collection } from '../../domain/models'
 const { inputDirectory } = collectionConfiguration
 
-const jsonToCollectionModel= (collectionJson:{}) :Collection => {
+const jsonToCollection= (collectionJson:{}) :Collection => {
   const jsonItems:any = collectionJson[inputDirectory]
   // const { index } = jsonItems
   const { index, ...itemsToProcess } = jsonItems;
@@ -23,7 +23,7 @@ const jsonToCollectionModel= (collectionJson:{}) :Collection => {
 export const getCollection = async (collectionPath: string, format: string): Promise<{}> => {
   const collectionJson = await repositories[format].getCollectionJson(collectionPath)
 
-  const collection = await jsonToCollectionModel(collectionJson)
+  const collection = await jsonToCollection(collectionJson)
   return collection
 
 }

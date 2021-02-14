@@ -1,5 +1,6 @@
 import defaultCollectionJson from '../../test/mocks/defaultCollection/input/defaultCollection.json'
 import { getCollection } from './collection'
+import { defaultCollectionMock } from '../../test/mocks/defaultCollection'
 
 describe('Collection Controller', () => {
   it('gets a collection json', async () => {
@@ -15,7 +16,7 @@ describe('Collection Controller', () => {
 
   it('transforms a collection json into a collection model', async () => {
     // Arrange
-    const mockedCollectionModel = defaultCollectionModel
+    const mockedCollection = defaultCollectionMock
     const mockedCollectionPath = 'src/test/mocks/defaultCollection/input/markdown/defaultCollection'
     // Act
     const collectionJson = await getCollection(mockedCollectionPath, 'markdown')
