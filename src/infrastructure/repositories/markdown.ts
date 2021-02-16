@@ -3,9 +3,14 @@
 // https://github.com/scottstanfield/markdown-to-json
 const jdown = require('jdown')
 
+export const transformMarkdownDirectoryToJson=async(path:string) => {
+  const jsonCollection = await jdown(path, {parseMd:false})
+  return jsonCollection
+}
+
 // Returns the json object
 export const getCollectionJson = async (path:string) => {
-  const jsonCollection = await jdown(path)
+  const jsonCollection = await transformMarkdownDirectoryToJson(path)
   return jsonCollection
 }
 
