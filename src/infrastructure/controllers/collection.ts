@@ -1,13 +1,13 @@
 import { Configuration } from '../../configuration'
 import { repositories } from '../repositories'
-import { collectionConfiguration } from '../../index'
 import { Collection } from '../../domain/models'
-const { inputDirectory } = collectionConfiguration
 
-const jsonToCollection= (collectionJson:{}) :Collection => {
+// const processJsonItems
+
+const jsonToCollection = (collectionJson:any, inputDirectory: string) :Collection => {
   const jsonItems:any = collectionJson[inputDirectory]
   // const { index } = jsonItems
-  const { index, ...itemsToProcess } = jsonItems;
+  const { index, ...itemsToProcess } = jsonItems
   console.log(index, itemsToProcess)
   // const collectionItems = processJsonItems
 
@@ -16,16 +16,15 @@ const jsonToCollection= (collectionJson:{}) :Collection => {
     description: index.contents,
     content: itemsToProcess
   }
-
 }
 
 // Returns the Collection Json from the path specified
-export const getCollection = async (collectionPath: string, format: string): Promise<{}> => {
-  const collectionJson = await repositories[format].getCollectionJson(collectionPath)
+export const getCollection = async ( configuration: Configuration): Promise<{}> => {
+  const {inputType, inputDirectory, pathRootDirectory:collectionPath} =configuration
+  const collectionJson = await repositories[inputType].getCollectionJson(collectionPath)
 
-  const collection = await jsonToCollection(collectionJson)
+  const collection = await jsonToCollection(collectionJson, inputDirectory)
   return collection
-
 }
 
 export const processCollection = (collection: {}, format: string):any => {

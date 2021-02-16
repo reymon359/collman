@@ -25,7 +25,6 @@ describe('Collection Controller', () => {
     expect(collectionJson).toEqual(mockedCollectionJson)
   })
 
-
   it('process a collection json', async () => {
     // Arrange
     const mockedCollectionJson = defaultCollectionJson
