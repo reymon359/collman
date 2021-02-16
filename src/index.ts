@@ -7,7 +7,7 @@ export const collectionConfiguration = defaultConfiguration
 const main = async () => {
   const configuration = collectionConfiguration
   // Get the config values needed
-  const { pathRootDirectory,  outputType } = configuration
+  const { outputType } = configuration
   // Upload the collection, pass it to json
   const collectionUploaded = await controllers.collection.getCollection(configuration)
   // Process it to the output specified in the config

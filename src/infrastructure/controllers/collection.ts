@@ -1,4 +1,4 @@
-import { Configuration } from '../../configuration'
+import { Configuration, defaultConfiguration } from '../../configuration'
 import { repositories } from '../repositories'
 import { Collection } from '../../domain/models'
 
@@ -19,7 +19,7 @@ const jsonToCollection = (collectionJson:any, inputDirectory: string) :Collectio
 }
 
 // Returns the Collection Json from the path specified
-export const getCollection = async ( configuration: Configuration): Promise<{}> => {
+export const getCollection = async (configuration = defaultConfiguration): Promise<{}> => {
   const {inputType, inputDirectory, pathRootDirectory:collectionPath} =configuration
   const collectionJson = await repositories[inputType].getCollectionJson(collectionPath)
 
