@@ -20,7 +20,7 @@ const jsonToCollection = (collectionJson:any, inputDirectory: string) :Collectio
 
 // Returns the Collection Json from the path specified
 export const getCollection = async (configuration = defaultConfiguration): Promise<{}> => {
-  const {inputType, inputDirectory, pathRootDirectory:collectionPath} =configuration
+  const { inputType, inputDirectory, pathRootDirectory: collectionPath } = configuration
   const collectionJson = await repositories[inputType].getCollectionJson(collectionPath)
 
   const collection = await jsonToCollection(collectionJson, inputDirectory)
