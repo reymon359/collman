@@ -1,16 +1,19 @@
-// https://github.com/scottstanfield/markdown-to-json
-// https://github.com/IonicaBizau/json2md
-// https://github.com/scottstanfield/markdown-to-json
 const jdown = require('jdown')
 
-export const transformMarkdownDirectoryToJson=async(path:string) => {
-  const jsonCollection = await jdown(path, {parseMd:false})
+export const transformMarkdownDirectoryToJson = async (path:string) => {
+  const jsonCollection = await jdown(path, { parseMd: false })
   return jsonCollection
 }
 
+export const transformJsonCollectionToCollection = async (jsonCollection)=>{
+
+}
+
 // Returns the json object
-export const getCollectionJson = async (path:string) => {
+export const getCollection = async (path:string) => {
   const jsonCollection = await transformMarkdownDirectoryToJson(path)
+  const collection = await transformJsonCollectionToCollection(jsonCollection)
+
   return jsonCollection
 }
 

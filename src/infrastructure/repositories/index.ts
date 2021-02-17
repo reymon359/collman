@@ -1,7 +1,7 @@
-import { getCollectionJson } from './markdown'
+import { getCollection } from './markdown'
 
 export const repositories: any = {
   markdown: {
-    getCollectionJson
+    getCollection
   }
 }
