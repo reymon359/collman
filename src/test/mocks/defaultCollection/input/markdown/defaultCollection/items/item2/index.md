@@ -2,6 +2,7 @@
 name: 'ITEM2'
 description: 'DESCRIPTION2'
 categories: ['Category1', 'Category3']
+Tags: ['Tag 2', 'Tag 3', 'Tag 4']
 ---
 # Title 2
 
