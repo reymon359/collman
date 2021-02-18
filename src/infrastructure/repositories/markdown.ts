@@ -6,7 +6,9 @@ export const transformMarkdownDirectoryToJson = async (path:string) => {
 }
 
 export const transformJsonCollectionToCollection = async (jsonCollection)=>{
+  const collection = {}
 
+  return collection
 }
 
 // Returns the json object
@@ -14,10 +16,17 @@ export const getCollection = async (path:string) => {
   const jsonCollection = await transformMarkdownDirectoryToJson(path)
   const collection = await transformJsonCollectionToCollection(jsonCollection)
 
-  return jsonCollection
+  return collection
 }
 
 // Creates a markdown directory from a json object
 export const createMarkdownCollection = (json:object, outputPath?:string) => {
 
 }
+
+
+
+
+
+
+
