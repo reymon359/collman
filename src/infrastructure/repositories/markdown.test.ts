@@ -11,7 +11,6 @@ describe('Markdown repository', () => {
     const mockedJsonCollection = defaultCollectionJson
     // Act
     const jsonCollection = await transformMarkdownDirectoryToJson(mockedPath)
-    console.log(jsonCollection)
     // Assert
     expect(jsonCollection).toEqual(mockedJsonCollection)
   })
