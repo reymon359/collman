@@ -20,5 +20,6 @@ export interface Content {
 export interface Collection {
   name: string
   description: string
+  classifications: [Classification] // with all the collection possible classifications
   content: Content
 }
