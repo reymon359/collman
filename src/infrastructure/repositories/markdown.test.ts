@@ -24,6 +24,6 @@ describe('Markdown repository', () => {
     const collection = await transformJsonCollectionToCollection(mockedCollectionJson)
     console.log(collection)
     // Assert
-    expect(collection).toEqual(mockedCollectionJson)
+    expect(collection).toEqual(mockedCollection)
   })
 })
