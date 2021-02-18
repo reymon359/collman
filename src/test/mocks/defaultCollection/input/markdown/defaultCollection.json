@@ -11,6 +11,11 @@
         "Category1",
         "Category2"
       ],
+      "Tags": [
+        "Tag 1",
+        "Tag 2",
+        "Tag 3"
+      ],
       "contents": "# Title 1\n\n![Image 1](./assets/image-1.jpg)\n\nItem 1 introduction\n\n\n"
     },
     "item2": {
@@ -20,6 +25,11 @@
         "Category1",
         "Category3"
       ],
+      "Tags": [
+        "Tag 2",
+        "Tag 3",
+        "Tag 4"
+      ],
       "contents": "# Title 2\n\n![Image 2](./assets/image-2.png)\n\nItem 2 introduction\n\n\n"
     },
     "item3": {
@@ -28,6 +38,11 @@
       "categories": [
         "Category2",
         "Category3"
+      ],
+      "Tags": [
+        "Tag 3",
+        "Tag 4",
+        "Tag 5"
       ],
       "contents": "# Title 3\n\n![Image 3](./assets/image-3.svg)\n\nItem 3 introduction\n\n\n"
     }
