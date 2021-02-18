@@ -2,7 +2,7 @@
   "items": {
     "index": {
       "name": "Default Collection",
-      "contents": "\nDefault Collection description \n"
+      "contents": "Default Collection description \n"
     },
     "item1": {
       "name": "item1",
@@ -11,7 +11,7 @@
         "Category1",
         "Category2"
       ],
-      "contents": "\n# Title 1\n\n![Image 1](./assets/image-1.jpg)\n\nItem 1 introduction\n\n\n"
+      "contents": "# Title 1\n\n![Image 1](./assets/image-1.jpg)\n\nItem 1 introduction\n\n\n"
     },
     "item2": {
       "name": "ITEM2",
@@ -20,7 +20,7 @@
         "Category1",
         "Category3"
       ],
-      "contents": "\n# Title 2\n\n![Image 2](./assets/image-2.png)\n\nItem 2 introduction\n\n\n"
+      "contents": "# Title 2\n\n![Image 2](./assets/image-2.png)\n\nItem 2 introduction\n\n\n"
     },
     "item3": {
       "name": "Item3",
@@ -29,7 +29,7 @@
         "Category2",
         "Category3"
       ],
-      "contents": "\n# Title 3\n\n![Image 3](./assets/image-3.svg)\n\nItem 3 introduction\n\n\n"
+      "contents": "# Title 3\n\n![Image 3](./assets/image-3.svg)\n\nItem 3 introduction\n\n\n"
     }
   }
 }
