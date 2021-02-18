@@ -1,8 +1,9 @@
 import defaultCollectionJson from '../../test/mocks/defaultCollection/input/markdown/defaultCollection.json'
 import {
-  transformJsonCollectionToCollection,
+  transformInputDirectoryJsonToCollection,
   transformMarkdownDirectoryToJson
 } from './markdown'
+import { defaultCollection } from '../../test/mocks/defaultCollection'
 
 describe('Markdown repository', () => {
   it('transforms a markdown directory to a collection json', async () => {
@@ -18,9 +19,11 @@ describe('Markdown repository', () => {
   it('transforms a collection json to a collection', async () => {
     // Arrange
     const mockedCollectionJson = defaultCollectionJson
-    const mockedCollection = {}
+    const mockedCollectionInputDirectory = 'items'
+    const mockedCollection = defaultCollection
     // Act
-    const collection = await transformJsonCollectionToCollection(mockedCollectionJson)
+    //@ts-ignore
+    const collection = await transformInputDirectoryJsonToCollection(mockedCollectionJson, mockedCollectionInputDirectory)
     console.log(collection)
     // Assert
     expect(collection).toEqual(mockedCollection)
