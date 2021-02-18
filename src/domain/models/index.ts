@@ -1,3 +1,16 @@
+/* Feature Classifications Version 2
+
+export interface ClassificationValue {
+  name: string
+  quantity: number
+}
+
+export interface ClassificationV2 {
+  name: string // Example: Lets classify in Categories
+  values: [ClassificationValue] // Example: Array of the different Categories
+}
+*/
+
 export interface Classification {
   name: string // Example: Lets classify in Categories
   values: [string] // Example: Array of the different Categories
