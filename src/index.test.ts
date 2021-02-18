@@ -1,5 +1,3 @@
-import { defaultConfiguration } from './configuration'
-
 describe.skip('Configuration', () => {
   // it('loads the default configuration if no configuration provided', () => {
   //   // Act

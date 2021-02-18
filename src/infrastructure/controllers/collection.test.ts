@@ -1,6 +1,5 @@
 import defaultCollectionJson from '../../test/mocks/defaultCollection/input/markdown/defaultCollection.json'
 import { getCollection } from './collection'
-import { defaultCollectionMock } from '../../test/mocks/defaultCollection'
 import { defaultConfiguration } from '../../configuration'
 
 describe.skip('Collection Controller', () => {
