@@ -1,7 +1,19 @@
 const jdown = require('jdown')
 
-export const transformMarkdownDirectoryToJson = async (path:string) => {
-  const jsonCollection = await jdown(path, { parseMd: false })
+export interface JsonItem {
+  name: string
+  description: string
+  categories?: [string]
+  contents?: string
+}
+
+export interface JsonCollection {
+  jsonItems: [JsonItem]
+}
+
+
+export const transformMarkdownDirectoryToJson = async (path:string,) => {
+  const jsonCollection: JsonCollection = await jdown(path, { parseMd: false })
   return jsonCollection
 }
 
