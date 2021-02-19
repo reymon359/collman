@@ -34,6 +34,47 @@ describe('Markdown repository', () => {
     expect(jsonItemClassifications).toEqual(mockedItemClassifications)
   })
 
+  it('transforms Json Items to Collection Items', async () => {
+    const mockedJsonItems = [{
+      contents: 'irrelevant contents',
+      name: 'irrelevant name',
+      description: 'irrelevant description',
+      categories: ['Category1', 'Category2'],
+      Tags: ['Tag 1', 'Tag 2', 'Tag 3']
+    },
+      {
+        contents: 'irrelevant contents two',
+        name: 'irrelevant name two',
+        description: 'irrelevant description two',
+        categories: ['Category2', 'Category3'],
+        Tags: ['Tag 3', 'Tag 4', 'Tag 5']
+      }
+    ]
+
+    const mockedTransformedItems = [{
+      content: 'irrelevant content',
+      name: 'irrelevant name',
+      description: 'irrelevant description',
+      classifications: [
+        { name: 'categories', values: ['Category1', 'Category2'] },
+        { name: 'Tags', values: ['Tag 1', 'Tag 2', 'Tag 3'] }]
+    },
+      {
+        content: 'irrelevant content two',
+        name: 'irrelevant name two',
+        description: 'irrelevant description two',
+        classifications: [
+          { name: 'categories', values: ['Category2', 'Category3'] },
+          { name: 'Tags', values: ['Tag 3', 'Tag 4', 'Tag 5'] }]
+      }
+    ]
+
+    const transformedItems = transformJsonItemsToCollectionItems(mockedJsonItems)
+
+    expect(transformedItems).toEqual(mockedTransformedItems)
+  })
+
+
   it.skip('gets Classifications from an array of Json Items', async () => {
     const mockedJsonItems = [{
       content: 'irrelevant content',
