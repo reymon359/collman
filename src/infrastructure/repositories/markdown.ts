@@ -39,15 +39,32 @@ export const getClassificationsFromJsonItems = async (jsonItems:[any]) => {
   }]
 }
 
+
+export const transformJsonItemsToCollectionItems =(jsonItems:[any]) => {
+
+
+   // Add this here to rename the content .map(({ contents: content, ...rest }) => ({ content, ...rest }))
+
+}
+
+export const getArrayJsonItems = (itemsObjects:any) =>{
+
+  return Object.keys(itemsObjects).map(key => itemsObjects[key])
+
+}
+
 export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson: {}, inputDirectory:string) => {
   // @ts-ignore
   const jsonCollection = inputDirectoryJson[inputDirectory]
-  const { index, ...jsonCollectionItems } = jsonCollection
-  console.log(jsonCollection, index, jsonCollectionItems)
+  const { index, ...itemsObjects } = jsonCollection
 
-  const jsonItems = Object.keys(jsonCollectionItems).map(key => jsonCollectionItems[key]).map(({ contents: content, ...rest }) => ({ content, ...rest }))
-  console.log(jsonItems)
+  // Gets the items objects and transforms into an array and changes the name of contents to content
+  const jsonItems = getArrayJsonItems(itemsObjects)
 
+
+
+
+  const itemsTransformed = transformJsonItemsToCollectionItems(jsonItems as [JsonItem])
   //
   //   console.log(index, jsonItems)
   //   const jsonItems = jsonItems.map(({ contents: content, ...rest }) => ({ content, ...rest }));

@@ -1,7 +1,7 @@
 import defaultCollectionJson from '../../test/mocks/defaultCollection/input/markdown/defaultCollection.json'
 import {
   getClassificationsFromJsonItem,
-  transformInputDirectoryJsonToCollection,
+  transformInputDirectoryJsonToCollection, transformJsonItemsToCollectionItems,
   transformMarkdownDirectoryToJson
 } from './markdown'
 import { defaultCollection } from '../../test/mocks/defaultCollection'
@@ -19,7 +19,7 @@ describe('Markdown repository', () => {
 
   it('gets Item Classifications from Json Item', async () => {
     const mockedJsonItem = {
-      content: 'irrelevant content',
+      contents: 'irrelevant contents',
       name: 'irrelevant name',
       description: 'irrelevant description',
       categories: ['Category1', 'Category2'],
@@ -77,14 +77,14 @@ describe('Markdown repository', () => {
 
   it.skip('gets Classifications from an array of Json Items', async () => {
     const mockedJsonItems = [{
-      content: 'irrelevant content',
+      contents: 'irrelevant contents',
       name: 'irrelevant name',
       description: 'irrelevant description',
       categories: ['Category1', 'Category2'],
       Tags: ['Tag 1', 'Tag 2', 'Tag 3']
     },
     {
-      content: 'irrelevant content two',
+      contents: 'irrelevant contents two',
       name: 'irrelevant name two',
       description: 'irrelevant description two',
       categories: ['Category2', 'Category3'],
