@@ -1,6 +1,5 @@
 import { Configuration, defaultConfiguration } from '../../configuration'
 import { repositories } from '../repositories'
-import { Collection } from '../../domain/models'
 
 // Returns the Collection Json from the path specified
 export const getCollection = async (configuration = defaultConfiguration): Promise<{}> => {
