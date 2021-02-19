@@ -16,25 +16,6 @@ export const transformMarkdownDirectoryToJson = async (path:string) => {
   return jsonCollection
 }
 
-/*
- Example for item 1
-  {
-    "name": "item1",
-    "description": "description1",
-    "content": "# Title 1\n\n![Image 1](./assets/image-1.jpg)\n\nItem 1 introduction\n\n\n",
-    "categories": ["Category1", "Category2"]
-    "tags":["Tag 1", "Tag 2", "Tag 3"]
-  }
-
-  return [{
-        name: "categories",
-        values: ["Category1", "Category2"]
-      },{
-        name: 'tags',
-        values: ['Tag 1', 'Tag 2', 'Tag 3']
-      }]
- */
-
 export const getClassificationsFromJsonItem = (jsonItem: any) => {
   const jsonItemKeys = (Object.keys(jsonItem))
   const jsonItemClassifications: any[] = []
