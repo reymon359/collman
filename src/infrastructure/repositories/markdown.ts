@@ -35,18 +35,20 @@ export const transformMarkdownDirectoryToJson = async (path:string) => {
       }]
  */
 
-export const getClassificationsFromJsonItem = (jsonItem: JsonItem) => {
-  return [{
-    name: 'categories',
-    values: ['Category1', 'Category2']
-  }, {
-    name: 'tags',
-    values: ['Tag 1', 'Tag 2', 'Tag 3']
-  }]
+export const getClassificationsFromJsonItem = (jsonItem: any) => {
+  const jsonItemKeys = (Object.keys(jsonItem))
+  const jsonItemClassifications: any[] = []
+  jsonItemKeys.forEach(key => {
+    const value = jsonItem[key]
+    if (Array.isArray(value)) {
+      jsonItemClassifications.push({ name: key, values: value })
+    }
+  })
+  return jsonItemClassifications
 }
 
-export const getClassificationsFromJsonItems = async (jsonItems:[JsonItem]) => {
-  const allClassifications = jsonItems.forEach(jsonItem => getClassificationsFromJsonItem(jsonItem))
+export const getClassificationsFromJsonItems = async (jsonItems:[any]) => {
+  // const allClassifications = jsonItems.forEach(jsonItem => getClassificationsFromJsonItem(jsonItem))
   return [{
     name: 'categories',
     values: ['Category1', 'Category2', 'Category3']
