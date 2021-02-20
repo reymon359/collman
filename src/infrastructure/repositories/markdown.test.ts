@@ -51,7 +51,7 @@ describe('Markdown repository', () => {
     }
     ]
 
-    const mockedTransformedItems = [{
+    const mockedCollectionItems = [{
       content: 'irrelevant contents',
       name: 'irrelevant name',
       description: 'irrelevant description',
@@ -71,31 +71,33 @@ describe('Markdown repository', () => {
 
     const collectionItems = await transformJsonItemsToCollectionItems(mockedJsonItems)
 
-    expect(collectionItems).toEqual(mockedTransformedItems)
+    expect(collectionItems).toEqual(mockedCollectionItems)
   })
 
-  it.skip('gets Classifications from an array of Json Items', async () => {
-    const mockedJsonItems = [{
-      contents: 'irrelevant contents',
+  it('gets Collection Classifications from an array of Collection Items', async () => {
+    const mockedCollectionItems = [{
+      content: 'irrelevant contents',
       name: 'irrelevant name',
       description: 'irrelevant description',
-      categories: ['Category1', 'Category2'],
-      Tags: ['Tag 1', 'Tag 2', 'Tag 3']
+      classifications: [
+        { name: 'categories', values: ['Category1', 'Category2'] },
+        { name: 'Tags', values: ['Tag 1', 'Tag 2', 'Tag 3'] }]
     },
-    {
-      contents: 'irrelevant contents two',
-      name: 'irrelevant name two',
-      description: 'irrelevant description two',
-      categories: ['Category2', 'Category3'],
-      Tags: ['Tag 3', 'Tag 4', 'Tag 5']
-    }
+      {
+        content: 'irrelevant contents two',
+        name: 'irrelevant name two',
+        description: 'irrelevant description two',
+        classifications: [
+          { name: 'categories', values: ['Category2', 'Category3'] },
+          { name: 'Tags', values: ['Tag 3', 'Tag 4', 'Tag 5'] }]
+      }
     ]
     const mockedClassifications = [
       { name: 'categories', values: ['Category1', 'Category2', 'Category3'] },
       { name: 'Tags', values: ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5'] }]
 
-    const classifications = getClassificationsFromJsonItem(mockedJsonItems)
-
+    const classifications = await getClassificationsFromJsonItem(mockedCollectionItems)
+    console.log(classifications)
     expect(classifications).toEqual(mockedClassifications)
   })
 

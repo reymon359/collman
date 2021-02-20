@@ -1,14 +1,16 @@
+import { Classification, Item } from '../../domain/models'
+
 const jdown = require('jdown')
 
 export interface JsonItem {
   name: string
   description: string
-  categories?: [string]
+  categories?: string[]
   contents?: string
 }
 
 export interface JsonCollection {
-  items: [JsonItem]
+  items: JsonItem[]
 }
 
 export const transformMarkdownDirectoryToJson = async (path:string) => {
@@ -16,10 +18,10 @@ export const transformMarkdownDirectoryToJson = async (path:string) => {
   return jsonCollection
 }
 
-export const getClassificationsFromJsonItem = (jsonItem: any) => {
+export const getClassificationsFromJsonItem = async (jsonItem: any) => {
   const jsonItemKeys = (Object.keys(jsonItem))
   const jsonItemClassifications: any[] = []
-  jsonItemKeys.forEach(key => {
+  await jsonItemKeys.forEach(key => {
     const value = jsonItem[key]
     if (Array.isArray(value)) {
       jsonItemClassifications.push({ name: key, values: value })
@@ -28,15 +30,15 @@ export const getClassificationsFromJsonItem = (jsonItem: any) => {
   return jsonItemClassifications
 }
 
-export const getClassificationsFromJsonItems = async (jsonItems:[any]) => {
+export const getClassificationsFromCollectionItems = async (collectionItems: Item[]) => {
   // const allClassifications = jsonItems.forEach(jsonItem => getClassificationsFromJsonItem(jsonItem))
-  return [{
-    name: 'categories',
-    values: ['Category1', 'Category2', 'Category3']
-  }, {
-    name: 'tags',
-    values: ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5']
-  }]
+  const collectionClassifications: Classification[] = []
+  await collectionItems.forEach(item =>{
+
+
+  })
+
+  return collectionClassifications
 }
 
 export const transformJsonItemsToCollectionItems = async (jsonItems:any) => {
@@ -65,11 +67,11 @@ export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson
 
   const jsonItems = getJsonItemsFromObjectItems(objectItems)
 
-  const collectionItems = transformJsonItemsToCollectionItems(jsonItems as [JsonItem])
+  const collectionItems = transformJsonItemsToCollectionItems(jsonItems as JsonItem[])
 
   //   const jsonItems = jsonItems.map(({ contents: content, ...rest }) => ({ content, ...rest }));
   //   console.log(jsonItems)
-  const collectionClassifications = getClassificationsFromJsonItems(jsonItems as [JsonItem])
+  const collectionClassifications = getClassificationsFromCollectionItems(collectionItems)
   // console.log('wtf')
   // const collectionItems = processJsonItems
 
