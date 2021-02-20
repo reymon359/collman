@@ -81,7 +81,11 @@ export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson
 
   const jsonItems = await getJsonItemsFromObjectItems(objectItems)
   const collectionItems = await transformJsonItemsToCollectionItems(jsonItems as JsonItem[])
+  console.log(collectionItems)
+
   const collectionClassifications = await getClassificationsFromCollectionItems(collectionItems)
+
+  console.log(collectionItems)
 
   return {
     name: index.name,
@@ -94,7 +98,6 @@ export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson
   }
 }
 
-// Returns the json object
 export const getCollection = async (path:string, inputDirectory:string) => {
   const inputDirectoryJson = await transformMarkdownDirectoryToJson(path)
   const collection = await transformInputDirectoryJsonToCollection(inputDirectoryJson, inputDirectory)

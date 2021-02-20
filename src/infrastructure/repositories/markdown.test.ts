@@ -4,6 +4,7 @@ import {
   getItemClassificationsFromJsonItem,
   transformInputDirectoryJsonToCollection, transformJsonItemsToCollectionItems,
   transformMarkdownDirectoryToJson
+  , getCollection
 } from './markdown'
 import { defaultCollection } from '../../test/mocks/defaultCollection'
 
@@ -16,6 +17,17 @@ describe('Markdown repository', () => {
     const jsonCollection = await transformMarkdownDirectoryToJson(mockedPath)
     // Assert
     expect(jsonCollection).toEqual(mockedJsonCollection)
+  })
+
+  // TODO: Fix this test. Maybe add one more item to the transform items right now the first item is getting all the classifications instead of its own
+  it.skip('gets a collection from a path and input directory', async () => {
+    const mockedCollection = defaultCollection
+    const mockedPath = 'src/test/mocks/defaultCollection/input/markdown/defaultCollection'
+    const mockedInputDirectory = 'items'
+
+    const collection = await getCollection(mockedPath, mockedInputDirectory)
+    console.log(collection)
+    expect(collection).toEqual(mockedCollection)
   })
 
   it('gets Item Classifications from Json Item', async () => {
