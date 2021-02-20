@@ -1,7 +1,7 @@
 import defaultCollectionJson from '../../test/mocks/defaultCollection/input/markdown/defaultCollection.json'
 import {
   getClassificationsFromCollectionItems,
-  getClassificationsFromJsonItem,
+  getItemClassificationsFromJsonItem,
   transformInputDirectoryJsonToCollection, transformJsonItemsToCollectionItems,
   transformMarkdownDirectoryToJson
 } from './markdown'
@@ -30,7 +30,7 @@ describe('Markdown repository', () => {
       { name: 'categories', values: ['Category1', 'Category2'] },
       { name: 'Tags', values: ['Tag 1', 'Tag 2', 'Tag 3'] }]
 
-    const jsonItemClassifications = getClassificationsFromJsonItem(mockedJsonItem)
+    const jsonItemClassifications = await getItemClassificationsFromJsonItem(mockedJsonItem)
 
     expect(jsonItemClassifications).toEqual(mockedItemClassifications)
   })
@@ -71,7 +71,6 @@ describe('Markdown repository', () => {
     ]
 
     const collectionItems = await transformJsonItemsToCollectionItems(mockedJsonItems)
-
     expect(collectionItems).toEqual(mockedCollectionItems)
   })
 
