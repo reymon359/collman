@@ -1,5 +1,6 @@
 import defaultCollectionJson from '../../test/mocks/defaultCollection/input/markdown/defaultCollection.json'
 import {
+  getClassificationsFromCollectionItems,
   getClassificationsFromJsonItem,
   transformInputDirectoryJsonToCollection, transformJsonItemsToCollectionItems,
   transformMarkdownDirectoryToJson
@@ -83,21 +84,20 @@ describe('Markdown repository', () => {
         { name: 'categories', values: ['Category1', 'Category2'] },
         { name: 'Tags', values: ['Tag 1', 'Tag 2', 'Tag 3'] }]
     },
-      {
-        content: 'irrelevant contents two',
-        name: 'irrelevant name two',
-        description: 'irrelevant description two',
-        classifications: [
-          { name: 'categories', values: ['Category2', 'Category3'] },
-          { name: 'Tags', values: ['Tag 3', 'Tag 4', 'Tag 5'] }]
-      }
+    {
+      content: 'irrelevant contents two',
+      name: 'irrelevant name two',
+      description: 'irrelevant description two',
+      classifications: [
+        { name: 'categories', values: ['Category2', 'Category3'] },
+        { name: 'Tags', values: ['Tag 3', 'Tag 4', 'Tag 5'] }]
+    }
     ]
     const mockedClassifications = [
       { name: 'categories', values: ['Category1', 'Category2', 'Category3'] },
       { name: 'Tags', values: ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5'] }]
 
-    const classifications = await getClassificationsFromJsonItem(mockedCollectionItems)
-    console.log(classifications)
+    const classifications = await getClassificationsFromCollectionItems(mockedCollectionItems)
     expect(classifications).toEqual(mockedClassifications)
   })
 
@@ -109,7 +109,6 @@ describe('Markdown repository', () => {
     // Act
     // @ts-ignore
     const collection = await transformInputDirectoryJsonToCollection(mockedCollectionJson, mockedCollectionInputDirectory)
-    console.log(collection)
     // Assert
     expect(collection).toEqual(mockedCollection)
   })

@@ -31,11 +31,23 @@ export const getClassificationsFromJsonItem = async (jsonItem: any) => {
 }
 
 export const getClassificationsFromCollectionItems = async (collectionItems: Item[]) => {
-  // const allClassifications = jsonItems.forEach(jsonItem => getClassificationsFromJsonItem(jsonItem))
   const collectionClassifications: Classification[] = []
-  await collectionItems.forEach(item =>{
+  const allItemsClassifications = collectionItems.map(item => item.classifications)
 
+  await allItemsClassifications.forEach(itemClassifications => {
+    itemClassifications.forEach(itemClassification => {
+      // If the classification is already in the collection classifications
+      if (collectionClassifications.some(collectionClassification => collectionClassification.name === itemClassification.name)) {
+        // We get the index of the classification in the collection
+        const collectionClassificationIndex = collectionClassifications.findIndex(collectionClassification => collectionClassification.name === itemClassification.name)
+        // merge the values with the current ones
+        const currentValues = collectionClassifications[collectionClassificationIndex].values
 
+        collectionClassifications[collectionClassificationIndex].values = [...new Set([...currentValues, ...itemClassification.values])]
+      } else { // if the classification is not in collection classifications we add it
+        collectionClassifications.push(itemClassification)
+      }
+    })
   })
 
   return collectionClassifications
@@ -65,15 +77,9 @@ export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson
   const jsonCollection = inputDirectoryJson[inputDirectory]
   const { index, ...objectItems } = jsonCollection
 
-  const jsonItems = getJsonItemsFromObjectItems(objectItems)
-
-  const collectionItems = transformJsonItemsToCollectionItems(jsonItems as JsonItem[])
-
-  //   const jsonItems = jsonItems.map(({ contents: content, ...rest }) => ({ content, ...rest }));
-  //   console.log(jsonItems)
-  const collectionClassifications = getClassificationsFromCollectionItems(collectionItems)
-  // console.log('wtf')
-  // const collectionItems = processJsonItems
+  const jsonItems = await getJsonItemsFromObjectItems(objectItems)
+  const collectionItems = await transformJsonItemsToCollectionItems(jsonItems as JsonItem[])
+  const collectionClassifications = await getClassificationsFromCollectionItems(collectionItems)
 
   return {
     name: index.name,
