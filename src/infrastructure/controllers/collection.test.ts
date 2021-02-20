@@ -9,7 +9,6 @@ describe.skip('Collection Controller', () => {
     const mockedCollectionConfiguration = { collectionPath: 'src/test/mocks/defaultCollection/input/markdown/defaultCollection' }
     // Act
     const collectionJson = await getCollection({ ...defaultConfiguration, ...mockedCollectionConfiguration })
-    console.log(collectionJson)
     // Assert
     expect(collectionJson).toEqual(mockedCollectionJson)
   })
