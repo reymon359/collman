@@ -33,9 +33,10 @@ export const getItemClassificationsFromJsonItem = async (jsonItem: any) => {
 
 export const getClassificationsFromCollectionItems = async (collectionItems: Item[]) => {
   const collectionClassifications: Classification[] = []
-  const allItemsClassifications = collectionItems.map(item => item.classifications)
+  const clonedCollectionItems = JSON.parse(JSON.stringify(collectionItems))
+  const allItemsClassifications = clonedCollectionItems.map((item:Item) => item.classifications)
 
-  await allItemsClassifications.forEach(itemClassifications => {
+  await allItemsClassifications.forEach((itemClassifications:Classification[]) => {
     itemClassifications.forEach(itemClassification => {
       // If the classification is already in the collection classifications
       if (collectionClassifications.some(collectionClassification => collectionClassification.name === itemClassification.name)) {
@@ -44,13 +45,12 @@ export const getClassificationsFromCollectionItems = async (collectionItems: Ite
         // merge the values with the current ones
         const currentValues = collectionClassifications[collectionClassificationIndex].values
 
-        collectionClassifications[collectionClassificationIndex].values = [...new Set([...currentValues, ...itemClassification.values])]
+        collectionClassifications[collectionClassificationIndex].values = [...new Set([...currentValues, ...itemClassification.values])].sort()
       } else { // if the classification is not in collection classifications we add it
         collectionClassifications.push(itemClassification)
       }
     })
   })
-
   return collectionClassifications
 }
 
@@ -81,11 +81,7 @@ export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson
 
   const jsonItems = await getJsonItemsFromObjectItems(objectItems)
   const collectionItems = await transformJsonItemsToCollectionItems(jsonItems as JsonItem[])
-  console.log(collectionItems)
-
   const collectionClassifications = await getClassificationsFromCollectionItems(collectionItems)
-
-  console.log(collectionItems)
 
   return {
     name: index.name,

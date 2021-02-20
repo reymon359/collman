@@ -2,7 +2,7 @@ import defaultCollectionJson from '../../test/mocks/defaultCollection/input/mark
 import {
   getClassificationsFromCollectionItems,
   getItemClassificationsFromJsonItem,
-  transformInputDirectoryJsonToCollection, transformJsonItemsToCollectionItems,
+  transformJsonItemsToCollectionItems,
   transformMarkdownDirectoryToJson
   , getCollection
 } from './markdown'
@@ -20,13 +20,17 @@ describe('Markdown repository', () => {
   })
 
   // TODO: Fix this test. Maybe add one more item to the transform items right now the first item is getting all the classifications instead of its own
-  it.skip('gets a collection from a path and input directory', async () => {
+  it('gets a collection from a path and input directory', async () => {
     const mockedCollection = defaultCollection
     const mockedPath = 'src/test/mocks/defaultCollection/input/markdown/defaultCollection'
     const mockedInputDirectory = 'items'
 
     const collection = await getCollection(mockedPath, mockedInputDirectory)
-    console.log(collection)
+
+    // Sort the collection items before comparing them
+    await collection.content.items.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+    await mockedCollection.content.items.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0))
+
     expect(collection).toEqual(mockedCollection)
   })
 
@@ -103,23 +107,14 @@ describe('Markdown repository', () => {
         { name: 'Tags', values: ['Tag 3', 'Tag 4', 'Tag 5'] }]
     }
     ]
+    const clonedMockedCollectionItems = JSON.parse(JSON.stringify(mockedCollectionItems))
     const mockedClassifications = [
       { name: 'categories', values: ['Category1', 'Category2', 'Category3'] },
       { name: 'Tags', values: ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4', 'Tag 5'] }]
 
     const classifications = await getClassificationsFromCollectionItems(mockedCollectionItems)
-    expect(classifications).toEqual(mockedClassifications)
-  })
 
-  it.skip('transforms a collection json to a collection', async () => {
-    // Arrange
-    const mockedCollectionJson = defaultCollectionJson
-    const mockedCollectionInputDirectory = 'items'
-    const mockedCollection = defaultCollection
-    // Act
-    // @ts-ignore
-    const collection = await transformInputDirectoryJsonToCollection(mockedCollectionJson, mockedCollectionInputDirectory)
-    // Assert
-    expect(collection).toEqual(mockedCollection)
+    expect(mockedCollectionItems).toEqual(clonedMockedCollectionItems)
+    expect(classifications).toEqual(mockedClassifications)
   })
 })
