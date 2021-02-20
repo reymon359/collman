@@ -54,15 +54,16 @@ export const getClassificationsFromCollectionItems = async (collectionItems: Ite
 }
 
 export const transformJsonItemsToCollectionItems = async (jsonItems:any) => {
-  const transformedItems = await jsonItems.map(async (jsonItem:JsonItem) => {
+  const transformedItems:Item[] = []
+  for (const jsonItem of jsonItems) {
     const classifications = await getItemClassificationsFromJsonItem(jsonItem)
-    return {
+    transformedItems.push({
       name: jsonItem.name,
       description: jsonItem.description,
-      content: jsonItem.contents,
+      content: jsonItem.contents as string,
       classifications
-    }
-  })
+    })
+  }
   return transformedItems
 }
 

@@ -67,10 +67,10 @@ describe('Markdown repository', () => {
       classifications: [
         { name: 'categories', values: ['Category2', 'Category3'] },
         { name: 'Tags', values: ['Tag 3', 'Tag 4', 'Tag 5'] }]
-    }
-    ]
+    }]
 
     const collectionItems = await transformJsonItemsToCollectionItems(mockedJsonItems)
+    console.log(collectionItems)
     expect(collectionItems).toEqual(mockedCollectionItems)
   })
 
