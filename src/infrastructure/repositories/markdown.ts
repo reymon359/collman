@@ -39,34 +39,34 @@ export const getClassificationsFromJsonItems = async (jsonItems:[any]) => {
   }]
 }
 
-
-export const transformJsonItemsToCollectionItems =(jsonItems:[any]) => {
-
-
-   // Add this here to rename the content .map(({ contents: content, ...rest }) => ({ content, ...rest }))
-
+export const transformJsonItemsToCollectionItems = async (jsonItems:any) => {
+  const transformedItems = await jsonItems.map((jsonItem:JsonItem) => {
+    const classifications = getClassificationsFromJsonItem(jsonItem)
+    return {
+      name: jsonItem.name,
+      description: jsonItem.description,
+      content: jsonItem.contents,
+      classifications
+    }
+  })
+  return transformedItems
 }
 
-export const getArrayJsonItems = (itemsObjects:any) =>{
-
-  return Object.keys(itemsObjects).map(key => itemsObjects[key])
-
+export const getJsonItemsFromObjectItems = (objectItems:any) => {
+  // TODO: #30 Get here the item name from the folder if the object has not one
+  // TODO: Add a default description if the item does not have one
+  return Object.keys(objectItems).map(key => objectItems[key])
 }
 
 export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson: {}, inputDirectory:string) => {
   // @ts-ignore
   const jsonCollection = inputDirectoryJson[inputDirectory]
-  const { index, ...itemsObjects } = jsonCollection
+  const { index, ...objectItems } = jsonCollection
 
-  // Gets the items objects and transforms into an array and changes the name of contents to content
-  const jsonItems = getArrayJsonItems(itemsObjects)
+  const jsonItems = getJsonItemsFromObjectItems(objectItems)
 
+  const collectionItems = transformJsonItemsToCollectionItems(jsonItems as [JsonItem])
 
-
-
-  const itemsTransformed = transformJsonItemsToCollectionItems(jsonItems as [JsonItem])
-  //
-  //   console.log(index, jsonItems)
   //   const jsonItems = jsonItems.map(({ contents: content, ...rest }) => ({ content, ...rest }));
   //   console.log(jsonItems)
   const collectionClassifications = getClassificationsFromJsonItems(jsonItems as [JsonItem])
@@ -79,33 +79,8 @@ export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson
     classifications: collectionClassifications,
     content: {
       name: inputDirectory,
-      items: [{
-        name: 'item1',
-        description: 'description1',
-        classifications: [{
-          name: 'categories',
-          values: ['Category1', 'Category2']
-        }],
-        content: '# Title 1\n\n![Image 1](./assets/image-1.jpg)\n\nItem 1 introduction\n\n\n'
-      }, {
-        name: 'ITEM2',
-        description: 'DESCRIPTION2',
-        classifications: [{
-          name: 'categories',
-          values: ['Category1', 'Category3']
-        }],
-        content: '# Title 2\n\n![Image 2](./assets/image-2.png)\n\nItem 2 introduction\n\n\n'
-      }, {
-        name: 'Item3',
-        description: 'Description3',
-        classifications: [{
-          name: 'categories',
-          values: ['Category2', 'Category3']
-        }],
-        content: '# Title 3\n\n![Image 3](./assets/image-3.svg)\n\nItem 3 introduction\n\n\n'
-      }]
+      items: collectionItems
     }
-
   }
 }
 
