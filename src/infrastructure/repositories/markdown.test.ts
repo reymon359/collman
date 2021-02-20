@@ -70,7 +70,6 @@ describe('Markdown repository', () => {
     }]
 
     const collectionItems = await transformJsonItemsToCollectionItems(mockedJsonItems)
-    console.log(collectionItems)
     expect(collectionItems).toEqual(mockedCollectionItems)
   })
 
