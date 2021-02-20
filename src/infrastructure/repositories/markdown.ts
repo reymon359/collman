@@ -14,6 +14,7 @@ export interface JsonCollection {
 }
 
 export const transformMarkdownDirectoryToJson = async (path:string) => {
+  // TODO #30 #33 Use the fileInfo option from jdown to get info from dates and file name
   const jsonCollection: JsonCollection = await jdown(path, { parseMd: false })
   return jsonCollection
 }
