@@ -1,4 +1,4 @@
-import { Classification, Item } from '../../domain/models'
+import { Classification, Item } from '../../../domain/models'
 
 const jdown = require('jdown')
 
@@ -99,9 +99,4 @@ export const getCollection = async (path:string, inputDirectory:string) => {
   const collection = await transformInputDirectoryJsonToCollection(inputDirectoryJson, inputDirectory)
 
   return collection
-}
-
-// Creates a markdown directory from a json object
-export const createMarkdownCollection = (json:object, outputPath?:string) => {
-
 }
