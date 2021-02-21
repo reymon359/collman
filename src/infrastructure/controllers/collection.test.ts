@@ -1,52 +1,16 @@
-import defaultCollectionJson from '../../test/mocks/defaultCollection/input/markdown/defaultCollection.json'
 import { getCollection } from './collection'
 import { defaultConfiguration } from '../../configuration'
+import { defaultCollection } from '../../test/mocks/defaultCollection'
 
-describe.skip('Collection Controller', () => {
-  it('gets a collection from the input directory', async () => {
+describe('Collection Controller', () => {
+  // TODO: #34 Fix this test Timeout - Async callback was not invoked within the 5000 ms timeout specified by jest.setTimeout.Error
+  it.skip('gets a collection from the input directory', async () => {
     // Arrange
-    const mockedCollectionJson = defaultCollectionJson
+    const mockedCollection = defaultCollection
     const mockedCollectionConfiguration = { collectionPath: 'src/test/mocks/defaultCollection/input/markdown/defaultCollection' }
     // Act
-    const collectionJson = await getCollection({ ...defaultConfiguration, ...mockedCollectionConfiguration })
+    const collection = await getCollection({ ...defaultConfiguration, ...mockedCollectionConfiguration })
     // Assert
-    expect(collectionJson).toEqual(mockedCollectionJson)
+    expect(collection).toEqual(mockedCollection)
   })
-
-  it.skip('transforms a collection json into a collection model', async () => {
-    // // Arrange
-    // const mockedCollection = defaultCollectionMock
-    // const mockedCollectionPath = 'src/test/mocks/defaultCollection/input/markdown/defaultCollection'
-    // // Act
-    // const collectionJson = await getCollection()
-    // console.log(collectionJson)
-    // // Assert
-    // expect(collectionJson).toEqual(mockedCollectionJson)
-  })
-
-  it.skip('process a collection json', async () => {
-    // // Arrange
-    // const mockedCollectionJson = defaultCollectionJson
-    // const mockedCollectionPath = 'src/test/mocks/defaultCollection/input/markdown/defaultCollection'
-    // // Act
-    // const collectionJson = await getCollectionJson(mockedCollectionPath, 'markdown')
-    // // Assert
-    // expect(collectionJson).toEqual(mockedCollectionJson)
-  })
-
-  it.skip('creates a docs folder', () => {
-
-  })
-})
-it.skip('process the collection properly', () => {
-  // WIP
-  // // Arrange
-  // const mockedInputCollection = null
-  // const mockedOutputCollection = null
-  //
-  // // Act
-  // const outputCollection = processCollection(mockedInputCollection)
-  //
-  // // Assert
-  // expect(outputCollection).toEqual(mockedOutputCollection)
 })
