@@ -9,6 +9,6 @@ export const getCollection = async (configuration = defaultConfiguration): Promi
 }
 
 export const saveCollection = async (collection: Collection, configuration: Configuration) => {
-  const { outputType, outputDirectory, pathRootDirectory } = configuration
-  await repositories[outputType].saveCollection(pathRootDirectory, outputDirectory)
+  const { outputType } = configuration
+  await repositories[outputType].saveCollection(collection, configuration)
 }
