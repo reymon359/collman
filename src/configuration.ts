@@ -16,7 +16,7 @@ export interface Configuration{
 export const defaultConfiguration: Configuration = {
   inputType: 'markdown',
   outputType: 'markdown',
-  pathRootDirectory: './',
+  pathRootDirectory: '/',
   inputDirectory: 'items',
   outputDirectory: 'docs'
 }
