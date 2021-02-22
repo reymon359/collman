@@ -10,3 +10,4 @@ const main = async (configuration: Configuration = defaultConfiguration) => {
 }
 
 main()
+// main({ ...defaultConfiguration, pathRootDirectory: 'src/test/mocks/defaultCollection/input/markdown/defaultCollection' })
