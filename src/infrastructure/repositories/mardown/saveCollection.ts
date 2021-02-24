@@ -1,14 +1,11 @@
 import { Configuration, defaultConfiguration } from '../../../configuration'
 import { Collection } from '../../../domain/models'
-const fs = require('fs')
+import {repositories} from '../index'
 
-export const createOutputDirectory = (pathRootDirectory:string, outputDirectory:string) => {
+export const createOutputDirectory = async (pathRootDirectory:string, outputDirectory:string) => {
   const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
 
-   fs.mkdir(outputDirectoryPath, { recursive: true }, (err:any) => {
-      if (err) return console.error(err)
-      console.log(`Directory created at path ${outputDirectoryPath} successfully!`)
-    })
+  await repositories.fileSystem.makeDirectory(outputDirectoryPath)
 }
 
 export const saveCollection = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
