@@ -2,7 +2,7 @@ import { defaultCollection } from '../../../test/mocks/defaultCollection'
 import { createOutputDirectory, saveCollection } from './saveCollection'
 const fs = require('fs')
 
-describe('Markdown repository save collection', () => {
+describe.skip('Markdown repository save collection', () => {
   it.skip('saves a collection in a directory with markdown files', async () => {
     // Arrange
     const mockedDefaultOutputCollection = 'src/test/mocks/defaultCollection/output/markdown/defaultCollection'
@@ -14,13 +14,13 @@ describe('Markdown repository save collection', () => {
   })
 
   it.skip('creates the output directory', async () => {
-    const mockedPathRootDirectory = '/'
+    const mockedPathRootDirectory = './'
     const mockedOutputDirectory = 'docs'
 
     // Expect the docs folder to not exist
     expect(fs.existsSync(mockedOutputDirectory)).toEqual(false)
 
-    await createOutputDirectory(mockedPathRootDirectory, mockedOutputDirectory)
+    await createOutputDirectory(mockedPathRootDirectory + mockedOutputDirectory)
 
     // Expect the docs folder to exist
     expect(fs.existsSync(mockedOutputDirectory)).toEqual(true)
