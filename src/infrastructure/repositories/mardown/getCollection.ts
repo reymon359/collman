@@ -95,8 +95,11 @@ export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson
 }
 
 export const getCollection = async (path:string, inputDirectory:string) => {
+  console.log('Getting the input directory as JSON')
   const inputDirectoryJson = await transformMarkdownDirectoryToJson(path)
+  console.log('Input directory got:', JSON.stringify(inputDirectoryJson))
+  console.log('Transforming the JSON to Collection')
   const collection = await transformInputDirectoryJsonToCollection(inputDirectoryJson, inputDirectory)
-
+  console.log('Collection got:', collection)
   return collection
 }
