@@ -1,21 +1,13 @@
 import { Configuration, defaultConfiguration } from '../../../configuration'
 import { Collection } from '../../../domain/models'
 const fs = require('fs')
-const path = require('path')
 
 export const createOutputDirectory = (pathRootDirectory:string, outputDirectory:string) => {
-  // const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
+  const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
 
-  // fs.mkdir(outputDirectoryPath).then((err:any, data:any) => {
-  //   console.log(err,data)
-  // })
-
-  fs.mkdir(path.join(__dirname, outputDirectory),
-    { recursive: true }, (err:any) => {
-      if (err) {
-        return console.error(err)
-      }
-      console.log('Directory created successfully!')
+   fs.mkdir(outputDirectoryPath, { recursive: true }, (err:any) => {
+      if (err) return console.error(err)
+      console.log(`Directory created at path ${outputDirectoryPath} successfully!`)
     })
 }
 

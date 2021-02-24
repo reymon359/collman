@@ -9,5 +9,5 @@ const main = async (configuration: Configuration = defaultConfiguration) => {
   await controllers.collection.saveCollection(collection as Collection, configuration)
 }
 
-main()
-// main({ ...defaultConfiguration, pathRootDirectory: 'src/test/mocks/defaultCollection/input/markdown/defaultCollection' })
+// main()
+main({ ...defaultConfiguration, pathRootDirectory: '/Users/ramonmorcillo/Documents/developer/collection-manager/src/test/mocks/defaultCollection/input/markdown/defaultCollection/' })
