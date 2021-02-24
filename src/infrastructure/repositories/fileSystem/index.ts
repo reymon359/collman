@@ -7,9 +7,14 @@ const makeDirectory = async (directoryPath:string) => {
   })
 }
 
-
+const writeFile = async (filePath:string, fileContent:string) => {
+  await fs.writeFile(filePath, fileContent, (err:any) => {
+    if (err) return console.error(`Error creating file at path: ${filePath}`)
+    console.log(`File created at path ${filePath} successfully!`)
+  })
+}
 
 export const fileSystem: any = {
   makeDirectory,
-  // makeFile
+  writeFile
 }

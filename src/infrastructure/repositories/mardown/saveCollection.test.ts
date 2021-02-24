@@ -13,7 +13,7 @@ describe('Markdown repository save collection', () => {
     expect('the docs folder').toEqual(mockedDefaultOutputCollection)
   })
 
-  it('creates the output directory', async () => {
+  it.skip('creates the output directory', async () => {
     const mockedPathRootDirectory = '/'
     const mockedOutputDirectory = 'docs'
 
