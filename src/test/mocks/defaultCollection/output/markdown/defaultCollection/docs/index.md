@@ -4,9 +4,9 @@ Default Collection description
 
 ## Classifications
 
-![Categories](Categories/index.md)
+- [Categories](Categories/index.md)
 
-## Content
+## Content: items
 
 - [item1](item1/index.md)
 - [ITEM2](item2/index.md)
