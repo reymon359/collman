@@ -14,7 +14,7 @@ const createIndexFile = async (collection:Collection, outputDirectoryPath:string
   if (collection.classifications.length > 0){
     contentArray.push({ h2: 'Classifications' })
     let unorderedListOfLinks: any[] = []
-    collection.classifications.forEach(classification => {
+    collection.classifications.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)).forEach(classification => {
       unorderedListOfLinks.push({link: { title: classification.name, source: `${classification.name}/index.md` }})
     })
     contentArray.push({ ul: unorderedListOfLinks })
