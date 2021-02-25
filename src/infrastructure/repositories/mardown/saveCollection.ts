@@ -13,9 +13,11 @@ const createIndexFile = async (collection:Collection, outputDirectoryPath:string
   contentArray.push({ p: collection.description })
   if (collection.classifications.length > 0){
     contentArray.push({ h2: 'Classifications' })
+    let unorderedListOfLinks: any[] = []
     collection.classifications.forEach(classification => {
-      contentArray.push({link: { title: classification.name, source: `${classification.name}/index.md` }})
+      unorderedListOfLinks.push({link: { title: classification.name, source: `${classification.name}/index.md` }})
     })
+    contentArray.push({ ul: unorderedListOfLinks })
   }
   const indexContent = json2md(contentArray)
 
