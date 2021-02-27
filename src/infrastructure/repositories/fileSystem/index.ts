@@ -1,4 +1,5 @@
 import * as fs from 'fs'
+const fse = require('fs-extra')
 
 const makeDirectory = async (directoryPath:string) => {
   await fs.mkdir(directoryPath, { recursive: true }, (err:any) => {
@@ -14,7 +15,17 @@ const writeFile = async (filePath:string, fileContent:string) => {
   })
 }
 
+const copy = async (from:string, to:string) => {
+  try {
+    await fse.copy(from, to)
+    console.log(`Success copying from: ${from} to: ${to}!`)
+  } catch (err) {
+    console.error(`Error copying from: ${from} to: ${to}. Error: ${err}`)
+  }
+}
+
 export const fileSystem: any = {
   makeDirectory,
-  writeFile
+  writeFile,
+  copy
 }
