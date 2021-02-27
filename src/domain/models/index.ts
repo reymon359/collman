@@ -17,6 +17,7 @@ export interface Classification {
 }
 
 export interface Item {
+  containerName: string // Name of the folder
   name: string // Name of the item
   description: string // Description of the item
   classifications: Classification[] // Array of different classifications
