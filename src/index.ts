@@ -1,16 +1,13 @@
 import { Configuration, defaultConfiguration } from './configuration'
 import { controllers } from './infrastructure/controllers'
+import { Collection } from './domain/models'
 
 // TODO: Check if there is a custom config in the root directory and load it instead of the default
 const main = async (configuration: Configuration = defaultConfiguration) => {
-  // Get the config values needed
-  const { outputType } = configuration
-  // Upload the collection, pass it to json
-  const collectionUploaded = await controllers.collection.getCollection(configuration)
+  const collection = await controllers.collection.getCollection(configuration)
   // Process it to the output specified in the config
-  const collectionProcessed = controllers.collection.processCollection(collectionUploaded, outputType)
-  // Save it in the folder specified in the config
-  controllers.collection.saveCollection(collectionProcessed, configuration)
+  await controllers.collection.saveCollection(collection as Collection, configuration)
 }
 
-main()
+// main()
+main({ ...defaultConfiguration, pathRootDirectory: '/Users/ramonmorcillo/Documents/developer/collection-manager/src/test/mocks/defaultCollection/input/markdown/defaultCollection/' })

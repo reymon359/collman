@@ -1,8 +1,9 @@
-import { Classification, Item } from '../../domain/models'
+import { Classification, Item } from '../../../domain/models'
 
 const jdown = require('jdown')
 
 export interface JsonItem {
+  containerName: string
   name: string
   description: string
   categories?: string[]
@@ -59,7 +60,8 @@ export const transformJsonItemsToCollectionItems = async (jsonItems:any) => {
   for (const jsonItem of jsonItems) {
     const classifications = await getItemClassificationsFromJsonItem(jsonItem)
     transformedItems.push({
-      name: jsonItem.name,
+      containerName: jsonItem.containerName,
+      name: jsonItem.name || jsonItem.containerName,
       description: jsonItem.description,
       content: jsonItem.contents as string,
       classifications
@@ -69,16 +71,18 @@ export const transformJsonItemsToCollectionItems = async (jsonItems:any) => {
 }
 
 export const getJsonItemsFromObjectItems = (objectItems:any) => {
-  // TODO: #30 Get here the item name from the folder if the object has not one
   // TODO: Add a default description if the item does not have one
-  return Object.keys(objectItems).map(key => objectItems[key])
+  const jsonItems = Object.keys(objectItems).map(key => {
+    return { containerName: key, ...objectItems[key] }
+  })
+
+  return jsonItems
 }
 
 export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson: {}, inputDirectory:string) => {
   // @ts-ignore
   const jsonCollection = inputDirectoryJson[inputDirectory]
   const { index, ...objectItems } = jsonCollection
-
   const jsonItems = await getJsonItemsFromObjectItems(objectItems)
   const collectionItems = await transformJsonItemsToCollectionItems(jsonItems as JsonItem[])
   const collectionClassifications = await getClassificationsFromCollectionItems(collectionItems)
@@ -95,13 +99,11 @@ export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson
 }
 
 export const getCollection = async (path:string, inputDirectory:string) => {
+  console.log('Getting the input directory as JSON')
   const inputDirectoryJson = await transformMarkdownDirectoryToJson(path)
+  console.log('Input directory got:', JSON.stringify(inputDirectoryJson))
+  console.log('Transforming the JSON to Collection')
   const collection = await transformInputDirectoryJsonToCollection(inputDirectoryJson, inputDirectory)
-
+  console.log('Collection got:', collection)
   return collection
-}
-
-// Creates a markdown directory from a json object
-export const createMarkdownCollection = (json:object, outputPath?:string) => {
-
 }

@@ -12,6 +12,7 @@ export const defaultCollection = {
   content: {
     name: 'items',
     items: [{
+      containerName: "item1",
       name: "item1",
       description: "description1",
       classifications: [{
@@ -23,6 +24,7 @@ export const defaultCollection = {
       }],
       content: "# Title 1\n\n![Image 1](./assets/image-1.jpg)\n\nItem 1 introduction\n\n\n"
     },{
+      containerName: "item2",
       name: "ITEM2",
       description: "DESCRIPTION2",
       classifications: [{
@@ -34,6 +36,7 @@ export const defaultCollection = {
       }],
       content: "# Title 2\n\n![Image 2](./assets/image-2.png)\n\nItem 2 introduction\n\n\n"
     },{
+      containerName: "item3",
       name: "Item3",
       description: "Description3",
       classifications: [{

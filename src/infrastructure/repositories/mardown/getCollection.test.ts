@@ -1,14 +1,14 @@
-import defaultCollectionJson from '../../test/mocks/defaultCollection/input/markdown/defaultCollection.json'
+import defaultCollectionJson from '../../../test/mocks/defaultCollection/input/markdown/defaultCollection.json'
 import {
   getClassificationsFromCollectionItems,
   getItemClassificationsFromJsonItem,
   transformJsonItemsToCollectionItems,
   transformMarkdownDirectoryToJson
   , getCollection
-} from './markdown'
-import { defaultCollection } from '../../test/mocks/defaultCollection'
+} from './getCollection'
+import { defaultCollection } from '../../../test/mocks/defaultCollection'
 
-describe('Markdown repository', () => {
+describe('Markdown repository get collection', () => {
   it('transforms a markdown directory to a collection json', async () => {
     // Arrange
     const mockedPath = 'src/test/mocks/defaultCollection/input/markdown/defaultCollection'
@@ -36,6 +36,7 @@ describe('Markdown repository', () => {
 
   it('gets Item Classifications from Json Item', async () => {
     const mockedJsonItem = {
+      containerName: 'irrelevant containerName',
       contents: 'irrelevant contents',
       name: 'irrelevant name',
       description: 'irrelevant description',
@@ -53,6 +54,7 @@ describe('Markdown repository', () => {
 
   it('transforms Json Items to Collection Items', async () => {
     const mockedJsonItems = [{
+      containerName: 'irrelevant containerName',
       contents: 'irrelevant contents',
       name: 'irrelevant name',
       description: 'irrelevant description',
@@ -60,6 +62,7 @@ describe('Markdown repository', () => {
       Tags: ['Tag 1', 'Tag 2', 'Tag 3']
     },
     {
+      containerName: 'irrelevant containerName two',
       contents: 'irrelevant contents two',
       name: 'irrelevant name two',
       description: 'irrelevant description two',
@@ -69,6 +72,7 @@ describe('Markdown repository', () => {
     ]
 
     const mockedCollectionItems = [{
+      containerName: 'irrelevant containerName',
       content: 'irrelevant contents',
       name: 'irrelevant name',
       description: 'irrelevant description',
@@ -77,6 +81,7 @@ describe('Markdown repository', () => {
         { name: 'Tags', values: ['Tag 1', 'Tag 2', 'Tag 3'] }]
     },
     {
+      containerName: 'irrelevant containerName two',
       content: 'irrelevant contents two',
       name: 'irrelevant name two',
       description: 'irrelevant description two',
@@ -91,6 +96,7 @@ describe('Markdown repository', () => {
 
   it('gets Collection Classifications from an array of Collection Items', async () => {
     const mockedCollectionItems = [{
+      containerName: 'irrelevant containerName',
       content: 'irrelevant contents',
       name: 'irrelevant name',
       description: 'irrelevant description',
@@ -99,6 +105,7 @@ describe('Markdown repository', () => {
         { name: 'Tags', values: ['Tag 1', 'Tag 2', 'Tag 3'] }]
     },
     {
+      containerName: 'irrelevant containerName two',
       content: 'irrelevant contents two',
       name: 'irrelevant name two',
       description: 'irrelevant description two',
