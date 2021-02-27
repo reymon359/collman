@@ -43,6 +43,29 @@ const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPa
   }
 }
 
+export const createClassifications = async (collection:Collection, outputDirectoryPath:string) => {
+  for (const classification of collection.classifications) {
+    await repositories.fileSystem.makeDirectory(`${outputDirectoryPath}/${classification.name}`)
+    for (const classificationValue of classification.values) {
+      const valueContentArray = []
+      valueContentArray.push({ h1: classificationValue })
+      // Go through the items and its classifications
+      collection.content.items.forEach(item => {
+        item.classifications.forEach(itemClassification => {
+          // If the item has the classification
+          if (itemClassification.name === classification.name) {
+            // If the items has values in that classification and includes the value
+            if (itemClassification.values.length > 0 && itemClassification.values.includes(classificationValue)) {
+              valueContentArray.push({ link: { title: item.name, source: `${item.name}/index.md` } })
+            }
+          }
+        })
+      })
+      await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${classification.name}/${classificationValue}.md`, json2md(valueContentArray))
+    }
+  }
+}
+
 export const saveCollection = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
   const { pathRootDirectory, outputDirectory, inputDirectory } = configuration
   const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
@@ -56,7 +79,6 @@ export const saveCollection = async (collection:Collection, configuration:Config
   const inputDirectoryPath = `${pathRootDirectory}${inputDirectory}`
   await addItemsInOutputDirectory(collection, inputDirectoryPath, outputDirectoryPath)
 
-  // 4. Generate the categories
-
-  return 'TODO'
+  // 4. Generate the classifcications
+  await createClassifications(collection, outputDirectoryPath)
 }

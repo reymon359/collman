@@ -71,7 +71,6 @@ export const transformJsonItemsToCollectionItems = async (jsonItems:any) => {
 }
 
 export const getJsonItemsFromObjectItems = (objectItems:any) => {
-  // TODO: #30 Get here the item name from the folder if the object has not one
   // TODO: Add a default description if the item does not have one
   const jsonItems = Object.keys(objectItems).map(key => {
     return { containerName: key, ...objectItems[key] }
@@ -84,9 +83,7 @@ export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson
   // @ts-ignore
   const jsonCollection = inputDirectoryJson[inputDirectory]
   const { index, ...objectItems } = jsonCollection
-  console.log(objectItems)
   const jsonItems = await getJsonItemsFromObjectItems(objectItems)
-  console.log(jsonItems)
   const collectionItems = await transformJsonItemsToCollectionItems(jsonItems as JsonItem[])
   const collectionClassifications = await getClassificationsFromCollectionItems(collectionItems)
 
