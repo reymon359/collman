@@ -35,15 +35,26 @@ const createIndexFile = async (collection:Collection, outputDirectoryPath:string
   await repositories.fileSystem.writeFile(`${outputDirectoryPath}/index.md`, indexContent)
 }
 
+const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPath:string, outputDirectoryPath:string) => {
+  for (const item of collection.content.items) {
+    await repositories.fileSystem.makeDirectory(`${outputDirectoryPath}/${item.name}`)
+    await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${item.name}/index.md`, item.content)
+    await repositories.fileSystem.copy(`${inputDirectoryPath}/${item.containerName}/assets`, `${outputDirectoryPath}/${item.name}/assets`)
+  }
+}
+
 export const saveCollection = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
-  const { pathRootDirectory, outputDirectory } = configuration
+  const { pathRootDirectory, outputDirectory, inputDirectory } = configuration
   const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
   // 1. Create the output directory. Default docs
   await createOutputDirectory(outputDirectoryPath)
 
   // 2. Create the index file
   await createIndexFile(collection, outputDirectoryPath)
+
   // 3. copy and paste the items in the folder removing the frontmatter. Or create the items with just the content and then copy the assets from the previous one
+  const inputDirectoryPath = `${pathRootDirectory}${inputDirectory}`
+  await addItemsInOutputDirectory(collection, inputDirectoryPath, outputDirectoryPath)
 
   // 4. Generate the categories
 
