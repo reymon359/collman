@@ -58,7 +58,7 @@ export const createClassifications = async (collection:Collection, outputDirecto
           if (itemClassification.name === classification.name) {
             // If the items has values in that classification and includes the value
             if (itemClassification.values.length > 0 && itemClassification.values.includes(classificationValue)) {
-              listOfItemWithValue.push({ link: { title: item.name, source: `${item.name}/index.md` } })
+              listOfItemWithValue.push({ link: { title: item.name, source: `./${item.name}/index.md` } })
             }
           }
         })
