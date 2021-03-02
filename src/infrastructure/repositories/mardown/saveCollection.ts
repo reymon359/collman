@@ -46,7 +46,16 @@ const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPa
 export const createClassifications = async (collection:Collection, outputDirectoryPath:string) => {
   for (const classification of collection.classifications) {
     await repositories.fileSystem.makeDirectory(`${outputDirectoryPath}/${classification.name}`)
-    for (const classificationValue of classification.values) {
+
+    // Begin creating the classification index file
+    const classificationIndexContent: any[] = []
+    const listOfValues: any[] = [] // List of values for index.md
+    classificationIndexContent.push({ h1: classification.name })
+
+    // Create a file for each value
+    for (const classificationValue of classification.values.sort()) {
+      listOfValues.push({ link: { title: classificationValue, source: `${classificationValue}.md` } })
+
       const valueContentArray = []
       const listOfItemWithValue: any[] = []
       valueContentArray.push({ h1: classificationValue })
@@ -63,10 +72,13 @@ export const createClassifications = async (collection:Collection, outputDirecto
           }
         })
       })
-
       if (listOfItemWithValue.length > 0) valueContentArray.push({ ul: listOfItemWithValue })
       await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${classification.name}/${classificationValue}.md`, json2md(valueContentArray))
     }
+
+    // Finish creating the index file
+    classificationIndexContent.push({ ul: listOfValues })
+    await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${classification.name}/index.md`, json2md(classificationIndexContent))
   }
 }
 
