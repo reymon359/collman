@@ -1,13 +1,24 @@
 # Default Collection
 
-Default Collection description
+
+Default Collection description 
+
+
 
 ## Classifications
 
-- [Categories](Categories/index.md)
+
+ - [categories](categories/index.md)
+    
+ - [Tags](Tags/index.md)
+    
 
 ## Content: items
 
-- [item1](item1/index.md)
-- [ITEM2](item2/index.md)
-- [Item3](item3/index.md)
+
+ - [Item3](Item3/index.md)
+    
+ - [ITEM2](ITEM2/index.md)
+    
+ - [item1](item1/index.md)
+    

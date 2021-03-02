@@ -1,4 +1,7 @@
 # Category3
 
-- [ITEM2](./item2/index.md)
-- [Item3](./item3/index.md)
+
+ - [Item3](./Item3/index.md)
+    
+ - [ITEM2](./ITEM2/index.md)
+    
