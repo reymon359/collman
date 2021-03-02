@@ -54,7 +54,7 @@ export const createClassifications = async (collection:Collection, outputDirecto
 
     // Create a file for each value
     for (const classificationValue of classification.values.sort()) {
-      const valueUrl = classificationValue.trim().replace(/\s/g, '%20');
+      const valueUrl = classificationValue.trim().replace(/\s/g, '%20')
       listOfValues.push({ link: { title: classificationValue, source: `${valueUrl}.md` } })
 
       const valueContentArray = []
@@ -68,7 +68,7 @@ export const createClassifications = async (collection:Collection, outputDirecto
           if (itemClassification.name === classification.name) {
             // If the items has values in that classification and includes the value
             if (itemClassification.values.length > 0 && itemClassification.values.includes(classificationValue)) {
-              listOfItemWithValue.push({ link: { title: item.name, source: `./${item.name}/index.md` } })
+              listOfItemWithValue.push({ link: { title: item.name, source: `${item.name}/index.md` } })
             }
           }
         })
