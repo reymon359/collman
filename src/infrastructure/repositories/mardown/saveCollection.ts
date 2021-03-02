@@ -46,23 +46,40 @@ const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPa
 export const createClassifications = async (collection:Collection, outputDirectoryPath:string) => {
   for (const classification of collection.classifications) {
     await repositories.fileSystem.makeDirectory(`${outputDirectoryPath}/${classification.name}`)
-    for (const classificationValue of classification.values) {
+
+    // Begin creating the classification index file
+    const classificationIndexContent: any[] = []
+    const listOfValues: any[] = [] // List of values for index.md
+    classificationIndexContent.push({ h1: classification.name })
+
+    // Create a file for each value
+    for (const classificationValue of classification.values.sort()) {
+      const valueUrl = classificationValue.trim().replace(/\s/g, '%20')
+      listOfValues.push({ link: { title: classificationValue, source: `${valueUrl}.md` } })
+
       const valueContentArray = []
+      const listOfItemWithValue: any[] = []
       valueContentArray.push({ h1: classificationValue })
-      // Go through the items and its classifications
-      collection.content.items.forEach(item => {
+      // Go through the items and its classifications.
+      // TODO: Maybe the sort is not necessary
+      collection.content.items.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? 0 : -1)).forEach(item => {
         item.classifications.forEach(itemClassification => {
           // If the item has the classification
           if (itemClassification.name === classification.name) {
             // If the items has values in that classification and includes the value
             if (itemClassification.values.length > 0 && itemClassification.values.includes(classificationValue)) {
-              valueContentArray.push({ link: { title: item.name, source: `${item.name}/index.md` } })
+              listOfItemWithValue.push({ link: { title: item.name, source: `../docs${item.name}/index.md` } })
             }
           }
         })
       })
+      if (listOfItemWithValue.length > 0) valueContentArray.push({ ul: listOfItemWithValue })
       await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${classification.name}/${classificationValue}.md`, json2md(valueContentArray))
     }
+
+    // Finish creating the index file
+    classificationIndexContent.push({ ul: listOfValues })
+    await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${classification.name}/index.md`, json2md(classificationIndexContent))
   }
 }
 
