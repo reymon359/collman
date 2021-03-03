@@ -1,9 +1,9 @@
 # categories
 
 
- - [Category1](Category1.md)
+ - [Category1](categories/Category1.md)
     
- - [Category2](Category2.md)
+ - [Category2](categories/Category2.md)
     
- - [Category3](Category3.md)
+ - [Category3](categories/Category3.md)
     
