@@ -1,13 +1,14 @@
 import { Configuration, defaultConfiguration } from '../../../configuration'
 import { Collection } from '../../../domain/models'
 import { repositories } from '../index'
+import { indexHtmlContent } from './fixtures/indexHtmlContent'
 
 const createSidebarFile = async (outputDirectoryPath:string) => {
   return 'todo'
 }
 
 const createIndexHtmlFile = async (outputDirectoryPath:string) => {
-  return 'todo'
+  await repositories.fileSystem.writeFile(`${outputDirectoryPath}/index.html`, indexHtmlContent())
 }
 
 const createNojekillFile = async (outputDirectoryPath:string) => {
