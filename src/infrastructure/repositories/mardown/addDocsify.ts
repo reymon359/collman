@@ -11,7 +11,7 @@ const createIndexHtmlFile = async (outputDirectoryPath:string) => {
 }
 
 const createNojekillFile = async (outputDirectoryPath:string) => {
-  return 'todo'
+  await repositories.fileSystem.writeFile(`${outputDirectoryPath}/.nojekill`, '')
 }
 
 const createReadmeFile = async (outputDirectoryPath:string) => {
