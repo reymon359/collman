@@ -85,6 +85,10 @@ export const createClassifications = async (collection:Collection, outputDirecto
 export const saveCollection = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
   const { pathRootDirectory, outputDirectory, inputDirectory } = configuration
   const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
+  // 0. TODO: Sort collection Classification and items
+  collection.content.items.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? 0 : -1))
+  collection.classifications.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? 0 : -1))
+
   // 1. Create the output directory. Default docs
   await createOutputDirectory(outputDirectoryPath)
 
