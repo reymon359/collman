@@ -3,6 +3,8 @@ import { Collection } from '../../../domain/models'
 import { repositories } from '../index'
 const json2md = require('json2md')
 
+const urlifyString = (string: string) => string.trim().replace(/\s/g, '%20')
+
 export const createOutputDirectory = async (outputDirectoryPath:string) => {
   await repositories.fileSystem.makeDirectory(outputDirectoryPath)
 }
@@ -53,7 +55,7 @@ export const createClassifications = async (collection:Collection, outputDirecto
 
     // Create a file for each value
     for (const classificationValue of classification.values.sort()) {
-      const valueUrl = classificationValue.trim().replace(/\s/g, '%20')
+      const valueUrl = urlifyString(classificationValue)
       listOfValues.push({ link: { title: classificationValue, source: `${classification.name}/${valueUrl}.md` } })
 
       const valueContentArray = []
