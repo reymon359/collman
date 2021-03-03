@@ -55,7 +55,7 @@ export const createClassifications = async (collection:Collection, outputDirecto
 
     // Create a file for each value
     for (const classificationValue of classification.values.sort()) {
-      listOfValues.push({ link: { title: classificationValue, source: `${urlifyString(classification.name)}/${urlifyString(classificationValue)}.md` } })
+      listOfValues.push({ link: { title: classificationValue, source: `../${urlifyString(classification.name)}/${urlifyString(classificationValue)}.md` } })
 
       const valueContentArray = []
       const listOfItemWithValue: any[] = []
