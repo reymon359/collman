@@ -19,7 +19,7 @@ const createIndexFile = async (collection:Collection, outputDirectoryPath:string
     contentArray.push({ h2: 'Classifications' })
     const unorderedListOfClassifications: any[] = []
     collection.classifications.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? 0 : -1)).forEach(classification => {
-      unorderedListOfClassifications.push({ link: { title: classification.name, source: `${classification.name}/index.md` } })
+      unorderedListOfClassifications.push({ link: { title: classification.name, source: `${urlifyString(classification.name)}/index.md` } })
     })
     contentArray.push({ ul: unorderedListOfClassifications })
   }
@@ -28,7 +28,7 @@ const createIndexFile = async (collection:Collection, outputDirectoryPath:string
   contentArray.push({ h2: `Content: ${collection.content.name}` })
   const unorderedListOfContent: any[] = []
   collection.content.items.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? 0 : -1)).forEach(item => {
-    unorderedListOfContent.push({ link: { title: item.name, source: `${item.name}/index.md` } })
+    unorderedListOfContent.push({ link: { title: item.name, source: `${urlifyString(item.name)}/index.md` } })
   })
   contentArray.push({ ul: unorderedListOfContent })
 
@@ -55,8 +55,7 @@ export const createClassifications = async (collection:Collection, outputDirecto
 
     // Create a file for each value
     for (const classificationValue of classification.values.sort()) {
-      const valueUrl = urlifyString(classificationValue)
-      listOfValues.push({ link: { title: classificationValue, source: `${classification.name}/${valueUrl}.md` } })
+      listOfValues.push({ link: { title: classificationValue, source: `${urlifyString(classification.name)}/${urlifyString(classificationValue)}.md` } })
 
       const valueContentArray = []
       const listOfItemWithValue: any[] = []
@@ -69,7 +68,7 @@ export const createClassifications = async (collection:Collection, outputDirecto
           if (itemClassification.name === classification.name) {
             // If the items has values in that classification and includes the value
             if (itemClassification.values.length > 0 && itemClassification.values.includes(classificationValue)) {
-              listOfItemWithValue.push({ link: { title: item.name, source: `../${item.name}/index.md` } })
+              listOfItemWithValue.push({ link: { title: item.name, source: `../${urlifyString(item.name)}/index.md` } })
             }
           }
         })
