@@ -3,20 +3,20 @@ import { Collection } from '../../../domain/models'
 import { repositories } from '../index'
 import { indexHtmlContent } from './fixtures/indexHtmlContent'
 
-const createSidebarFile = async (outputDirectoryPath:string) => {
-  return 'todo'
-}
-
-const createIndexHtmlFile = async (outputDirectoryPath:string) => {
-  await repositories.fileSystem.writeFile(`${outputDirectoryPath}/index.html`, indexHtmlContent())
+const createReadmeFile = async (outputDirectoryPath:string) => {
+  await repositories.fileSystem.copy(`${outputDirectoryPath}/index.md`, `${outputDirectoryPath}/README.md`)
 }
 
 const createNojekillFile = async (outputDirectoryPath:string) => {
   await repositories.fileSystem.writeFile(`${outputDirectoryPath}/.nojekill`, '')
 }
 
-const createReadmeFile = async (outputDirectoryPath:string) => {
-  await repositories.fileSystem.copy(`${outputDirectoryPath}/index.md`, `${outputDirectoryPath}/README.md`)
+const createIndexHtmlFile = async (outputDirectoryPath:string) => {
+  await repositories.fileSystem.writeFile(`${outputDirectoryPath}/index.html`, indexHtmlContent())
+}
+
+const createSidebarFile = async (outputDirectoryPath:string) => {
+  return 'todo'
 }
 
 export const addDocsify = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
