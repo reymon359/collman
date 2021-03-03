@@ -37,7 +37,6 @@ const createIndexFile = async (collection:Collection, outputDirectoryPath:string
 
 const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPath:string, outputDirectoryPath:string) => {
   for (const item of collection.content.items) {
-    await repositories.fileSystem.makeDirectory(`${outputDirectoryPath}/${item.name}`)
     await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${item.name}/index.md`, item.content)
     await repositories.fileSystem.copy(`${inputDirectoryPath}/${item.containerName}/assets`, `${outputDirectoryPath}/${item.name}/assets`)
   }
