@@ -1,5 +1,6 @@
 import { Configuration, defaultConfiguration } from '../../../configuration'
 import { Collection } from '../../../domain/models'
+import { repositories } from '../index'
 
 const createSidebarFile = async (outputDirectoryPath:string) => {
   return 'todo'
@@ -14,7 +15,7 @@ const createNojekillFile = async (outputDirectoryPath:string) => {
 }
 
 const createReadmeFile = async (outputDirectoryPath:string) => {
-  return 'todo'
+  await repositories.fileSystem.copy(`${outputDirectoryPath}/index.md`, `${outputDirectoryPath}/README.md`)
 }
 
 export const addDocsify = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
