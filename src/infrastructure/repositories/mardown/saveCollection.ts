@@ -13,6 +13,14 @@ const createIndexFile = async (collection:Collection, outputDirectoryPath:string
   contentArray.push({ h1: collection.name })
   contentArray.push({ p: collection.description })
 
+  // Content
+  contentArray.push({ h2: `Content: ${collection.content.name}` })
+  const unorderedListOfContent: any[] = []
+  collection.content.items.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? 0 : -1)).forEach(item => {
+    unorderedListOfContent.push({ link: { title: item.name, source: `${urlifyString(item.name)}/index.md` } })
+  })
+  contentArray.push({ ul: unorderedListOfContent })
+
   // Classifications
   if (collection.classifications.length > 0) {
     contentArray.push({ h2: 'Classifications' })
@@ -22,14 +30,6 @@ const createIndexFile = async (collection:Collection, outputDirectoryPath:string
     })
     contentArray.push({ ul: unorderedListOfClassifications })
   }
-
-  // Content
-  contentArray.push({ h2: `Content: ${collection.content.name}` })
-  const unorderedListOfContent: any[] = []
-  collection.content.items.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? 0 : -1)).forEach(item => {
-    unorderedListOfContent.push({ link: { title: item.name, source: `${urlifyString(item.name)}/index.md` } })
-  })
-  contentArray.push({ ul: unorderedListOfContent })
 
   const indexContent = json2md(contentArray)
 
