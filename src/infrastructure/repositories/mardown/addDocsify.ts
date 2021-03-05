@@ -1,8 +1,8 @@
 import { Configuration, defaultConfiguration } from '../../../configuration'
 import { Collection } from '../../../domain/models'
 import { repositories } from '../index'
-import { indexHtmlContent } from './fixtures/indexHtmlContent'
-import { urlifyString } from './helpers'
+import { getIndexHtmlContent } from './helpers/indexHtmlContent'
+import { urlifyString } from './helpers/urlifyString'
 const json2md = require('json2md')
 
 const createReadmeFile = async (outputDirectoryPath:string) => {
@@ -13,8 +13,8 @@ const createNojekillFile = async (outputDirectoryPath:string) => {
   await repositories.fileSystem.writeFile(`${outputDirectoryPath}/.nojekill`, '')
 }
 
-const createIndexHtmlFile = async (outputDirectoryPath:string) => {
-  await repositories.fileSystem.writeFile(`${outputDirectoryPath}/index.html`, indexHtmlContent())
+const createIndexHtmlFile = async (collection:Collection, outputDirectoryPath:string) => {
+  await repositories.fileSystem.writeFile(`${outputDirectoryPath}/index.html`, getIndexHtmlContent(collection))
 }
 
 const createSidebarFile = async (collection: Collection, outputDirectoryPath:string) => {
@@ -58,7 +58,7 @@ export const addDocsify = async (collection:Collection, configuration:Configurat
   await createNojekillFile(outputDirectoryPath)
 
   // 3. Create the index.html file
-  await createIndexHtmlFile(outputDirectoryPath)
+  await createIndexHtmlFile(collection, outputDirectoryPath)
 
   // 4. Create the _sidebar.md file
   await createSidebarFile(collection, outputDirectoryPath)

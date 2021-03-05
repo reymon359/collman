@@ -1,7 +1,7 @@
 import { Configuration, defaultConfiguration } from '../../../configuration'
 import { Collection } from '../../../domain/models'
 import { repositories } from '../index'
-import { urlifyString } from './helpers'
+import { urlifyString } from './helpers/urlifyString'
 const json2md = require('json2md')
 
 export const createOutputDirectory = async (outputDirectoryPath:string) => {
