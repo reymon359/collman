@@ -1,4 +1,9 @@
-export const indexHtmlContent = () => {
+import { Collection } from '../../../../domain/models'
+
+export const getIndexHtmlContent = (collection:Collection) => {
+  console.log(collection)
+  const { name } = collection
+  const docsify
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +20,7 @@ export const indexHtmlContent = () => {
   <script>
     window.$docsify = {
       el: '#app',
-      name: 'default-name',
+      name: name,
       repo: 'https://github.com/default-user/default-name',
       loadNavbar: true,
       loadSidebar: true,
