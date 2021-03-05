@@ -1,9 +1,8 @@
 import { Configuration, defaultConfiguration } from '../../../configuration'
 import { Collection } from '../../../domain/models'
 import { repositories } from '../index'
+import { urlifyString } from './helpers'
 const json2md = require('json2md')
-
-const urlifyString = (string: string) => string.trim().replace(/\s/g, '%20')
 
 export const createOutputDirectory = async (outputDirectoryPath:string) => {
   await repositories.fileSystem.makeDirectory(outputDirectoryPath)

@@ -2,6 +2,7 @@ import { Configuration, defaultConfiguration } from '../../../configuration'
 import { Collection } from '../../../domain/models'
 import { repositories } from '../index'
 import { indexHtmlContent } from './fixtures/indexHtmlContent'
+import { urlifyString } from './helpers'
 const json2md = require('json2md')
 
 const createReadmeFile = async (outputDirectoryPath:string) => {
@@ -16,32 +17,33 @@ const createIndexHtmlFile = async (outputDirectoryPath:string) => {
   await repositories.fileSystem.writeFile(`${outputDirectoryPath}/index.html`, indexHtmlContent())
 }
 
-const createSidebarFile = async (outputDirectoryPath:string) => {
-  const contentArray = []
-  const unorderedList: any[] = []
-  unorderedList.push({ link: { title: 'Home', source: '/' } })
-  contentArray.push({ h1: collection.name })
-  contentArray.push({ p: collection.description })
-
-  // Classifications
-  if (collection.classifications.length > 0) {
-    contentArray.push({ h2: 'Classifications' })
-    const unorderedList: any[] = []
-    collection.classifications.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? 0 : -1)).forEach(classification => {
-      unorderedListOfClassifications.push({ link: { title: classification.name, source: `${urlifyString(classification.name)}/index.md` } })
-    })
-    contentArray.push({ ul: unorderedListOfClassifications })
-  }
+const createSidebarFile = async (collection: Collection, outputDirectoryPath:string) => {
+  const mainUnorderedList: any[] = []
 
   // Content
-  contentArray.push({ h2: `Content: ${collection.content.name}` })
-  const unorderedListOfContent: any[] = []
+  const contentUnorderedList: any[] = []
+  contentUnorderedList.push(`Content: ${collection.content.name}`)
+  const itemsUnorderedList: any[] = []
   collection.content.items.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? 0 : -1)).forEach(item => {
-    unorderedListOfContent.push({ link: { title: item.name, source: `${urlifyString(item.name)}/index.md` } })
+    itemsUnorderedList.push({ link: { title: item.name, source: `${urlifyString(item.name)}/index.md` } })
   })
-  contentArray.push({ ul: unorderedListOfContent })
+  contentUnorderedList.push({ ul: itemsUnorderedList })
+  mainUnorderedList.push({ ul: contentUnorderedList })
 
-  const sidebarContent = json2md(contentArray)
+  // Classifications
+  collection.classifications.forEach(classification => {
+    const classificationUnorderedList: any[] = []
+    classificationUnorderedList.push(classification.name)
+    const classificationValuesUnorderedList: any[] = []
+    classificationValuesUnorderedList.push({ link: { title: 'All', source: `${urlifyString(classification.name)}/index.md` } })
+    classification.values.sort().forEach(value => {
+      classificationValuesUnorderedList.push({ link: { title: value, source: `../${urlifyString(classification.name)}/${urlifyString(value)}.md` } })
+    })
+    classificationUnorderedList.push({ ul: classificationValuesUnorderedList })
+    mainUnorderedList.push({ ul: classificationUnorderedList })
+  })
+
+  const sidebarContent = json2md(mainUnorderedList)
 
   await repositories.fileSystem.writeFile(`${outputDirectoryPath}/_sidebar.md`, sidebarContent)
 }
@@ -59,5 +61,5 @@ export const addDocsify = async (collection:Collection, configuration:Configurat
   await createIndexHtmlFile(outputDirectoryPath)
 
   // 4. Create the _sidebar.md file
-  await createSidebarFile(outputDirectoryPath)
+  await createSidebarFile(collection, outputDirectoryPath)
 }
