@@ -5,8 +5,8 @@
 // }
 
 export interface DocsifyOptions {
-  name: string
-  repo: string
+  name?: string
+  repo?: string
 }
 
 export interface Configuration{

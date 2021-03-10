@@ -1,9 +1,23 @@
 import { Collection } from '../../../../domain/models'
+import { DocsifyOptions } from '../../../../configuration'
 
-export const getIndexHtmlContent = (collection:Collection) => {
+export const getIndexHtmlContent = (collection:Collection, docsifyOptions: DocsifyOptions) => {
+  // TODO: Add search too
   console.log(collection)
-  const { name } = collection
-  const docsify
+  const { name, repo } = docsifyOptions
+  // const docsifyRepo
+  const script = `window.$docsify = {
+      el: '#app',
+      name: '${name || collection.name || 'Collection'}',
+      ${repo && ("repo: '" + repo + "',")}
+      loadNavbar: true,
+      loadSidebar: true,
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md',
+      },
+      subMaxLevel: 3,
+    }`
+  console.log(script)
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -17,19 +31,7 @@ export const getIndexHtmlContent = (collection:Collection) => {
 </head>
 <body>
   <div id="app">Please wait...</div>
-  <script>
-    window.$docsify = {
-      el: '#app',
-      name: name,
-      repo: 'https://github.com/default-user/default-name',
-      loadNavbar: true,
-      loadSidebar: true,
-      alias: {
-        '/.*/_sidebar.md': '/_sidebar.md',
-      },
-      subMaxLevel: 3,
-    }
-  </script>
+  <script>${script} </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
