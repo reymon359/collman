@@ -1,4 +1,4 @@
-import { Configuration, defaultConfiguration, DocsifyOptions } from '../../../configuration'
+import { Configuration, defaultConfiguration } from '../../../configuration'
 import { Collection } from '../../../domain/models'
 import { repositories } from '../index'
 import { getIndexHtmlContent } from './helpers/indexHtmlContent'
@@ -13,8 +13,8 @@ const createNojekillFile = async (outputDirectoryPath:string) => {
   await repositories.fileSystem.writeFile(`${outputDirectoryPath}/.nojekill`, '')
 }
 
-const createIndexHtmlFile = async (collection:Collection, outputDirectoryPath:string, docsifyOptions: DocsifyOptions) => {
-  await repositories.fileSystem.writeFile(`${outputDirectoryPath}/index.html`, getIndexHtmlContent(collection, docsifyOptions))
+const createIndexHtmlFile = async (collection:Collection, outputDirectoryPath:string, docsifyConfiguration:any) => {
+  await repositories.fileSystem.writeFile(`${outputDirectoryPath}/index.html`, getIndexHtmlContent(collection, docsifyConfiguration))
 }
 
 const createSidebarFile = async (collection: Collection, outputDirectoryPath:string) => {
@@ -49,7 +49,7 @@ const createSidebarFile = async (collection: Collection, outputDirectoryPath:str
 }
 
 export const addDocsify = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
-  const { pathRootDirectory, outputDirectory, docsifyOptions = {} } = configuration
+  const { pathRootDirectory, outputDirectory, docsifyConfiguration = {} } = configuration
   const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
   // 1. Copy the index and create a README.md with it
   await createReadmeFile(outputDirectoryPath)
@@ -58,7 +58,7 @@ export const addDocsify = async (collection:Collection, configuration:Configurat
   await createNojekillFile(outputDirectoryPath)
 
   // 3. Create the index.html file
-  await createIndexHtmlFile(collection, outputDirectoryPath, docsifyOptions)
+  await createIndexHtmlFile(collection, outputDirectoryPath, docsifyConfiguration)
 
   // 4. Create the _sidebar.md file
   await createSidebarFile(collection, outputDirectoryPath)
