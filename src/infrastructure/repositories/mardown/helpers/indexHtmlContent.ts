@@ -3,13 +3,12 @@ import { DocsifyOptions } from '../../../../configuration'
 
 export const getIndexHtmlContent = (collection:Collection, docsifyOptions: DocsifyOptions) => {
   // TODO: Add search too
-  console.log(collection)
   const { name, repo } = docsifyOptions
   // const docsifyRepo
   const script = `window.$docsify = {
       el: '#app',
       name: '${name || collection.name || 'Collection'}',
-      ${repo && ("repo: '" + repo + "',")}
+      ${repo ? ("repo: '" + repo + "',") : ''}
       loadNavbar: true,
       loadSidebar: true,
       alias: {
