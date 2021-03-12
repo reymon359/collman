@@ -67,6 +67,11 @@ export const getIndexHtmlContent = (collection:Collection, docsifyConfiguration:
   rel="stylesheet"
   href="//cdn.jsdelivr.net/npm/docsify-dark-mode@latest/dist/style.min.css"
 />
+
+<!--  Pagination-->
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+
 </body>
 </html>`
 }
