@@ -72,6 +72,9 @@ export const getIndexHtmlContent = (collection:Collection, docsifyConfiguration:
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
 
+<!--Image zoom-->
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+
 </body>
 </html>`
 }
