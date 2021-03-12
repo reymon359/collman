@@ -4,11 +4,6 @@
 //   agnosticClassificator: string
 // }
 
-export interface DocsifyOptions {
-  name?: string
-  repo?: string
-}
-
 export interface Configuration{
   inputType: string
   outputType: string
@@ -16,8 +11,7 @@ export interface Configuration{
   inputDirectory: string // The directory with the original collection
   outputDirectory: string // The output directory with the collection managed
   docsify: boolean
-  docsifyOptions?: DocsifyOptions
-
+  docsifyConfiguration?: any // object with the docsify config
   // classifications: [Classification] // WIP
 }
 
