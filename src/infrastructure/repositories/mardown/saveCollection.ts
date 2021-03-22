@@ -16,19 +16,19 @@ const createIndexFile = async (collection:Collection, outputDirectoryPath:string
   // Content
   contentArray.push({ h2: `Content: ${collection.content.name}` })
   const unorderedListOfContent: any[] = []
-  collection.content.items.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? 0 : -1)).forEach(item => {
+  collection.content.items.forEach(item => {
     unorderedListOfContent.push({ link: { title: item.name, source: `${urlifyString(item.name)}/index.md` } })
   })
-  contentArray.push({ ul: unorderedListOfContent })
+  contentArray.push({ ul: unorderedListOfContent.sort((a, b) => (a.link.title > b.link.title) ? 1 : ((b.link.title > a.link.title) ? 0 : -1)) })
 
   // Classifications
   if (collection.classifications.length > 0) {
     contentArray.push({ h2: 'Classifications' })
     const unorderedListOfClassifications: any[] = []
-    collection.classifications.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? 0 : -1)).forEach(classification => {
+    collection.classifications.forEach(classification => {
       unorderedListOfClassifications.push({ link: { title: classification.name, source: `${urlifyString(classification.name)}/index.md` } })
     })
-    contentArray.push({ ul: unorderedListOfClassifications })
+    contentArray.push({ ul: unorderedListOfClassifications.sort((a, b) => (a.link.title > b.link.title) ? 1 : ((b.link.title > a.link.title) ? 0 : -1)) })
   }
 
   const indexContent = json2md(contentArray)
