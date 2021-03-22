@@ -49,8 +49,9 @@ const createSidebarFile = async (collection: Collection, outputDirectoryPath:str
 }
 
 export const addDocsify = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
-  const { pathRootDirectory, outputDirectory, docsifyConfiguration = {} } = configuration
+  const { pathRootDirectory, outputDirectory } = configuration
   const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
+  const docsifyConfiguration = require(`${pathRootDirectory}docsify.config.js`)
   // 1. Copy the index and create a README.md with it
   await createReadmeFile(outputDirectoryPath)
 

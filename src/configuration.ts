@@ -11,7 +11,6 @@ export interface Configuration{
   inputDirectory: string // The directory with the original collection
   outputDirectory: string // The output directory with the collection managed
   docsify: boolean
-  docsifyConfiguration?: any // object with the docsify config
   // classifications: [Classification] // WIP
 }
 

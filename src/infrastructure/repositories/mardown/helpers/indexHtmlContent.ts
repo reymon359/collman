@@ -1,41 +1,6 @@
 import { Collection } from '../../../../domain/models'
 
 export const getIndexHtmlContent = (collection:Collection, docsifyConfiguration: any) => {
-  const { name, repo } = docsifyConfiguration
-
-  const script = `window.$docsify = {
-      el: '#app',
-      name: '${name || collection.name || 'Collection'}',
-      ${repo ? ("repo: '" + repo + "',") : ''}
-      
-      /* Navbars */
-      loadNavbar: true,
-      loadSidebar: true,
-      mergeNavbar: true,
-      alias: {
-        '/.*/_sidebar.md': '/_sidebar.md',
-      },
-      subMaxLevel: 3,
-      
-      /* Search */
-      search: 'auto',
-      
-      /* Dark mode */
-      themeColor: "#42b983",
-      darkMode: {
-        dark: {
-          background: "#1c2022",
-          toggleBtnBg: "#34495e",
-          textColor: "white"
-        },
-        light: {
-          background: "white",
-          toggleBtnBg: "var(--theme-color)",
-          textColor: "var(--theme-color)"
-        }
-      }
-    }`
-
   return `
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +15,7 @@ export const getIndexHtmlContent = (collection:Collection, docsifyConfiguration:
 </head>
 <body>
   <div id="app">Please wait...</div>
-  <script>${script} </script>
+  <script>${'window.$docsify =' + JSON.stringify(docsifyConfiguration.main)} </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   
