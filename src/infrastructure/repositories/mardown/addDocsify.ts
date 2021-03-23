@@ -5,6 +5,11 @@ import { getIndexHtmlContent } from './helpers/indexHtmlContent'
 import { urlifyString } from './helpers/urlifyString'
 const json2md = require('json2md')
 
+export interface DocsifyConfiguration {
+  main: object
+  scriptsAndLinks: string[]
+}
+
 const createReadmeFile = async (outputDirectoryPath:string) => {
   await repositories.fileSystem.copy(`${outputDirectoryPath}/index.md`, `${outputDirectoryPath}/README.md`)
 }
@@ -13,7 +18,7 @@ const createNojekillFile = async (outputDirectoryPath:string) => {
   await repositories.fileSystem.writeFile(`${outputDirectoryPath}/.nojekill`, '')
 }
 
-const createIndexHtmlFile = async (collection:Collection, outputDirectoryPath:string, docsifyConfiguration:any) => {
+const createIndexHtmlFile = async (collection:Collection, outputDirectoryPath:string, docsifyConfiguration:DocsifyConfiguration) => {
   await repositories.fileSystem.writeFile(`${outputDirectoryPath}/index.html`, getIndexHtmlContent(collection, docsifyConfiguration))
 }
 

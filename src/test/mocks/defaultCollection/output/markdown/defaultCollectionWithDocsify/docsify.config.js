@@ -32,6 +32,7 @@ module.exports = {
     }
   },
   scriptsAndLinks:[
+    `<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">`,
     `<script src="//cdn.jsdelivr.net/npm/docsify@4"></script>`,
     `<script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>`,
     `<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />`,
