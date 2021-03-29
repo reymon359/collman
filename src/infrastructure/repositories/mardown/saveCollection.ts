@@ -38,22 +38,19 @@ const createIndexFile = async (collection:Collection, outputDirectoryPath:string
 
 const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPath:string, outputDirectoryPath:string) => {
   for (const item of collection.content.items) {
+    // Get classifications to add in bottom and top
     const itemClassifications: any[] = []
-
     if (item.classifications.length > 0) {
       item.classifications.forEach((classification, i) => {
         itemClassifications[i] = `[${classification.name}:](${urlifyString(classification.name)}/index.md)`
 
-        classification.values.forEach((value, i) => {
-          itemClassifications[i] += `[${value}](../${urlifyString(classification.name)}/${urlifyString(value)}.md)`
-        // if something add comma
+        classification.values.forEach((value) => {
+          itemClassifications[i] += ` [${value}](../${urlifyString(classification.name)}/${urlifyString(value)}.md)`
         })
       })
     }
-
     const classificationsContent = itemClassifications.join('<br>')
-    console.log(classificationsContent)
-    await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${item.name}/index.md`, item.content+classificationsContent)
+    await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${item.name}/index.md`, classificationsContent + '\n' + item.content + classificationsContent)
     await repositories.fileSystem.copy(`${inputDirectoryPath}/${item.containerName}/assets`, `${outputDirectoryPath}/${item.name}/assets`)
   }
 }
