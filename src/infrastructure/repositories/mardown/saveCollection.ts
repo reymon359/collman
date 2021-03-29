@@ -51,7 +51,10 @@ const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPa
     }
     const classificationsContent = itemClassifications.join('<br>')
     await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${item.name}/index.md`, classificationsContent + '\n' + item.content + classificationsContent)
-    await repositories.fileSystem.copy(`${inputDirectoryPath}/${item.containerName}/assets`, `${outputDirectoryPath}/${item.name}/assets`)
+
+    if (repositories.fileSystem.pathExists(`${inputDirectoryPath}/${item.containerName}/assets`)) {
+      await repositories.fileSystem.copy(`${inputDirectoryPath}/${item.containerName}/assets`, `${outputDirectoryPath}/${item.name}/assets`)
+    }
   }
 }
 

@@ -1,22 +1,20 @@
 
  - Content: items
-     - [item1](item1/index.md)
+     - [Item 3](Item%203/index.md)
         
      - [ITEM2](ITEM2/index.md)
         
-     - [Item 3](Item%203/index.md)
+     - [item1](item1/index.md)
         
     
 
 
- - categories
-     - [All](categories/index.md)
+ - super categories
+     - [All](super%20categories/index.md)
         
-     - [Category1](../categories/Category1.md)
+     - [Category 2](../super%20categories/Category%202.md)
         
-     - [Category2](../categories/Category2.md)
-        
-     - [Category3](../categories/Category3.md)
+     - [Category3](../super%20categories/Category3.md)
         
     
 
@@ -37,11 +35,13 @@
     
 
 
- - super categories
-     - [All](super%20categories/index.md)
+ - categories
+     - [All](categories/index.md)
         
-     - [Category 2](../super%20categories/Category%202.md)
+     - [Category1](../categories/Category1.md)
         
-     - [Category3](../super%20categories/Category3.md)
+     - [Category2](../categories/Category2.md)
+        
+     - [Category3](../categories/Category3.md)
         
     
