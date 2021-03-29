@@ -1,11 +1,9 @@
 module.exports = {
   main: {
-    el: '#app',
     name: 'Default Collection',
     repo: 'https://github.com/reymon359/collection-manager',
 
     /* Navbars */
-    loadNavbar: true,
     loadSidebar: true,
     mergeNavbar: true,
     alias: {
