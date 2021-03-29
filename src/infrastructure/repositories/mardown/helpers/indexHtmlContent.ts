@@ -11,7 +11,11 @@ export const getIndexHtmlContent = (collection:Collection, docsifyConfiguration:
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-</head>
+<style type="text/css">
+    .content {
+        overflow: auto;
+    }
+  </style></head>
 <body>
   <div id="app">Please wait...</div>
   <script>${'window.$docsify =' + JSON.stringify(docsifyConfiguration.main)} </script>
