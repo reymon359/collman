@@ -2,6 +2,7 @@ import { Configuration, defaultConfiguration } from '../../../configuration'
 import { Collection } from '../../../domain/models'
 import { repositories } from '../index'
 import { urlifyString } from './helpers/urlifyString'
+import { sortUnorderedListOfLinks } from './helpers/sortUnorderedListOfLinks'
 const json2md = require('json2md')
 
 export const createOutputDirectory = async (outputDirectoryPath:string) => {
@@ -19,8 +20,7 @@ const createIndexFile = async (collection:Collection, outputDirectoryPath:string
   collection.content.items.forEach(item => {
     unorderedListOfContent.push({ link: { title: item.name, source: `${urlifyString(item.name)}/index.md` } })
   })
-  const sortedUnorderedListOfContent = await unorderedListOfContent.sort((a, b) => (a.link.title > b.link.title) ? 1 : ((b.link.title > a.link.title) ? -1 : 0))
-  contentArray.push({ ul: sortedUnorderedListOfContent })
+  contentArray.push({ ul: sortUnorderedListOfLinks(unorderedListOfContent) })
 
   // Classifications
   if (collection.classifications.length > 0) {
@@ -29,7 +29,7 @@ const createIndexFile = async (collection:Collection, outputDirectoryPath:string
     collection.classifications.forEach(classification => {
       unorderedListOfClassifications.push({ link: { title: classification.name, source: `${urlifyString(classification.name)}/index.md` } })
     })
-    contentArray.push({ ul: unorderedListOfClassifications.sort((a, b) => (a.link.title > b.link.title) ? 1 : ((b.link.title > a.link.title) ? -1 : 0)) })
+    contentArray.push({ ul: sortUnorderedListOfLinks(unorderedListOfClassifications) })
   }
 
   const indexContent = json2md(contentArray)
@@ -77,7 +77,7 @@ export const createClassifications = async (collection:Collection, outputDirecto
       valueContentArray.push({ h1: classificationValue })
       // Go through the items and its classifications.
       // TODO: Maybe the sort is not necessary
-      collection.content.items.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? 0 : -1)).forEach(item => {
+      collection.content.items.forEach(item => {
         item.classifications.forEach(itemClassification => {
           // If the item has the classification
           if (itemClassification.name === classification.name) {
@@ -88,12 +88,12 @@ export const createClassifications = async (collection:Collection, outputDirecto
           }
         })
       })
-      if (listOfItemWithValue.length > 0) valueContentArray.push({ ul: listOfItemWithValue })
+      if (listOfItemWithValue.length > 0) valueContentArray.push({ ul: sortUnorderedListOfLinks(listOfItemWithValue) })
       await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${classification.name}/${classificationValue}.md`, json2md(valueContentArray))
     }
 
     // Finish creating the index file
-    classificationIndexContent.push({ ul: listOfValues })
+    classificationIndexContent.push({ ul: sortUnorderedListOfLinks(listOfValues) })
     await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${classification.name}/index.md`, json2md(classificationIndexContent))
   }
 }
@@ -101,9 +101,6 @@ export const createClassifications = async (collection:Collection, outputDirecto
 export const saveCollection = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
   const { pathRootDirectory, outputDirectory, inputDirectory } = configuration
   const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
-  // 0. TODO: Sort collection Classification and items
-  collection.content.items.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? 0 : -1))
-  collection.classifications.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? 0 : -1))
 
   // 1. Create the output directory. Default docs
   await createOutputDirectory(outputDirectoryPath)
