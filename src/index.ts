@@ -10,4 +10,4 @@ const main = async (configuration: Configuration = defaultConfiguration) => {
 }
 
 // main()
-main({ ...defaultConfiguration, pathRootDirectory: '/Users/ramonmorcillo/Documents/developer/collection-manager/src/test/mocks/defaultCollection/input/markdown/defaultCollection/' })
+main({ ...defaultConfiguration, pathRootDirectory: '/Users/ramonmorcillo/Documents/developer/collection-manager/src/test/mocks/defaultCollection/output/markdown/defaultCollectionWithDocsify/' })

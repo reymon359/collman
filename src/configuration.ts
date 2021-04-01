@@ -10,6 +10,7 @@ export interface Configuration{
   pathRootDirectory: string // The root directory that holds the full project
   inputDirectory: string // The directory with the original collection
   outputDirectory: string // The output directory with the collection managed
+  docsify: boolean
   // classifications: [Classification] // WIP
 }
 
@@ -18,5 +19,6 @@ export const defaultConfiguration: Configuration = {
   outputType: 'markdown',
   pathRootDirectory: './',
   inputDirectory: 'items',
-  outputDirectory: 'docs'
+  outputDirectory: 'docs',
+  docsify: true
 }

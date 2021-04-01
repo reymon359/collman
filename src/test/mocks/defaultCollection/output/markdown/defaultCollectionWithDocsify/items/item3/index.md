@@ -1,7 +1,7 @@
 ---
-name: 'Item3'
+name: 'Item 3'
 description: 'Description3'
-categories: ['Category2', 'Category3']
+super categories: ['Category 2', 'Category3']
 Tags: ['Tag 3', 'Tag 4', 'Tag 5']
 ---
 # Title 3

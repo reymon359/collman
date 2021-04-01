@@ -11,4 +11,5 @@ export const getCollection = async (configuration = defaultConfiguration): Promi
 export const saveCollection = async (collection: Collection, configuration: Configuration) => {
   const { outputType } = configuration
   await repositories[outputType].saveCollection(collection, configuration)
+  if (configuration.docsify) await repositories[outputType].addDocsify(collection, configuration)
 }
