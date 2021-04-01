@@ -69,14 +69,13 @@ export const createClassifications = async (collection:Collection, outputDirecto
     classificationIndexContent.push({ h1: classification.name })
 
     // Create a file for each value
-    for (const classificationValue of classification.values.sort()) {
+    for (const classificationValue of classification.values) {
       listOfValues.push({ link: { title: classificationValue, source: `../${urlifyString(classification.name)}/${urlifyString(classificationValue)}.md` } })
 
       const valueContentArray = []
       const listOfItemWithValue: any[] = []
       valueContentArray.push({ h1: classificationValue })
       // Go through the items and its classifications.
-      // TODO: Maybe the sort is not necessary
       collection.content.items.forEach(item => {
         item.classifications.forEach(itemClassification => {
           // If the item has the classification
