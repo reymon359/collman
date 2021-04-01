@@ -56,7 +56,8 @@ const createSidebarFile = async (collection: Collection, outputDirectoryPath:str
 export const addDocsify = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
   const { pathRootDirectory, outputDirectory } = configuration
   const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
-  const docsifyConfiguration = require(`${pathRootDirectory}docsify.config.js`)
+  const existsConfig = await repositories.fileSystem.pathExists(`${pathRootDirectory}docsify.config.js`)
+  const docsifyConfiguration = existsConfig ? require(`${pathRootDirectory}docsify.config.js`) : {}
   // 1. Copy the index and create a README.md with it
   await createReadmeFile(outputDirectoryPath)
 
@@ -68,4 +69,5 @@ export const addDocsify = async (collection:Collection, configuration:Configurat
 
   // 4. Create the _sidebar.md file
   await createSidebarFile(collection, outputDirectoryPath)
+  console.log('Docsify integration added to the collection')
 }
