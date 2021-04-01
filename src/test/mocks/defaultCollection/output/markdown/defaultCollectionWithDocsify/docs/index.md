@@ -18,9 +18,9 @@ Default Collection description
 ## Classifications
 
 
- - [categories](categories/index.md)
-    
  - [Tags](Tags/index.md)
+    
+ - [categories](categories/index.md)
     
  - [super categories](super%20categories/index.md)
     
