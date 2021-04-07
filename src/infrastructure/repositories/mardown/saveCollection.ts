@@ -98,6 +98,7 @@ export const createClassifications = async (collection:Collection, outputDirecto
 }
 
 export const saveCollection = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
+  console.log('Proceed to save collection')
   const { pathRootDirectory, outputDirectory, inputDirectory } = configuration
   const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
 
@@ -113,4 +114,5 @@ export const saveCollection = async (collection:Collection, configuration:Config
 
   // 4. Generate the classifcications
   await createClassifications(collection, outputDirectoryPath)
+  console.log('Collection saved')
 }
