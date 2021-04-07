@@ -11,4 +11,4 @@ const collman = async (configuration: Configuration = defaultConfiguration) => {
 
 export = collman
 // collman()
-// collman({ ...defaultConfiguration, pathRootDirectory: '/Users/ramonmorcillo/Documents/developer/collection-manager/src/test/mocks/defaultCollection/output/markdown/defaultCollectionWithDocsify/' })
+collman({ ...defaultConfiguration, pathRootDirectory: '/Users/ramonmorcillo/Documents/developer/collection-manager/src/test/mocks/defaultCollection/output/markdown/defaultCollectionWithDocsify/' })

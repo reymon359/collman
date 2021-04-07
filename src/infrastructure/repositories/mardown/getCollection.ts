@@ -16,6 +16,7 @@ export interface JsonCollection {
 
 export const transformMarkdownDirectoryToJson = async (path:string) => {
   // TODO #30 #33 Use the fileInfo option from jdown to get info from dates and file name
+  console.log('path', path)
   const jsonCollection: JsonCollection = await jdown(path, { parseMd: false })
   return jsonCollection
 }
@@ -81,7 +82,8 @@ export const getJsonItemsFromObjectItems = (objectItems:any) => {
 
 export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson: {}, inputDirectory:string) => {
   // @ts-ignore
-  const jsonCollection = inputDirectoryJson[inputDirectory]
+  const jsonCollection = inputDirectoryJson
+  // @ts-ignore
   const { index, ...objectItems } = jsonCollection
   const jsonItems = await getJsonItemsFromObjectItems(objectItems)
   const collectionItems = await transformJsonItemsToCollectionItems(jsonItems as JsonItem[])
@@ -100,7 +102,8 @@ export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson
 
 export const getCollection = async (path:string, inputDirectory:string) => {
   console.log('Getting the input directory as JSON')
-  const inputDirectoryJson = await transformMarkdownDirectoryToJson(path)
+  const inputDirectoryJson = await transformMarkdownDirectoryToJson(path + inputDirectory)
+  console.log(inputDirectoryJson)
   console.log('Transforming the JSON to Collection')
   const collection = await transformInputDirectoryJsonToCollection(inputDirectoryJson, inputDirectory)
   console.log('Collection got')
