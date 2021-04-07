@@ -8,7 +8,9 @@ const collman = async (configuration: Configuration = defaultConfiguration) => {
   // Process it to the output specified in the config
   await controllers.collection.saveCollection(collection as Collection, configuration)
 }
-export = collman;
+module.exports = {
+  collman
+}
 
 // collman()
 // collman({ ...defaultConfiguration, pathRootDirectory: '/Users/ramonmorcillo/Documents/developer/collection-manager/src/test/mocks/defaultCollection/output/markdown/defaultCollectionWithDocsify/' })
