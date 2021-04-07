@@ -1,7 +1,7 @@
 {
-  "name": "collection-manager",
+  "name": "collman",
   "version": "0.0.1",
-  "description": "description collection manager",
+  "description": "collection manager",
   "main": "src/index.ts",
   "scripts": {
     "start": "npm run build:live",
@@ -24,10 +24,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reymon359/collection-manager.git"
+    "url": "git+https://github.com/reymon359/collman.git"
   },
   "keywords": [
-    "hi"
+    "collection",
+    "manager"
   ],
   "author": "reymon359",
   "license": "ISC",
