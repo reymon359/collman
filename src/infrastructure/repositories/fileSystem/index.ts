@@ -10,7 +10,7 @@ const makeDirectory = async (directoryPath:string) => {
 
 const writeFile = async (filePath:string, fileContent:string) => {
   await fs.writeFile(filePath, fileContent, (err:any) => {
-    if (err) return console.error(`Error creating file at path: ${filePath}`)
+    if (err) return console.error(`Error creating file at path: ${filePath}. Error: ${err.message}`)
     // console.log(`File created at path ${filePath} successfully!`)
   })
 }
@@ -26,7 +26,9 @@ const copy = async (from:string, to:string) => {
 }
 
 const pathExists = async (path:string) => {
-  return await fse.pathExists(path)
+  const exists = await fse.pathExists(path)
+  console.log(exists)
+  return exists
 }
 
 export const fileSystem: any = {
