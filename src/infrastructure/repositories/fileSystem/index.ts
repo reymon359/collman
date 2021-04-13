@@ -33,7 +33,6 @@ const copy = async (from:string, to:string) => {
 
 const pathExists = async (path:string) => {
   const exists = await fse.pathExists(path)
-  console.log(exists)
   return exists
 }
 
