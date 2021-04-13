@@ -21,10 +21,10 @@ export const transformMarkdownDirectoryToJson = async (path:string) => {
 }
 
 export const getItemClassificationsFromJsonItem = async (jsonItem: any) => {
-  const jsonItemKeys = (Object.keys(jsonItem))
+  const jsonItemKeys = (Object.keys(jsonItem.index))
   const itemClassifications: any[] = []
   await jsonItemKeys.forEach(key => {
-    const value = jsonItem[key]
+    const value = jsonItem.index[key]
     if (Array.isArray(value)) {
       itemClassifications.push({ name: key, values: value })
     }
@@ -61,9 +61,9 @@ export const transformJsonItemsToCollectionItems = async (jsonItems:any) => {
     const classifications = await getItemClassificationsFromJsonItem(jsonItem)
     transformedItems.push({
       containerName: jsonItem.containerName,
-      name: jsonItem.name || jsonItem.containerName,
-      description: jsonItem.description,
-      content: jsonItem.contents as string,
+      name: jsonItem.index.name || jsonItem.containerName,
+      description: jsonItem.index.description,
+      content: jsonItem.index.contents as string,
       classifications
     })
   }
@@ -75,7 +75,6 @@ export const getJsonItemsFromObjectItems = (objectItems:any) => {
   const jsonItems = Object.keys(objectItems).map(key => {
     return { containerName: key, ...objectItems[key] }
   })
-
   return jsonItems
 }
 
