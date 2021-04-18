@@ -6,6 +6,7 @@ import { sortUnorderedListOfLinks } from './helpers/sortUnorderedListOfLinks'
 const json2md = require('json2md')
 
 export const createOutputDirectory = async (outputDirectoryPath:string) => {
+  await repositories.fileSystem.emptyDirectory(outputDirectoryPath)
   await repositories.fileSystem.makeDirectory(outputDirectoryPath)
 }
 
