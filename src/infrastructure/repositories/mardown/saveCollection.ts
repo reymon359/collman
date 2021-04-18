@@ -44,7 +44,7 @@ const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPa
     const itemClassifications: any[] = []
     if (item.classifications.length > 0) {
       item.classifications.forEach((classification, i) => {
-        itemClassifications[i] = `[${classification.name}:](${urlifyString(classification.name)}/index.md)`
+        itemClassifications[i] = `[${classification.name}:](../${urlifyString(classification.name)}/index.md)`
 
         classification.values.forEach((value) => {
           itemClassifications[i] += ` [${value}](../${urlifyString(classification.name)}/${urlifyString(value)}.md)`
@@ -52,7 +52,7 @@ const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPa
       })
     }
     const classificationsContent = await itemClassifications.join('<br>')
-    const itemIndexContent = classificationsContent + '\n' + item.content + classificationsContent
+    const itemIndexContent = classificationsContent + '\n' + item.content + '\n' + classificationsContent
     await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${item.name}/index.md`, itemIndexContent)
 
     const itemHasAssets = await repositories.fileSystem.pathExists(`${inputDirectoryPath}/${item.containerName}/assets`)
