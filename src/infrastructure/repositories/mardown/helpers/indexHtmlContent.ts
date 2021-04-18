@@ -1,9 +1,9 @@
 import { Collection } from '../../../../domain/models'
 import { DocsifyConfiguration } from '../addDocsify'
 
-const defaultDocsifyConfiguration = {
+const defaultDocsifyConfiguration = (collection:Collection) => ({
   main: {
-    name: 'Default Collection',
+    name: collection.name ? collection.name : 'Default Collection',
     repo: 'https://github.com/reymon359/collection-manager',
 
     /* Navbars */
@@ -45,11 +45,11 @@ const defaultDocsifyConfiguration = {
     '<script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>',
     '<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>'
   ]
-}
+})
 
 export const getIndexHtmlContent = (collection:Collection, docsifyConfiguration: DocsifyConfiguration) => {
-  const main = docsifyConfiguration.main ? docsifyConfiguration.main : defaultDocsifyConfiguration.main
-  const scriptsAndLinks = docsifyConfiguration.scriptsAndLinks ? docsifyConfiguration.scriptsAndLinks : defaultDocsifyConfiguration.scriptsAndLinks
+  const main = docsifyConfiguration.main ? docsifyConfiguration.main : defaultDocsifyConfiguration(collection).main
+  const scriptsAndLinks = docsifyConfiguration.scriptsAndLinks ? docsifyConfiguration.scriptsAndLinks : defaultDocsifyConfiguration(collection).scriptsAndLinks
 
   return `
 <!DOCTYPE html>
