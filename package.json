@@ -2,10 +2,13 @@
   "name": "collman",
   "version": "0.0.4",
   "description": "collection manager",
-  "main": "./lib/index.js",
+  "main": "./bin/index.js",
   "files": [
     "/lib"
   ],
+  "bin": {
+    "hello": "./bin/index.js"
+  },
   "scripts": {
     "start": "npm run build:live",
     "build": "tsc -p .",
