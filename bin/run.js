@@ -11,7 +11,7 @@ const collman = require('../lib/index')
 // docsify: boolean
 const options = yargs
   .usage('Usage: -id <inputDirectory>')
-  .option('n', { alias: 'inputDirectory', describe: 'The directory with your collection', type: 'string', demandOption: true })
+  .option('id', { alias: 'inputDirectory', describe: 'The directory with your collection', type: 'string', demandOption: true })
   .argv
 
 collman({ inputDirectory: options.inputDirectory })
