@@ -2,10 +2,14 @@
   "name": "collman",
   "version": "0.0.4",
   "description": "collection manager",
-  "main": "./lib/index.js",
+  "main": "./bin/index.js",
   "files": [
-    "/lib"
+    "/lib",
+    "/bin"
   ],
+  "bin": {
+    "collman": "./bin/run.js"
+  },
   "scripts": {
     "start": "npm run build:live",
     "build": "tsc -p .",
@@ -62,7 +66,8 @@
   "dependencies": {
     "docsify-cli": "^4.4.2",
     "fs-extra": "^9.1.0",
+    "jdown": "^1.0.5",
     "json2md": "^1.9.2",
-    "jdown": "^1.0.5"
+    "yargs": "^16.2.0"
   }
 }
