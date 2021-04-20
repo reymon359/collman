@@ -3,15 +3,11 @@
 const yargs = require('yargs')
 const collman = require('../lib/index')
 
-// inputType: string
-// outputType: string
-// pathRootDirectory: string // The root directory that holds the full project
-// inputDirectory: string // The directory with the original collection
-// outputDirectory: string // The output directory with the collection managed
-// docsify: boolean
 const options = yargs
-  .usage('Usage: -id <inputDirectory>')
-  .option('id', { alias: 'inputDirectory', describe: 'The directory with your collection', type: 'string', demandOption: true })
+  .option('id', { alias: 'inputDirectory', describe: 'The directory with your collection items. Default: items', type: 'string' })
+  .option('prd', { alias: 'pathRootDirectory', describe: 'The path to the root directory were the collection directory is.  Default: ./', type: 'string' })
+  .option('od', { alias: 'outputDirectory', describe: 'The name of the output directory with the collection ready. Default: docs', type: 'string' })
+  .option('ds', { alias: 'docsify', describe: 'Param if you want or not to add Docsify to your collection. Default: true', type: 'boolean' })
   .argv
 
-collman({ inputDirectory: options.inputDirectory })
+collman(options)
