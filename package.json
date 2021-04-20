@@ -8,7 +8,6 @@
     "/bin"
   ],
   "bin": {
-    "hello": "./bin/index.js",
     "collman": "./bin/run.js"
   },
   "scripts": {
