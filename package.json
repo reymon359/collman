@@ -4,7 +4,8 @@
   "description": "collection manager",
   "main": "./bin/index.js",
   "files": [
-    "/lib"
+    "/lib",
+    "/bin"
   ],
   "bin": {
     "hello": "./bin/index.js",
