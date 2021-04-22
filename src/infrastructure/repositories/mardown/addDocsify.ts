@@ -55,6 +55,7 @@ const createSidebarFile = async (collection: Collection, outputDirectoryPath:str
 }
 
 export const addDocsify = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
+  console.log('🎨 Docsify enabled. Adding it to the collection')
   const { pathRootDirectory, outputDirectory } = configuration
   const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
   const existsConfig = await repositories.fileSystem.pathExists(`${pathRootDirectory}docsify.config.js`)
@@ -70,5 +71,7 @@ export const addDocsify = async (collection:Collection, configuration:Configurat
 
   // 4. Create the _sidebar.md file
   await createSidebarFile(collection, outputDirectoryPath)
-  console.log('Docsify integration added to the collection')
+  console.log('🖼 Docsify added successfully to the collection. To have a look just do two things:')
+  console.log('1. Install Docsify: npm i docsify-cli -g')
+  console.log(`2. Run: docsify serve ${configuration.outputDirectory}`)
 }
