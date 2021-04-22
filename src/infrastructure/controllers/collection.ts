@@ -1,8 +1,8 @@
-import { Configuration, defaultConfiguration } from '../../configuration'
+import { Configuration } from '../../configuration'
 import { repositories } from '../repositories'
 import { Collection } from '../../domain/models'
 
-export const getCollection = async (configuration = defaultConfiguration): Promise<{}> => {
+export const getCollection = async (configuration: Configuration): Promise<{}> => {
   const { inputType, inputDirectory, pathRootDirectory } = configuration
   const collection = await repositories[inputType].getCollection(pathRootDirectory, inputDirectory)
   console.log(`Collection got: ${collection.name}`)
