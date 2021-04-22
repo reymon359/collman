@@ -3,7 +3,7 @@ import { repositories } from '../repositories'
 import { Collection } from '../../domain/models'
 import path from 'path'
 
-const getLocalConfiguration = async ()=> {
+const getLocalConfiguration = async () => {
   console.log(__dirname)
   // TODO: try this in the index file
   const localConfigurationPath = path.join('./', 'collman.config.js')
