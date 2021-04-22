@@ -15,7 +15,7 @@ export const getCollection = async (configuration: Configuration): Promise<{}> =
   configuration = { ...configuration, ...await getLocalConfiguration() }
   const { inputType, inputDirectory, pathRootDirectory } = configuration
   const collection = await repositories[inputType].getCollection(pathRootDirectory, inputDirectory)
-  console.log(`✅ Collection got: ${collection.name}`)
+  console.log(`✅  Collection got: ${collection.name}`)
   return collection
 }
 
