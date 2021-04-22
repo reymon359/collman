@@ -1,4 +1,4 @@
-import { Configuration, defaultConfiguration } from '../../configuration'
+import { Configuration } from '../../configuration'
 import { repositories } from '../repositories'
 import { Collection } from '../../domain/models'
 import path from 'path'
@@ -12,7 +12,7 @@ const getLocalConfiguration = async () => {
 
 export const getCollection = async (configuration: Configuration): Promise<{}> => {
   console.log('👀 Getting collection based on the configuration')
-  configuration = { ...defaultConfiguration, ...await getLocalConfiguration() }
+  configuration = { ...configuration, ...await getLocalConfiguration() }
   const { inputType, inputDirectory, pathRootDirectory } = configuration
   const collection = await repositories[inputType].getCollection(pathRootDirectory, inputDirectory)
   console.log(`✅ Collection got: ${collection.name}`)
