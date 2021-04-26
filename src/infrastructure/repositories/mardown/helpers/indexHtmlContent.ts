@@ -1,4 +1,4 @@
-import { Collection } from '../../../../domain/models'
+import { Collection } from '../../../../models'
 import { DocsifyConfiguration } from '../addDocsify'
 
 const defaultDocsifyConfiguration = (collection:Collection) => ({

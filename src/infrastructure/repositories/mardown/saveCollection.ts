@@ -1,5 +1,5 @@
 import { Configuration, defaultConfiguration } from '../../../configuration'
-import { Collection } from '../../../domain/models'
+import { Collection } from '../../../models'
 import { repositories } from '../index'
 import { urlifyString } from './helpers/urlifyString'
 import { sortUnorderedListOfLinks } from './helpers/sortUnorderedListOfLinks'

@@ -1,4 +1,4 @@
-import { Classification, Item } from '../../../domain/models'
+import { Classification, Item } from '../../../models'
 
 const jdown = require('jdown')
 

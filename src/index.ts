@@ -1,6 +1,6 @@
 import { Configuration, defaultConfiguration } from './configuration'
 import { controllers } from './infrastructure/controllers'
-import { Collection } from './domain/models'
+import { Collection } from './models'
 
 const collman = async (configuration: Configuration = defaultConfiguration) => {
   configuration = { ...defaultConfiguration, ...configuration }
