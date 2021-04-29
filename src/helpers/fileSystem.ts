@@ -1,7 +1,7 @@
 import * as fs from 'fs'
 const fse = require('fs-extra')
 
-const emptyDirectory = async (directoryPath:string) => {
+export const emptyDirectory = async (directoryPath:string) => {
   try {
     await fse.emptyDir(directoryPath)
   } catch (err) {
@@ -10,7 +10,7 @@ const emptyDirectory = async (directoryPath:string) => {
   }
 }
 
-const makeDirectory = async (directoryPath:string) => {
+export const makeDirectory = async (directoryPath:string) => {
   await fs.mkdir(directoryPath, { recursive: true }, (err:any) => {
     if (err) {
       console.error(`Error creating directory at path: ${directoryPath}`)
@@ -19,7 +19,7 @@ const makeDirectory = async (directoryPath:string) => {
   })
 }
 
-const writeFile = async (filePath:string, fileContent:string) => {
+export const writeFile = async (filePath:string, fileContent:string) => {
   try {
     await fse.outputFile(filePath, fileContent)
   } catch (err) {
@@ -28,7 +28,7 @@ const writeFile = async (filePath:string, fileContent:string) => {
   }
 }
 
-const copy = async (from:string, to:string) => {
+export const copy = async (from:string, to:string) => {
   try {
     await fse.copy(from, to)
   } catch (err) {
@@ -37,7 +37,7 @@ const copy = async (from:string, to:string) => {
   }
 }
 
-const pathExists = async (path:string) => {
+export const pathExists = async (path:string) => {
   try {
     const exists = await fse.pathExists(path)
     return exists
@@ -45,12 +45,4 @@ const pathExists = async (path:string) => {
     console.error(`Error checking if path: ${path} exists`)
     throw err
   }
-}
-
-export const fileSystem: any = {
-  emptyDirectory,
-  makeDirectory,
-  writeFile,
-  copy,
-  pathExists
 }

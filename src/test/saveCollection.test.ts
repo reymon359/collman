@@ -1,5 +1,5 @@
-import { defaultCollection } from '../../../test/mocks/defaultCollection'
-import { createOutputDirectory, saveCollection } from './saveCollection'
+import { defaultCollection } from './mocks/defaultCollection'
+import { createOutputDirectory, saveCollection } from '../saveCollection'
 const fs = require('fs')
 
 describe.skip('Markdown repository save collection', () => {

@@ -1,18 +1,6 @@
-import { Classification, Item } from '../../../models'
+import { Classification, Item, JsonCollection, JsonItem } from './types'
 
 const jdown = require('jdown')
-
-export interface JsonItem {
-  containerName: string
-  name: string
-  description: string
-  categories?: string[]
-  contents?: string
-}
-
-export interface JsonCollection {
-  items: JsonItem[]
-}
 
 export const transformMarkdownDirectoryToJson = async (path:string) => {
   // TODO #30 #33 Use the fileInfo option from jdown to get info from dates and file name

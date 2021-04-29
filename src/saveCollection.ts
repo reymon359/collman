@@ -1,13 +1,12 @@
-import { Configuration, defaultConfiguration } from '../../../configuration'
-import { Collection } from '../../../models'
-import { repositories } from '../index'
+import { Collection, Configuration, defaultConfiguration } from './types'
 import { urlifyString } from './helpers/urlifyString'
 import { sortUnorderedListOfLinks } from './helpers/sortUnorderedListOfLinks'
+import { copy, emptyDirectory, makeDirectory, pathExists, writeFile } from './helpers/fileSystem'
 const json2md = require('json2md')
 
 export const createOutputDirectory = async (outputDirectoryPath:string) => {
-  await repositories.fileSystem.emptyDirectory(outputDirectoryPath)
-  await repositories.fileSystem.makeDirectory(outputDirectoryPath)
+  await emptyDirectory(outputDirectoryPath)
+  await makeDirectory(outputDirectoryPath)
 }
 
 const createIndexFile = async (collection:Collection, outputDirectoryPath:string) => {
@@ -35,7 +34,7 @@ const createIndexFile = async (collection:Collection, outputDirectoryPath:string
 
   const indexContent = json2md(contentArray)
 
-  await repositories.fileSystem.writeFile(`${outputDirectoryPath}/index.md`, indexContent)
+  await writeFile(`${outputDirectoryPath}/index.md`, indexContent)
 }
 
 const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPath:string, outputDirectoryPath:string) => {
@@ -53,18 +52,18 @@ const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPa
     }
     const classificationsContent = await itemClassifications.join('<br>')
     const itemIndexContent = classificationsContent + '\n' + item.content + '\n' + classificationsContent
-    await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${item.name}/index.md`, itemIndexContent)
+    await writeFile(`${outputDirectoryPath}/${item.name}/index.md`, itemIndexContent)
 
-    const itemHasAssets = await repositories.fileSystem.pathExists(`${inputDirectoryPath}/${item.containerName}/assets`)
+    const itemHasAssets = await pathExists(`${inputDirectoryPath}/${item.containerName}/assets`)
     if (itemHasAssets) {
-      await repositories.fileSystem.copy(`${inputDirectoryPath}/${item.containerName}/assets`, `${outputDirectoryPath}/${item.name}/assets`)
+      await copy(`${inputDirectoryPath}/${item.containerName}/assets`, `${outputDirectoryPath}/${item.name}/assets`)
     }
   }
 }
 
 export const createClassifications = async (collection:Collection, outputDirectoryPath:string) => {
   for (const classification of collection.classifications) {
-    await repositories.fileSystem.makeDirectory(`${outputDirectoryPath}/${classification.name}`)
+    await makeDirectory(`${outputDirectoryPath}/${classification.name}`)
 
     // Begin creating the classification index file
     const classificationIndexContent: any[] = []
@@ -91,12 +90,12 @@ export const createClassifications = async (collection:Collection, outputDirecto
         })
       })
       if (listOfItemWithValue.length > 0) valueContentArray.push({ ul: sortUnorderedListOfLinks(listOfItemWithValue) })
-      await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${classification.name}/${classificationValue}.md`, json2md(valueContentArray))
+      await writeFile(`${outputDirectoryPath}/${classification.name}/${classificationValue}.md`, json2md(valueContentArray))
     }
 
     // Finish creating the index file
     classificationIndexContent.push({ ul: sortUnorderedListOfLinks(listOfValues) })
-    await repositories.fileSystem.writeFile(`${outputDirectoryPath}/${classification.name}/index.md`, json2md(classificationIndexContent))
+    await writeFile(`${outputDirectoryPath}/${classification.name}/index.md`, json2md(classificationIndexContent))
   }
 }
 

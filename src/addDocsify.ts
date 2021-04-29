@@ -1,9 +1,8 @@
-import { Configuration, defaultConfiguration } from '../../../configuration'
-import { Collection } from '../../../models'
-import { repositories } from '../index'
+import { Collection, Configuration, defaultConfiguration } from './types'
 import { getIndexHtmlContent } from './helpers/indexHtmlContent'
 import { urlifyString } from './helpers/urlifyString'
 import { sortUnorderedListOfLinks } from './helpers/sortUnorderedListOfLinks'
+import { copy, pathExists, writeFile } from './helpers/fileSystem'
 const json2md = require('json2md')
 
 export interface DocsifyConfiguration {
@@ -12,15 +11,15 @@ export interface DocsifyConfiguration {
 }
 
 const createReadmeFile = async (outputDirectoryPath:string) => {
-  await repositories.fileSystem.copy(`${outputDirectoryPath}/index.md`, `${outputDirectoryPath}/README.md`)
+  await copy(`${outputDirectoryPath}/index.md`, `${outputDirectoryPath}/README.md`)
 }
 
 const createNojekillFile = async (outputDirectoryPath:string) => {
-  await repositories.fileSystem.writeFile(`${outputDirectoryPath}/.nojekill`, '')
+  await writeFile(`${outputDirectoryPath}/.nojekill`, '')
 }
 
 const createIndexHtmlFile = async (collection:Collection, outputDirectoryPath:string, docsifyConfiguration:DocsifyConfiguration) => {
-  await repositories.fileSystem.writeFile(`${outputDirectoryPath}/index.html`, getIndexHtmlContent(collection, docsifyConfiguration))
+  await writeFile(`${outputDirectoryPath}/index.html`, getIndexHtmlContent(collection, docsifyConfiguration))
 }
 
 const createSidebarFile = async (collection: Collection, outputDirectoryPath:string) => {
@@ -51,14 +50,14 @@ const createSidebarFile = async (collection: Collection, outputDirectoryPath:str
 
   const sidebarContent = json2md(mainUnorderedList)
 
-  await repositories.fileSystem.writeFile(`${outputDirectoryPath}/_sidebar.md`, sidebarContent)
+  await writeFile(`${outputDirectoryPath}/_sidebar.md`, sidebarContent)
 }
 
 export const addDocsify = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
   console.log('🎨 Docsify enabled. Adding it to the collection')
   const { pathRootDirectory, outputDirectory } = configuration
   const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
-  const existsConfig = await repositories.fileSystem.pathExists(`${pathRootDirectory}docsify.config.js`)
+  const existsConfig = await pathExists(`${pathRootDirectory}docsify.config.js`)
   const docsifyConfiguration = existsConfig ? require(`${pathRootDirectory}docsify.config.js`) : {}
   // 1. Copy the index and create a README.md with it
   await createReadmeFile(outputDirectoryPath)

@@ -1,12 +1,12 @@
-import defaultCollectionJson from '../../../test/mocks/defaultCollection/input/markdown/defaultCollection.json'
+import defaultCollectionJson from './mocks/defaultCollection/input/markdown/defaultCollection.json'
 import {
   getClassificationsFromCollectionItems,
   getItemClassificationsFromJsonItem,
   transformJsonItemsToCollectionItems,
   transformMarkdownDirectoryToJson
   , getCollection
-} from './getCollection'
-import { defaultCollection } from '../../../test/mocks/defaultCollection'
+} from '../getCollection'
+import { defaultCollection } from './mocks/defaultCollection'
 
 describe('Markdown repository get collection', () => {
   it('transforms a markdown directory to a collection json', async () => {
