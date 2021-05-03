@@ -39,7 +39,6 @@ describe('Markdown repository get collection', () => {
       containerName: 'irrelevant containerName',
       contents: 'irrelevant contents',
       name: 'irrelevant name',
-      description: 'irrelevant description',
       categories: ['Category1', 'Category2'],
       Tags: ['Tag 1', 'Tag 2', 'Tag 3']
     }
@@ -57,7 +56,6 @@ describe('Markdown repository get collection', () => {
       containerName: 'irrelevant containerName',
       contents: 'irrelevant contents',
       name: 'irrelevant name',
-      description: 'irrelevant description',
       categories: ['Category1', 'Category2'],
       Tags: ['Tag 1', 'Tag 2', 'Tag 3']
     },
@@ -65,7 +63,6 @@ describe('Markdown repository get collection', () => {
       containerName: 'irrelevant containerName two',
       contents: 'irrelevant contents two',
       name: 'irrelevant name two',
-      description: 'irrelevant description two',
       categories: ['Category2', 'Category3'],
       Tags: ['Tag 3', 'Tag 4', 'Tag 5']
     }
@@ -75,7 +72,6 @@ describe('Markdown repository get collection', () => {
       containerName: 'irrelevant containerName',
       content: 'irrelevant contents',
       name: 'irrelevant name',
-      description: 'irrelevant description',
       classifications: [
         { name: 'categories', values: ['Category1', 'Category2'] },
         { name: 'Tags', values: ['Tag 1', 'Tag 2', 'Tag 3'] }]
@@ -84,7 +80,6 @@ describe('Markdown repository get collection', () => {
       containerName: 'irrelevant containerName two',
       content: 'irrelevant contents two',
       name: 'irrelevant name two',
-      description: 'irrelevant description two',
       classifications: [
         { name: 'categories', values: ['Category2', 'Category3'] },
         { name: 'Tags', values: ['Tag 3', 'Tag 4', 'Tag 5'] }]
@@ -99,7 +94,6 @@ describe('Markdown repository get collection', () => {
       containerName: 'irrelevant containerName',
       content: 'irrelevant contents',
       name: 'irrelevant name',
-      description: 'irrelevant description',
       classifications: [
         { name: 'categories', values: ['Category1', 'Category2'] },
         { name: 'Tags', values: ['Tag 1', 'Tag 2', 'Tag 3'] }]
@@ -108,7 +102,6 @@ describe('Markdown repository get collection', () => {
       containerName: 'irrelevant containerName two',
       content: 'irrelevant contents two',
       name: 'irrelevant name two',
-      description: 'irrelevant description two',
       classifications: [
         { name: 'categories', values: ['Category2', 'Category3'] },
         { name: 'Tags', values: ['Tag 3', 'Tag 4', 'Tag 5'] }]

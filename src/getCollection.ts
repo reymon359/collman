@@ -50,7 +50,6 @@ export const transformJsonItemsToCollectionItems = async (jsonItems:any) => {
     transformedItems.push({
       containerName: jsonItem.containerName,
       name: jsonItem.index.name || jsonItem.containerName,
-      description: jsonItem.index.description,
       content: jsonItem.index.contents as string,
       classifications
     })
@@ -59,7 +58,6 @@ export const transformJsonItemsToCollectionItems = async (jsonItems:any) => {
 }
 
 export const getJsonItemsFromObjectItems = (objectItems:any) => {
-  // TODO: Add a default description if the item does not have one
   const jsonItems = Object.keys(objectItems).map(key => {
     return { containerName: key, ...objectItems[key] }
   })
@@ -67,7 +65,6 @@ export const getJsonItemsFromObjectItems = (objectItems:any) => {
 }
 
 export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson: {}, inputDirectory:string) => {
-  // @ts-ignore
   const jsonCollection = inputDirectoryJson
   // @ts-ignore
   const { index, ...objectItems } = jsonCollection

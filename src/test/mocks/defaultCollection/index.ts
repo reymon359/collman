@@ -14,7 +14,6 @@ export const defaultCollection = {
     items: [{
       containerName: "item1",
       name: "item1",
-      description: "description1",
       classifications: [{
         name: "categories",
         values: ["Category1", "Category2"]
@@ -26,7 +25,6 @@ export const defaultCollection = {
     },{
       containerName: "item2",
       name: "ITEM2",
-      description: "DESCRIPTION2",
       classifications: [{
         name: "categories",
         values: ["Category1", "Category3"]
@@ -38,7 +36,6 @@ export const defaultCollection = {
     },{
       containerName: "item3",
       name: "Item3",
-      description: "Description3",
       classifications: [{
         name: "categories",
         values: ["Category2", "Category3"]
