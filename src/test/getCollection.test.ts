@@ -36,11 +36,13 @@ describe('Markdown repository get collection', () => {
 
   it.skip('gets Item Classifications from Json Item', async () => {
     const mockedJsonItem = {
-      containerName: 'irrelevant containerName',
-      contents: 'irrelevant contents',
-      name: 'irrelevant name',
-      categories: ['Category1', 'Category2'],
-      Tags: ['Tag 1', 'Tag 2', 'Tag 3']
+      index: {
+        containerName: 'irrelevant containerName',
+        contents: 'irrelevant contents',
+        name: 'irrelevant name',
+        categories: ['Category1', 'Category2'],
+        Tags: ['Tag 1', 'Tag 2', 'Tag 3']
+      }
     }
     const mockedItemClassifications = [
       { name: 'categories', values: ['Category1', 'Category2'] },

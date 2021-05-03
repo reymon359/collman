@@ -113,6 +113,6 @@ export const saveCollection = async (collection:Collection, configuration:Config
   const inputDirectoryPath = `${pathRootDirectory}${inputDirectory}`
   await addItemsInOutputDirectory(collection, inputDirectoryPath, outputDirectoryPath)
 
-  // 4. Generate the classifcications
+  // 4. Generate the classifications
   await createClassifications(collection, outputDirectoryPath)
 }

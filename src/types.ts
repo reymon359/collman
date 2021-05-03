@@ -36,11 +36,15 @@ export interface Collection {
   content: Content
 }
 
-export interface JsonItem {
+export interface JsonItemIndex {
   containerName: string
   name: string
   categories?: string[]
   contents?: string
+}
+
+export interface JsonItem {
+  index: JsonItemIndex
 }
 
 export interface JsonCollection {
