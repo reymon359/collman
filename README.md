@@ -47,6 +47,10 @@ Create anything.
 
 And it's just markdown, so it can be edited effortlessly.
 
+TODO: link to docs
+
+TODO: add examples
+
 ## Table of Contents
 TODO
 
@@ -67,16 +71,40 @@ Let's create a fruit collection as an example.
 ```
 2. Create a directory inside for your items. In this example the fruits.
 
+TODO: main index.md
+
 ```text
 📁 my-collection
 └── 📁 fruits
 ```
 
-3. Add items to your _items_ directory. An item is a directory that contains at least an `index.md` file. 
+3. Add items to your _items_ directory. An item is a directory that contains at least an `index.md` file. Inside this file lays the _content_ of your item. Let's add an item named apple.
 
-   
+```text
+📁 my-collection
+└── 📁 fruits
+    └── 📁 apple
+        └── 📄 index.md
+```
 
+```md
+# Apple
 
+Apples are **amazing.**
+```
+
+In order to keep things simple the item will get the directory name you gave to it, in the example above the item would be names `apple`. If you want to give it a different name than the directory one, f.e. `Apple`, just add in the `index.md` frontmatter.
+
+```md
+---
+name: 'Apple'
+---
+# Apple
+
+Apples are **amazing.**
+```
+
+TODO: Categories
 
 Additionally, it can contain an `assets` directory with images that can be referenced in the `index.md`.
 
