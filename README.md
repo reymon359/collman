@@ -6,7 +6,7 @@ Have a look at it! https://gist.github.com/reymon359/a0880e5b3bfcbac54f58b52b3ad
 <!-- Logo (with link) -->
 <p align="center">
   <a href="https://github.com/reymon359/collman">
-    <img alt="gatsby-personal-site" src="https://raw.githubusercontent.com/reymon359/gatsby-personal-site/master/assets/watermelon.png" width="100" />
+    <img alt="collman" src="https://raw.githubusercontent.com/reymon359/collman/master/assets/watermelon.png" width="100" />
   </a>
 </p>
 
@@ -34,29 +34,68 @@ Have a look at it! https://gist.github.com/reymon359/a0880e5b3bfcbac54f58b52b3ad
 
 <!-- Small description -->
 <p align="center">
-Easy manage agnostic collections with classifications.
+Easily manage agnostic collections with classifications.
 </p>
 
 <!-- Long description -->
-We as humans like to classify things, is in our nature. I wanted to create a tool where you can add things and classify them about anything in an agnostic way.. You want to create a blog where things are posts and you want to classify then with tags there you go. You want to have a gallery where things are images there you go. You want a gallery of galleries there you go too. Everyone can create anything they want. It's just markdown so you can edit everything. I wanted to creat some kind of collection c. En verdad docsify es una feature, por defecto no lo añade. Si lo pides te añade el Index el de nojekill y el sidebar o magnate si quieres. Why docsify. I was about to creat something similar to display the collections of things and then discovered about docsify and all the content, plugins and support behind it and decided to not reinvent the wheel and just adapt it to my needs.
+We as humans like to classify things, is in our nature. this project aims to create a tool where you have a collection to add items and classify them in an agnostic way. 
 
+If you want to create a blog where the items are posts, and you want to classify then with tags and categories you can easily do it. 
+Or maybe a gallery where the items are images there you go too. A gallery of galleries you say? sure, why not. 
 
+Create anything. 
 
-comando plugins paraa añadir docsify plugins aunque esto alomejor no have falta  actualizar despues de hacer el tuto de docsify
+And it's just markdown, so it can be edited effortlessly.
 
 ## Table of Contents
 TODO
 
 ## How to use it
 
-<!-- Overall explanation-->
-TODO
+### Install Collman 
 
-### Create collection
-TODO
+Running `npm i -g collman` will do
 
-### Add items
-TODO
+### Create a collection
+
+Let's create a fruit collection as an example. 
+
+1. Create a directory and name it the way you want
+
+```text
+📁 my-collection
+```
+2. Create a directory inside for your items. In this example the fruits.
+
+```text
+📁 my-collection
+└── 📁 fruits
+```
+
+3. Add items to your _items_ directory. An item is a directory that contains at least an `index.md` file. 
+
+   
+
+
+
+Additionally, it can contain an `assets` directory with images that can be referenced in the `index.md`.
+
+So our collection would look like this:
+
+```text
+📁 my-collection
+└── 📁 fruits
+    └── 📁 apple
+    │   └── 📄 index.md
+    └── 📁 pineapple
+    │   └── 📄 index.md
+    └── 📁 watermelon
+    │   └── 📁 assets
+    │   │   └── 📄 watermelon.png    
+    │   └── 📄 index.md
+    ├── ...
+    ...
+```
 
 ### Run `collman --id name-input-directory`
 TODO
@@ -71,6 +110,11 @@ TODO
 TODO
 
 ### Why Docsify
+En verdad docsify es una feature, por defecto no lo añade. Si lo pides te añade el Index el de nojekill y el sidebar o magnate si quieres. Why docsify. I was about to creat something similar to display the collections of things and then discovered about docsify and all the content, plugins and support behind it and decided to not reinvent the wheel and just adapt it to my needs.
+
+
+
+comando plugins paraa añadir docsify plugins aunque esto alomejor no have falta  actualizar despues de hacer el tuto de docsify
 
 <!-- Authors -->
 ## Authors
