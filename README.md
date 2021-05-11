@@ -78,7 +78,9 @@ TODO: main index.md
 └── 📁 fruits
 ```
 
-3. Add items to your _items_ directory. An item is a directory that contains at least an `index.md` file. Inside this file lays the _content_ of your item. Let's add an item named apple.
+3. Add **items** to your **items** directory. An **item** is a directory that contains at least an `index.md` file. Inside this file lays the _content_ of your **item.** 
+   
+Let's add an item named apple.
 
 ```text
 📁 my-collection
