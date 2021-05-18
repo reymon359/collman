@@ -38,12 +38,12 @@ Easily manage agnostic collections with classifications.
 </p>
 
 <!-- Long description -->
-We as humans like to classify things, is in our nature. this project aims to create a tool where you have a collection to add items and classify them in an agnostic way. 
+We as humans like to classify things, is in our nature. this project aims to create a tool where you have a collection to add items and classify them in an agnostic way.
 
-If you want to create a blog where the items are posts, and you want to classify then with tags and categories you can easily do it. 
-Or maybe a gallery where the items are images there you go too. A gallery of galleries you say? sure, why not. 
+If you want to create a blog where the items are posts, and you want to classify then with tags and categories you can easily do it.
+Or maybe a gallery where the items are images there you go too. A gallery of galleries you say? sure, why not.
 
-Create anything. 
+Create anything.
 
 And it's just markdown, so it can be edited effortlessly.
 
@@ -62,70 +62,71 @@ Running `npm i -g collman` will do
 
 ### Create a collection
 
-Let's create a fruit collection as an example. 
+Let's create a fruit collection as an example.
 
-1. Create a directory and name it the way you want
-
-```text
-📁 my-collection
-```
-2. Create a directory inside for your items. In this example the fruits.
-
-TODO: main index.md
+Create a directory with any name you want and add an `index.md` file to it.
 
 ```text
-📁 my-collection
-└── 📁 fruits
+📁 fruits-collection
+└── 📄 index.md
 ```
 
-3. Add **items** to your **items** directory. An **item** is a directory that contains at least an `index.md` file. Inside this file lays the _content_ of your **item.** 
-   
-Let's add an item named apple.
-
-```text
-📁 my-collection
-└── 📁 fruits
-    └── 📁 apple
-        └── 📄 index.md
-```
+Inside the `ìndex.md` file add a name for your collection in the _frontmatter_ and a description about your collection.
 
 ```md
-# Apple
-
-Apples are **amazing.**
+---
+name: 'Fruits Collection'
+---
+This is my awesome collection of fruits.
 ```
 
-In order to keep things simple the item will get the directory name you gave to it, in the example above the item would be names `apple`. If you want to give it a different name than the directory one, f.e. `Apple`, just add in the `index.md` frontmatter.
+Now create a directory inside for your **items.** In this example the fruits.
+
+```text
+📁 fruits-collection
+└── 📁 fruits
+└── 📄 index.md
+```
+
+Lets add an **item** to the **items** directory. An **item** is nothing but a directory that contains at least an `index.md` file with the _content_ of your **item.**
+
+```text
+📁 my-collection
+└── 📁 fruits
+│   └── 📁 apple
+│       └── 📄 index.md
+└── 📄 index.md
+```
+
+Add the name inside the `index.md` frontmatter and whatever content below it. 
 
 ```md
 ---
 name: 'Apple'
 ---
-# Apple
-
 Apples are **amazing.**
 ```
 
-TODO: Categories
-
-Additionally, it can contain an `assets` directory with images that can be referenced in the `index.md`.
-
-So our collection would look like this:
+Additionally, an **item** can contain an `assets` directory to store images referenced in the `index.md`. Have a look at the watermelon item in our example.
 
 ```text
 📁 my-collection
 └── 📁 fruits
-    └── 📁 apple
-    │   └── 📄 index.md
-    └── 📁 pineapple
-    │   └── 📄 index.md
-    └── 📁 watermelon
-    │   └── 📁 assets
-    │   │   └── 📄 watermelon.png    
-    │   └── 📄 index.md
-    ├── ...
-    ...
+│   └── 📁 apple
+│   │   └── 📄 index.md
+│   └── 📁 pineapple
+│   │   └── 📄 index.md
+│   └── 📁 watermelon
+│   │   └── 📁 assets
+│   │   │   └── 📄 watermelon.png
+│   │   └── 📄 index.md
+│   ├── ...
+│   ...
+└── 📄 index.md
 ```
+
+TODO: Add examples folder with this
+TODO: Categories
 
 ### Run `collman --id name-input-directory`
 TODO
