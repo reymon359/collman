@@ -8,7 +8,7 @@ import {
 } from '../getCollection'
 import { defaultCollection } from './mocks/defaultCollection'
 
-describe('Markdown repository get collection', () => {
+describe.skip('Markdown repository get collection', () => {
   it('transforms a markdown directory to a collection json', async () => {
     // Arrange
     const mockedPath = 'src/test/mocks/defaultCollection/input/markdown/defaultCollection'

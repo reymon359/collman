@@ -51,8 +51,7 @@ Create anything.
 And it's just markdown, so it can be edited effortlessly.
 
 TODO: link to docs
-
-TODO: add examples
+TODO: Add examples
 
 ## Table of Contents
 TODO
@@ -67,11 +66,19 @@ Running `npm i -g collman` will do
 
 Let's create a fruit collection as an example. You can find it in the `assets/examples` directory from this repository.
 
-First, create a directory with any name you want and add an `index.md` file to it.
+First, create a directory with any name you want.
 
 ```text
 📁 fruits-collection
-└── 📄 index.md
+```
+
+
+Now create a directory for your **items** and add an `index.md` file to it. In this example the `fruits`.
+
+```text
+📁 fruits-collection
+└── 📁 fruits
+    └── 📄 index.md
 ```
 
 Inside the `ìndex.md` file add a name for your collection in the _frontmatter_ and a description about your collection.
@@ -83,22 +90,14 @@ name: 'Fruits Collection'
 # This is my awesome collection of fruits
 ```
 
-Now create a directory for your **items.** In this example the `fruits`.
-
-```text
-📁 fruits-collection
-└── 📁 fruits
-└── 📄 index.md
-```
-
 Lets add an **item** to the **items** directory. An **item** is nothing but a directory that contains at least an `index.md` file with the _content_ of your **item.**
 
 ```text
 📁 my-collection
 └── 📁 fruits
-│   └── 📁 apple
-│       └── 📄 index.md
-└── 📄 index.md
+    └── 📁 apple
+    │   └── 📄 index.md
+    └── 📄 index.md
 ```
 
 Add the name inside the `index.md` frontmatter and whatever content below it.
@@ -115,17 +114,17 @@ Additionally, an **item** can contain an `assets` directory to store images refe
 ```text
 📁 my-collection
 └── 📁 fruits
-│   └── 📁 apple
-│   │   └── 📄 index.md
-│   └── 📁 orange
-│   │   └── 📄 index.md
-│   └── 📁 watermelon
-│   │   └── 📁 assets
-│   │   │   └── 📄 watermelon.png
-│   │   └── 📄 index.md
-│   ├── ...
-│   ...
-└── 📄 index.md
+    └── 📁 apple
+    │   └── 📄 index.md
+    └── 📁 orange
+    │   └── 📄 index.md
+    └── 📁 watermelon
+    │   └── 📁 assets
+    │   │   └── 📄 watermelon.png
+    │   └── 📄 index.md
+    ├── ...
+    ...
+    └── 📄 index.md
 ```
 
 ```md
@@ -150,7 +149,9 @@ Is my favourite fruit
 
 ### Run `collman --id name-input-directory`
 
+Once we have the collection ready, we run `collman --id name-input-directory`. Going on with the previous example it would be `collman --id fruits`.
 
+This will create a `docs` directory with the collection ready.
 
 ## Configuration
 TODO
