@@ -17,7 +17,7 @@ const getCollectionMain = async (configuration: Configuration): Promise<{}> => {
   configuration = { ...configuration, ...await getLocalConfiguration() }
   const { inputDirectory, pathRootDirectory } = configuration
   const collection = await getCollection(pathRootDirectory, inputDirectory)
-  console.log(`✅  Collection got: ${collection.name}`)
+  console.log(`✅ Collection got: ${collection.name}`)
   return collection
 }
 
