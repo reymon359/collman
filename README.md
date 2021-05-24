@@ -151,23 +151,50 @@ Is my favourite fruit
 
 Once we have the collection ready, we run `collman --id name-input-directory`. Going on with the previous example it would be `collman --id fruits`.
 
-This will create a `docs` directory with the collection ready.
+You will see this output:
+
+```shell
+user@user-pc my-collection % collman --id fruits
+👀 Getting collection based on the configuration
+✅  Collection got: Fruits Collection
+🚧 Processing collection and saving in directory: docs
+🎉 Collection processed and saved successfully
+🎨 Docsify enabled. Adding it to the collection
+🖼 Docsify added successfully to the collection. To have a look just do two things:
+1. Install Docsify: npm i docsify-cli -g
+2. Run: docsify serve docs
+```
+
+This will create a `docs` directory with the collection ready. Go to https://github.com/reymon359/collman/tree/master/assets/examples/my-collection/docs to see the one auto generated for the example.
+
+## Visualize it
+
+To visualize this in a better way Collman autogenerates the files needed for [Docsify.](https://github.com/docsifyjs/docsify/) Therefore, you just have to:
+
+1. Install Docsify: npm i docsify-cli -g
+2. Run: docsify serve docs
+
+Here is how the example collection will be visualized with Docsify
+
+TODO: Add the link to this.
+
+### Why Docsify
+
+At first I was about to create something similar to display a collection. Then decided to not reinvent the wheel and researched documentation libraries to fulfil this purpose.
+
+I found Docsify to be the simplest one of them to work with markdown files. The minimum requirement is to add an `index.html` to the directory you want to serve.
+
+It also has a lot plugins already made to improve the way you display the content which I decided just to adapt to my needs.
 
 ## Configuration
+
 TODO
 
 ### Default configuration 
 TODO
 
-## Visualize it
+### Docsify configuration 
 TODO
-
-### Why Docsify
-En verdad docsify es una feature, por defecto no lo añade. Si lo pides te añade el Index el de nojekill y el sidebar o magnate si quieres. Why docsify. I was about to creat something similar to display the collections of things and then discovered about docsify and all the content, plugins and support behind it and decided to not reinvent the wheel and just adapt it to my needs.
-
-
-
-comando plugins paraa añadir docsify plugins aunque esto alomejor no have falta  actualizar despues de hacer el tuto de docsify
 
 <!-- Authors -->
 ## Authors
