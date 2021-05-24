@@ -51,7 +51,7 @@ const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPa
       })
     }
     const classificationsContent = await itemClassifications.join('<br>')
-    const itemIndexContent = classificationsContent + '\n' + item.content + '\n' + classificationsContent
+    const itemIndexContent = classificationsContent + '<br>' + item.content + '<br>' + classificationsContent
     await writeFile(`${outputDirectoryPath}/${item.name}/index.md`, itemIndexContent)
 
     const itemHasAssets = await pathExists(`${inputDirectoryPath}/${item.containerName}/assets`)
