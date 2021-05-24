@@ -65,9 +65,9 @@ Running `npm i -g collman` will do
 
 ### Create a collection
 
-Let's create a fruit collection as an example.
+Let's create a fruit collection as an example. You can find it in the `assets/examples` directory from this repository.
 
-Create a directory with any name you want and add an `index.md` file to it.
+First, create a directory with any name you want and add an `index.md` file to it.
 
 ```text
 📁 fruits-collection
@@ -80,10 +80,10 @@ Inside the `ìndex.md` file add a name for your collection in the _frontmatter_ 
 ---
 name: 'Fruits Collection'
 ---
-This is my awesome collection of fruits.
+# This is my awesome collection of fruits
 ```
 
-Now create a directory inside for your **items.** In this example the fruits.
+Now create a directory for your **items.** In this example the `fruits`.
 
 ```text
 📁 fruits-collection
@@ -101,7 +101,7 @@ Lets add an **item** to the **items** directory. An **item** is nothing but a di
 └── 📄 index.md
 ```
 
-Add the name inside the `index.md` frontmatter and whatever content below it. 
+Add the name inside the `index.md` frontmatter and whatever content below it.
 
 ```md
 ---
@@ -117,7 +117,7 @@ Additionally, an **item** can contain an `assets` directory to store images refe
 └── 📁 fruits
 │   └── 📁 apple
 │   │   └── 📄 index.md
-│   └── 📁 pineapple
+│   └── 📁 orange
 │   │   └── 📄 index.md
 │   └── 📁 watermelon
 │   │   └── 📁 assets
@@ -128,11 +128,29 @@ Additionally, an **item** can contain an `assets` directory to store images refe
 └── 📄 index.md
 ```
 
-TODO: Add examples folder with this
-TODO: Categories
+```md
+---
+name: 'Watermelon'
+---
+I like this watermelon picture
+
+![watermelon](./assets/watermelon.png)
+```
+
+And finally you can add **Classifications** to your items. A **Classification** is an agnostic way to group items according to the values you give to it. You just add an array of values in the frontmatter of the item. Here I am adding two classifications to my orange item `index.md`: `Color` and `Size` and adding them some values.
+
+```md
+---
+name: 'Orange'
+Color: ['Orange']
+Size: ['Medium']
+---
+Is my favourite fruit
+```
 
 ### Run `collman --id name-input-directory`
-TODO
+
+
 
 ## Configuration
 TODO
