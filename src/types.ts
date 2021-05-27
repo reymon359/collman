@@ -1,7 +1,7 @@
 export interface Configuration{
-  pathRootDirectory: string // The root directory that holds the full project
-  inputDirectory: string // The directory with the original collection
-  outputDirectory: string // The output directory with the collection managed
+  pathRootDirectory: string
+  inputDirectory: string
+  outputDirectory: string
   docsify: boolean
 }
 

@@ -17,7 +17,6 @@ Have a look at it! https://gist.github.com/reymon359/a0880e5b3bfcbac54f58b52b3ad
 
 # Collman
 
-
 <!-- Badges (with link) -->
 
 <p align="center">
@@ -53,25 +52,39 @@ And it's just markdown, so it can be edited effortlessly.
 TODO: link to docs
 TODO: Add examples
 
+
+TODO: Fix TOC
 ## Table of Contents
-TODO
+- [Collman](#collman)
+  - [Table of Contents](#table-of-contents)
+  - [How to use it](#how-to-use-it)
+    - [Install Collman](#install-collman)
+    - [Create a collection](#create-a-collection)
+    - [Run `collman --id name-input-directory`](#run-collman---id-name-input-directory)
+  - [Visualize it](#visualize-it)
+    - [Why Docsify](#why-docsify)
+  - [Configuration](#configuration)
+    - [Configuration file](#configuration-file)
+    - [Command line arguments](#command-line-arguments)
+  - [Authors](#authors)
 
 ## How to use it
 
-### Install Collman 
+Basic commands and usage example
+
+### Install Collman
 
 Running `npm i -g collman` will do
 
 ### Create a collection
 
-Let's create a fruit collection as an example. You can find it in the `assets/examples` directory from this repository.
+Let's create a _fruits collection_ as an example. You can find it in the `assets/examples` directory from this repository.
 
 First, create a directory with any name you want.
 
 ```text
 📁 fruits-collection
 ```
-
 
 Now create a directory for your **items** and add an `index.md` file to it. In this example the `fruits`.
 
@@ -81,7 +94,7 @@ Now create a directory for your **items** and add an `index.md` file to it. In t
     └── 📄 index.md
 ```
 
-Inside the `ìndex.md` file add a name for your collection in the _frontmatter_ and a description about your collection.
+Inside the `ìndex.md` file add a name for your collection in the _frontmatter_ and a description about your collection outside of it.
 
 ```md
 ---
@@ -90,7 +103,7 @@ name: 'Fruits Collection'
 # This is my awesome collection of fruits
 ```
 
-Lets add an **item** to the **items** directory. An **item** is nothing but a directory that contains at least an `index.md` file with the _content_ of your **item.**
+Now lets add an **item** to the **items** directory. An **item** is nothing but a directory that contains at least an `index.md` file with the _content_ of your **item.**
 
 ```text
 📁 my-collection
@@ -100,7 +113,7 @@ Lets add an **item** to the **items** directory. An **item** is nothing but a di
     └── 📄 index.md
 ```
 
-Add the name inside the `index.md` frontmatter and whatever content below it.
+Add the name inside the `index.md` _frontmatter_ and the content below it.
 
 ```md
 ---
@@ -127,6 +140,8 @@ Additionally, an **item** can contain an `assets` directory to store images refe
     └── 📄 index.md
 ```
 
+This would be its `index.md`.
+
 ```md
 ---
 name: 'Watermelon'
@@ -136,7 +151,7 @@ I like this watermelon picture
 ![watermelon](./assets/watermelon.png)
 ```
 
-And finally you can add **Classifications** to your items. A **Classification** is an agnostic way to group items according to the values you give to it. You just add an array of values in the frontmatter of the item. Here I am adding two classifications to my orange item `index.md`: `Color` and `Size` and adding them some values.
+And finally you can add **Classifications** to your items. A **Classification** is an agnostic way to group items according to the values you give to it. You just have to add an array of values in the frontmatter of the item. Here I am adding two classifications to my orange item `index.md`: `Color` and `Size` and adding them some values.
 
 ```md
 ---
@@ -149,14 +164,14 @@ Is my favourite fruit
 
 ### Run `collman --id name-input-directory`
 
-Once we have the collection ready, we run `collman --id name-input-directory`. Going on with the previous example it would be `collman --id fruits`.
+Once we have the collection ready, in a terminal in the collection directory, we run `collman --id name-input-directory`. Going on with the previous example it would be `collman --id fruits`.
 
 You will see this output:
 
 ```shell
 user@user-pc my-collection % collman --id fruits
 👀 Getting collection based on the configuration
-✅  Collection got: Fruits Collection
+✅ Collection got: Fruits Collection
 🚧 Processing collection and saving in directory: docs
 🎉 Collection processed and saved successfully
 🎨 Docsify enabled. Adding it to the collection
@@ -169,41 +184,55 @@ This will create a `docs` directory with the collection ready. Go to https://git
 
 ## Visualize it
 
-To visualize this in a better way Collman autogenerates the files needed for [Docsify.](https://github.com/docsifyjs/docsify/) Therefore, you just have to:
+To visualize a Collection in a better way Collman autogenerates the files needed to integrate with [Docsify.](https://github.com/docsifyjs/docsify/). Therefore, you just have to:
 
-1. Install Docsify: npm i docsify-cli -g
-2. Run: docsify serve docs
+1. Install Docsify: `npm i docsify-cli -g`
+2. And run: `docsify serve docs`
 
 Here is how the example collection will be visualized with Docsify
 
-TODO: Add the link to this.
+![Example fruits collection](assets/example-fruits-collection.gif)
 
 ### Why Docsify
 
-At first I was about to create something similar to display a collection. Then decided to not reinvent the wheel and researched documentation libraries to fulfil this purpose.
+At first Collman was supposed to include something similar to display a collection. Then decided to _not reinvent the wheel_ and research documentation libraries to fulfil this purpose.
 
-I found Docsify to be the simplest one of them to work with markdown files. The minimum requirement is to add an `index.html` to the directory you want to serve.
+I found Docsify to be the simplest one of them to work with _markdown_ files. The minimum requirement is just to add an `index.html` to the directory you want to serve.
 
-It also has a lot plugins already made to improve the way you display the content which I decided just to adapt to my needs.
+It also has plenty of official and community-made plugins to improve the way you display the content which added key features for Collman.
 
 ## Configuration
 
-TODO
+Some behaviour of Collman can be configured to get a different output.
 
-### Default configuration 
-TODO
+| Value             | Type    | Description                                              | Default value             | Command line argument |
+|-------------------|---------|----------------------------------------------------------|---------------------------|-----------------------|
+| pathRootDirectory | string  | The path of the directory containing the items directory | `'./'` (The current path) | `--prd`               |
+| inputDirectory    | string  | The directory name with the collection items             | `'items'`                 | `--id`                |
+| outputDirectory   | string  | The directory name for the output collection             | `'docs'`                  | `--od`                |
+| docsify           | boolean | Enable Docsify visualization with the collection         | `true`                    | `--ds`                |
 
-### Docsify configuration 
-TODO
+There are to ways of working with the Collman configuration.
 
-<!-- Authors -->
+### Configuration file
+
+You can add a configuration file named `collman.config.js` in the root directory with the config you want. If you don't add a value it will use the default one.
+
+Example
+
+```js
+module.exports = {
+  pathRootDirectory: './',
+  inputDirectory: 'fruits',
+  outputDirectory: 'docs',
+  docsify: true
+}
+```
+
+### Command line arguments
+
+You can also pass all of the configuration values as command line arguments. We did it with the input directory in the fruits collection example `collman --id fruits`
+
 ## Authors
 
 - **Ramón Morcillo** - _Initial work_ - [reymon359](https://github.com/reymon359)
-
-<!-- Credits -->
-## Credits
-
-- [Adri](https://github.com/adri)
-
-    
