@@ -34,39 +34,27 @@ Have a look at it! https://gist.github.com/reymon359/a0880e5b3bfcbac54f58b52b3ad
   </a>
 </p>
 
-<!-- Small description -->
 <p align="center">
-Easily manage agnostic collections with classifications.
+Easily manage and display agnostic collections.
 </p>
 
-<!-- Long description -->
-We as humans like to classify things, is in our nature. this project aims to create a tool where you have a collection to add items and classify them in an agnostic way.
+We, as humans tend to classify things, to group them, is in our nature. This project aims to create a tool to help managing any collection and can classify it's content in an agnostic way.
 
-If you want to create a blog where the items are posts, and you want to classify then with tags and categories you can easily do it.
-Or maybe a gallery where the items are images there you go too. A gallery of galleries you say? sure, why not.
+Create anything with just Markdown to edit the content effortlessly.
 
-Create anything.
-
-And it's just markdown, so it can be edited effortlessly.
-
-TODO: link to docs
-TODO: Add examples
-
-
-TODO: Fix TOC
 ## Table of Contents
+
 - [Collman](#collman)
   - [Table of Contents](#table-of-contents)
   - [How to use it](#how-to-use-it)
     - [Install Collman](#install-collman)
     - [Create a collection](#create-a-collection)
-    - [Run `collman --id name-input-directory`](#run-collman---id-name-input-directory)
+    - [Run `collman`](#run-collman)
   - [Visualize it](#visualize-it)
     - [Why Docsify](#why-docsify)
   - [Configuration](#configuration)
     - [Configuration file](#configuration-file)
     - [Command line arguments](#command-line-arguments)
-  - [Authors](#authors)
 
 ## How to use it
 
@@ -83,13 +71,13 @@ Let's create a _fruits collection_ as an example. You can find it in the `assets
 First, create a directory with any name you want.
 
 ```text
-📁 fruits-collection
+📁 my-collection
 ```
 
 Now create a directory for your **items** and add an `index.md` file to it. In this example the `fruits`.
 
 ```text
-📁 fruits-collection
+📁 my-collection
 └── 📁 fruits
     └── 📄 index.md
 ```
@@ -159,12 +147,12 @@ name: 'Orange'
 Color: ['Orange']
 Size: ['Medium']
 ---
-Is my favourite fruit
+It is my favourite fruit
 ```
 
-### Run `collman --id name-input-directory`
+### Run `collman`
 
-Once we have the collection ready, in a terminal in the collection directory, we run `collman --id name-input-directory`. Going on with the previous example it would be `collman --id fruits`.
+Once we have the collection ready, in a terminal in the collection directory, we run `collman --id name-input-directory`. Going on with the previous example it would be `collman --id fruits`. The input directory name is not needed if you name your directory `ìtems` which is the default one. As we named it `fruits` we have to pass the command line argument.
 
 You will see this output:
 
@@ -231,8 +219,6 @@ module.exports = {
 
 ### Command line arguments
 
-You can also pass all of the configuration values as command line arguments. We did it with the input directory in the fruits collection example `collman --id fruits`
+You can also pass all of the configuration values as command line arguments. We did it with the input directory in the fruits collection example `collman --id fruits`.
 
-## Authors
-
-- **Ramón Morcillo** - _Initial work_ - [reymon359](https://github.com/reymon359)
+Check the configuration table above to see how to use them.
