@@ -1,18 +1,18 @@
-<!-- 
-This README.md file was generated from an open source template. 
+<!--
+This README.md file was generated from an open source template.
 Have a look at it! https://gist.github.com/reymon359/a0880e5b3bfcbac54f58b52b3ade2e02
 -->
 
 <!-- Logo (with link) -->
 <p align="center">
-  <a href="https://github.com/reymon359/collman">
-    <img alt="collman" src="https://raw.githubusercontent.com/reymon359/collman/master/assets/watermelon.png" width="100" />
-  </a>
+ <a href="https://github.com/reymon359/collman">
+   <img alt="collman" src="https://raw.githubusercontent.com/reymon359/collman/master/assets/watermelon.png" width="100" />
+ </a>
 </p>
 
 <!-- Title -->
 <h1 align="center">
-  Collman
+ Collman
 </h1>
 
 # Collman
@@ -20,25 +20,25 @@ Have a look at it! https://gist.github.com/reymon359/a0880e5b3bfcbac54f58b52b3ad
 <!-- Badges (with link) -->
 
 <p align="center">
-  <a href="https://github.com/reymon359/collman/actions/workflows/main.yml">
-    <img alt="CI" src="https://github.com/reymon359/collman/actions/workflows/main.yml/badge.svg" />
-  </a>
-  <a href="https://github.com/reymon359/collman/commits/master">
-    <img alt="Last commit" src="https://img.shields.io/github/last-commit/reymon359/collman?logo=github" />
-  </a>
-  <a href="https://github.com/reymon359/collman/blob/master/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/reymon359/collman?color=blue&logo=github" />
-  </a>
-  <a href="https://github.com/reymon359/collman/releases">
-    <img alt="Version" src="https://img.shields.io/github/package-json/v/reymon359/collman?logo=github" />
-  </a>
+ <a href="https://github.com/reymon359/collman/actions/workflows/main.yml">
+   <img alt="CI" src="https://github.com/reymon359/collman/actions/workflows/main.yml/badge.svg" />
+ </a>
+ <a href="https://github.com/reymon359/collman/commits/master">
+   <img alt="Last commit" src="https://img.shields.io/github/last-commit/reymon359/collman?logo=github" />
+ </a>
+ <a href="https://github.com/reymon359/collman/blob/master/LICENSE">
+   <img alt="License: MIT" src="https://img.shields.io/github/license/reymon359/collman?color=blue&logo=github" />
+ </a>
+ <a href="https://github.com/reymon359/collman/releases">
+   <img alt="Version" src="https://img.shields.io/github/package-json/v/reymon359/collman?logo=github" />
+ </a>
 </p>
 
 <p align="center">
 Easily manage and display agnostic collections.
 </p>
 
-We, as humans tend to classify things, to group them, is in our nature. This project aims to create a tool to help managing any collection and can classify it's content in an agnostic way.
+We, as humans tend to classify things, to group them, is in our nature. This project aims to create a tool to help to manage any collection and can classify its content in an agnostic way.
 
 Create anything with just Markdown to edit the content effortlessly.
 
@@ -66,7 +66,7 @@ Running `npm i -g collman` will do
 
 ### Create a collection
 
-Let's create a _fruits collection_ as an example. You can find it in the `assets/examples` directory from this repository.
+Let's create a _fruits' collection_ as an example. You can find it in the `assets/examples` directory from this repository.
 
 First, create a directory with any name you want.
 
@@ -82,7 +82,7 @@ Now create a directory for your **items** and add an `index.md` file to it. In t
     └── 📄 index.md
 ```
 
-Inside the `ìndex.md` file add a name for your collection in the _frontmatter_ and a description about your collection outside of it.
+Inside the `ìndex.md` file add a name for your collection in the _front matter_ and a description about your collection outside it.
 
 ```md
 ---
@@ -101,7 +101,7 @@ Now lets add an **item** to the **items** directory. An **item** is nothing but 
     └── 📄 index.md
 ```
 
-Add the name inside the `index.md` _frontmatter_ and the content below it.
+Add the name inside the `index.md` _front matter_ and the content below it.
 
 ```md
 ---
@@ -135,11 +135,11 @@ This would be its `index.md`.
 name: 'Watermelon'
 ---
 I like this watermelon picture
-
+ 
 ![watermelon](./assets/watermelon.png)
 ```
 
-And finally you can add **Classifications** to your items. A **Classification** is an agnostic way to group items according to the values you give to it. You just have to add an array of values in the frontmatter of the item. Here I am adding two classifications to my orange item `index.md`: `Color` and `Size` and adding them some values.
+And finally you can add **Classifications** to your items. A **Classification** is an agnostic way to group items according to the values you give to it. You just have to add an array of values in the front matter of the item. Here I am adding two classifications to my orange item `index.md`: `Color` and `Size` and adding them some values.
 
 ```md
 ---
@@ -172,7 +172,7 @@ This will create a `docs` directory with the collection ready. Go to https://git
 
 ## Visualize it
 
-To visualize a Collection in a better way Collman autogenerates the files needed to integrate with [Docsify.](https://github.com/docsifyjs/docsify/). Therefore, you just have to:
+To visualize a Collection in a better way, Collman generates the files needed to integrate with [Docsify.](https://github.com/docsifyjs/docsify/). Therefore, you just have to:
 
 1. Install Docsify: `npm i docsify-cli -g`
 2. And run: `docsify serve docs`
@@ -191,11 +191,11 @@ It also has plenty of official and community-made plugins to improve the way you
 
 ## Configuration
 
-Some behaviour of Collman can be configured to get a different output.
+Some behavior of Collman can be configured to get a different output.
 
 | Value             | Type    | Description                                              | Default value             | Command line argument |
 |-------------------|---------|----------------------------------------------------------|---------------------------|-----------------------|
-| pathRootDirectory | string  | The path of the directory containing the items directory | `'./'` (The current path) | `--prd`               |
+| pathRootDirectory | string  | The path of the directory containing the items' directory | `'./'` (The current path) | `--prd`               |
 | inputDirectory    | string  | The directory name with the collection items             | `'items'`                 | `--id`                |
 | outputDirectory   | string  | The directory name for the output collection             | `'docs'`                  | `--od`                |
 | docsify           | boolean | Enable Docsify visualization with the collection         | `true`                    | `--ds`                |
@@ -219,6 +219,6 @@ module.exports = {
 
 ### Command line arguments
 
-You can also pass all of the configuration values as command line arguments. We did it with the input directory in the fruits collection example `collman --id fruits`.
+You can also pass all the configuration values as command line arguments. We did it with the input directory in the fruits' collection example `collman --id fruits`.
 
 Check the configuration table above to see how to use them.
