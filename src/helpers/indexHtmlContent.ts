@@ -21,7 +21,7 @@ const defaultDocsifyConfiguration = (collection:Collection) => ({
   },
   scriptsAndLinks: [
     // '<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/buble.css">',
-    '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-defaults.css">',
+    '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">',
     '<script src="//cdn.jsdelivr.net/npm/docsify@4"></script>',
     '<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>',
     '<script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>',
