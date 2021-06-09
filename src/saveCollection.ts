@@ -32,7 +32,7 @@ const createIndexFile = async (collection:Collection, outputDirectoryPath:string
     contentArray.push({ ul: sortUnorderedListOfLinks(unorderedListOfClassifications) })
   }
 
-  const indexContent = json2md(contentArray)
+  const indexContent = json2md(contentArray) + '<br/><br/><br/>' + 'Made with [Collman](https://github.com/reymon359/collman)'
 
   await writeFile(`${outputDirectoryPath}/index.md`, indexContent)
 }

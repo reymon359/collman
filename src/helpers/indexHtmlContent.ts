@@ -4,7 +4,6 @@ import { DocsifyConfiguration } from '../addDocsify'
 const defaultDocsifyConfiguration = (collection:Collection) => ({
   main: {
     name: collection.name ? collection.name : 'Default Collection',
-    repo: 'https://github.com/reymon359/collection-manager',
     themeColor: '#20304a',
 
     /* Navbars */
