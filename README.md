@@ -10,7 +10,10 @@ Have a look at it! https://gist.github.com/reymon359/a0880e5b3bfcbac54f58b52b3ad
  </a>
 </p>
 
-# Collman
+<!-- Title -->
+<h1 align="center">
+ Collman
+</h1>
 
 <!-- Badges (with link) -->
 
@@ -39,18 +42,17 @@ Create anything with just Markdown to edit the content effortlessly.
 
 ## Table of Contents
 
-- [Collman](#collman)
-  - [Table of Contents](#table-of-contents)
-  - [How to use it](#how-to-use-it)
-    - [Install Collman](#install-collman)
-    - [Create a collection](#create-a-collection)
-    - [Run `collman`](#run-collman)
-  - [Visualize it](#visualize-it)
-    - [Why Docsify](#why-docsify)
-  - [Configuration](#configuration)
-    - [Configuration file](#configuration-file)
-    - [Command line arguments](#command-line-arguments)
-    - [Docsify config file](#docsify-config-file)
+- [Table of Contents](#table-of-contents)
+- [How to use it](#how-to-use-it)
+  - [Install Collman](#install-collman)
+  - [Create a collection](#create-a-collection)
+  - [Run `collman`](#run-collman)
+- [Visualize it](#visualize-it)
+  - [Why Docsify](#why-docsify)
+- [Configuration](#configuration)
+  - [Configuration file](#configuration-file)
+  - [Command line arguments](#command-line-arguments)
+  - [Docsify config file](#docsify-config-file)
 
 ## How to use it
 
