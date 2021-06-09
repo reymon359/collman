@@ -15,8 +15,6 @@ Have a look at it! https://gist.github.com/reymon359/a0880e5b3bfcbac54f58b52b3ad
  Collman
 </h1>
 
-# Collman
-
 <!-- Badges (with link) -->
 
 <p align="center">
@@ -38,23 +36,23 @@ Have a look at it! https://gist.github.com/reymon359/a0880e5b3bfcbac54f58b52b3ad
 Easily manage and display agnostic collections.
 </p>
 
-We, as humans tend to classify things, to group them, is in our nature. This project aims to create a tool to help to manage any collection and can classify its content in an agnostic way.
+We, as humans tend to classify things, to group them, is in our nature. This project aims to create a tool to help managing any collection and classify its content in an agnostic way.
 
 Create anything with just Markdown to edit the content effortlessly.
 
 ## Table of Contents
 
-- [Collman](#collman)
-  - [Table of Contents](#table-of-contents)
-  - [How to use it](#how-to-use-it)
-    - [Install Collman](#install-collman)
-    - [Create a collection](#create-a-collection)
-    - [Run `collman`](#run-collman)
-  - [Visualize it](#visualize-it)
-    - [Why Docsify](#why-docsify)
-  - [Configuration](#configuration)
-    - [Configuration file](#configuration-file)
-    - [Command line arguments](#command-line-arguments)
+- [Table of Contents](#table-of-contents)
+- [How to use it](#how-to-use-it)
+  - [Install Collman](#install-collman)
+  - [Create a collection](#create-a-collection)
+  - [Run `collman`](#run-collman)
+- [Visualize it](#visualize-it)
+  - [Why Docsify](#why-docsify)
+- [Configuration](#configuration)
+  - [Configuration file](#configuration-file)
+  - [Command line arguments](#command-line-arguments)
+  - [Docsify config file](#docsify-config-file)
 
 ## How to use it
 
@@ -222,3 +220,49 @@ module.exports = {
 You can also pass all the configuration values as command line arguments. We did it with the input directory in the fruits' collection example `collman --id fruits`.
 
 Check the configuration table above to see how to use them.
+
+### Docsify config file
+
+You can configure the Docsify visualiitacion in a way similar to `collman.config.js`. 
+
+First create a `docsify.config.js` file like the one below:
+
+```js
+module.exports = {
+  main: {
+  },
+  scriptsAndLinks:[]
+}
+```
+
+It has two parts: The `main` and the `scriptsAndLinks`.
+
+The first one makes reference to the attributes that you pass to the window docsify object `window.$docsify = {}`. The second one is an array with the scripts and links we want to load.
+
+Here is an example with the default Collman values:
+
+```js
+module.exports = {
+  main: {
+    name: 'Default Collection',
+    themeColor: '#20304a',
+    loadSidebar: true,
+    mergeNavbar: true,
+    alias: {
+      '/.*/_sidebar.md': '/_sidebar.md'
+    },
+    subMaxLevel: 3,
+    search: 'auto'
+  },
+  scriptsAndLinks:[
+    '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple.css">',
+    '<script src="//cdn.jsdelivr.net/npm/docsify@4"></script>',
+    '<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>',
+    '<script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>',
+    '<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />',
+    '<script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>',
+    '<script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>',
+    '<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>'
+  ]
+}
+```
