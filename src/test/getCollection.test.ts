@@ -4,12 +4,59 @@ import {
   getItemClassificationsFromJsonItem,
   transformJsonItemsToCollectionItems,
   transformMarkdownDirectoryToJson
-  , getCollection
+  , getCollection,
+  transformInputDirectoryJsonToCollection,
+  getJsonItemsFromObjectItems
 } from '../getCollection'
 import { defaultCollection } from './mocks/defaultCollection'
 
-describe.skip('Markdown repository get collection', () => {
-  it('transforms a markdown directory to a collection json', async () => {
+describe('Get collection', () => {
+  it('Transforms a transforms an Input Directory Json To a Collection', async () => {
+    const mockedInputDirectoryJson = {}
+    const mockedExpectedCollection = {}
+
+    const expectedCollection = await transformInputDirectoryJsonToCollection(mockedInputDirectoryJson, 'items')
+
+    expect(expectedCollection).toEqual(mockedExpectedCollection)
+  })
+
+  it('Gets Json Items from Object Items', async () => {
+    const mockedObjectItems = {}
+    const mockedExpectedJsonItems = {}
+
+    const expectedJsonItems = await getJsonItemsFromObjectItems(mockedObjectItems)
+
+    expect(expectedJsonItems).toEqual(mockedExpectedJsonItems)
+  })
+
+  it('Transforms Json Items to Collection Items', async () => {
+    const mockedJsonItems = {}
+    const mockedExpectedCollectionItems = {}
+
+    const expectedCollectionItems = await transformJsonItemsToCollectionItems(mockedJsonItems)
+
+    expect(expectedCollectionItems).toEqual(mockedExpectedCollectionItems)
+  })
+
+  it('Gets the classifications from the collection items', async () => {
+    const mockedCollectionItems = []
+    const mockedExpectedClassifications = {}
+
+    const expectedClassifications = await getClassificationsFromCollectionItems(mockedCollectionItems)
+
+    expect(expectedClassifications).toEqual(mockedExpectedClassifications)
+  })
+
+  it('Gets the Item classifications from a Json item', async () => {
+    const mockedJsonItem = {}
+    const mockedExpectedItemClassifications = {}
+
+    const expectedItemClassifications = await getItemClassificationsFromJsonItem(mockedJsonItem)
+
+    expect(expectedItemClassifications).toEqual(mockedExpectedItemClassifications)
+  })
+
+  it.skip('transforms a markdown directory to a collection json', async () => {
     // Arrange
     const mockedPath = 'src/test/mocks/defaultCollection/input/markdown/defaultCollection'
     const mockedJsonCollection = defaultCollectionJson
@@ -91,7 +138,7 @@ describe.skip('Markdown repository get collection', () => {
     expect(collectionItems).toEqual(mockedCollectionItems)
   })
 
-  it('gets Collection Classifications from an array of Collection Items', async () => {
+  it.skip('gets Collection Classifications from an array of Collection Items', async () => {
     const mockedCollectionItems = [{
       containerName: 'irrelevant containerName',
       content: 'irrelevant contents',
