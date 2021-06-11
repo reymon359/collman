@@ -39,7 +39,7 @@ describe('Get collection', () => {
       }
     }
 
-    const mockedExpectedCollection = {
+    const mockedCollection = {
       name: 'Fruits Collection',
       description: '# This is my awesome collection of fruits',
       classifications: [
@@ -80,9 +80,9 @@ describe('Get collection', () => {
       }
     }
 
-    const expectedCollection = await transformInputDirectoryJsonToCollection(mockedInputDirectoryJson, 'items')
+    const collection = await transformInputDirectoryJsonToCollection(mockedInputDirectoryJson, 'items')
 
-    expect(expectedCollection).toEqual(mockedExpectedCollection)
+    expect(collection).toEqual(mockedCollection)
   })
 
   it('Transforms Object Items to Json Items', async () => {
@@ -112,7 +112,7 @@ describe('Get collection', () => {
         }
       }
     }
-    const mockedExpectedJsonItems = [
+    const mockedJsonItems = [
       {
         containerName: 'apple',
         index: {
@@ -142,9 +142,9 @@ describe('Get collection', () => {
       }
     ]
 
-    const expectedJsonItems = await transformObjectItemsToJsonItems(mockedObjectItems)
+    const jsonItems = await transformObjectItemsToJsonItems(mockedObjectItems)
 
-    expect(expectedJsonItems).toEqual(mockedExpectedJsonItems)
+    expect(jsonItems).toEqual(mockedJsonItems)
   })
 
   it('Transforms Json Items to Collection Items', async () => {
@@ -177,7 +177,7 @@ describe('Get collection', () => {
         }
       }
     ]
-    const mockedExpectedCollectionItems = [
+    const mockedCollectionItems = [
       {
         containerName: 'apple',
         name: 'Apple',
@@ -198,9 +198,9 @@ describe('Get collection', () => {
       }
     ]
 
-    const expectedCollectionItems = await transformJsonItemsToCollectionItems(mockedJsonItems)
+    const collectionItems = await transformJsonItemsToCollectionItems(mockedJsonItems)
 
-    expect(expectedCollectionItems).toEqual(mockedExpectedCollectionItems)
+    expect(collectionItems).toEqual(mockedCollectionItems)
   })
 
   it('Gets all the collection classifications from the collection items', async () => {
@@ -224,14 +224,14 @@ describe('Get collection', () => {
         classifications: [{ name: 'Color', values: ['Green'] }, { name: 'Size', values: ['Big'] }]
       }
     ]
-    const mockedExpectedClassifications = [
+    const mockedClassifications = [
       { name: 'Color', values: ['Green', 'Orange', 'Red', 'Yellow'] },
       { name: 'Size', values: ['Big', 'Medium'] }
     ]
 
-    const expectedClassifications = await getClassificationsFromCollectionItems(mockedCollectionItems)
+    const Classifications = await getClassificationsFromCollectionItems(mockedCollectionItems)
 
-    expect(expectedClassifications).toEqual(mockedExpectedClassifications)
+    expect(Classifications).toEqual(mockedClassifications)
   })
 
   it('Gets the Item classifications from a Json item', async () => {
@@ -244,13 +244,13 @@ describe('Get collection', () => {
         contents: 'Apples are **amazing.**'
       }
     }
-    const mockedExpectedItemClassifications = [
+    const mockedItemClassifications = [
       { name: 'Color', values: ['Green', 'Red', 'Yellow'] },
       { name: 'Size', values: ['Medium'] }
     ]
 
-    const expectedItemClassifications = await getItemClassificationsFromJsonItem(mockedJsonItem)
+    const itemClassifications = await getItemClassificationsFromJsonItem(mockedJsonItem)
 
-    expect(expectedItemClassifications).toEqual(mockedExpectedItemClassifications)
+    expect(itemClassifications).toEqual(mockedItemClassifications)
   })
 })
