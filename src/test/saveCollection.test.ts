@@ -42,7 +42,7 @@ describe('Save collection', () => {
         ]
       }
     }
-    const mockedIndexFileContent = '# Fruits Collection\n\n\n# This is my awesome collection of fruits\n\n## Content: items\n\n\n - [Apple](Apple/index.md)\n    \n - [Orange](Orange/index.md)\n    \n - [Watermelon](Watermelon/index.md)\n    \n\n## Classifications\n\n\n - [Color](Color/index.md)\n    \n - [Size](Size/index.md)\n    \n<br/><br/><br/>Made with [Collman](https://github.com/reymon359/collman)'
+    const mockedIndexFileContent = '# Fruits Collection\n\n\n# This is my awesome collection of fruits\n\n## Content: items\n\n\n - [Apple](Apple/index.md)\n    \n - [Orange](Orange/index.md)\n    \n - [Watermelon](Watermelon/index.md)\n    \n\n## Classifications\n\n\n - [Color](Color/index.md)\n    \n - [Size](Size/index.md)\n    \n<br/><br/><br/><sub>Made with [Collman](https://github.com/reymon359/collman)<sub>'
 
     const indexFileContent = await getMainIndexFileContent(mockedCollection)
 

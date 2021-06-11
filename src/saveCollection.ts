@@ -32,7 +32,7 @@ export const getMainIndexFileContent = async (collection:Collection) => {
     contentArray.push({ ul: sortUnorderedListOfLinks(unorderedListOfClassifications) })
   }
 
-  const indexContent = `${json2md(contentArray)}<br/><br/><br/>Made with [Collman](https://github.com/reymon359/collman)`
+  const indexContent = `${json2md(contentArray)}<br/><br/><br/><sub>Made with [Collman](https://github.com/reymon359/collman)<sub>`
   return indexContent
 }
 
