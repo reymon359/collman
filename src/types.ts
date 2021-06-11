@@ -50,3 +50,8 @@ export interface JsonItem {
 export interface JsonCollection {
   items: JsonItem[]
 }
+
+export interface DocsifyConfiguration {
+  main: object
+  scriptsAndLinks: string[]
+}
