@@ -55,3 +55,12 @@ export interface DocsifyConfiguration {
   main: object
   scriptsAndLinks: string[]
 }
+
+export interface Json2mdLinkData {
+  title: string
+  source: string
+}
+
+export interface Json2mdLink {
+  link: Json2mdLinkData
+}
