@@ -1,4 +1,4 @@
-import { Collection, Configuration, defaultConfiguration, Item } from './types'
+import { Classification, Collection, Configuration, defaultConfiguration, Item } from './types'
 import { urlifyString } from './helpers/urlifyString'
 import { sortUnorderedListOfLinks } from './helpers/sortUnorderedListOfLinks'
 import { copy, emptyDirectory, makeDirectory, pathExists, writeFile } from './helpers/fileSystem'
@@ -65,6 +65,27 @@ const createItemsInOutputDirectory = async (collection:Collection, inputDirector
   }
 }
 
+export const getClassificationValueFileContent = async (classificationValue:string, collection:Collection, classification:Classification) => {
+  const valueContentArray = []
+  const listOfItemWithValue: any[] = []
+  valueContentArray.push({ h1: classificationValue })
+  // Go through the items and its classifications.
+  collection.content.items.forEach(item => {
+    item.classifications.forEach(itemClassification => {
+      // If the item has the classification
+      if (itemClassification.name === classification.name) {
+        // If the items has values in that classification and includes the value
+        if (itemClassification.values.length > 0 && itemClassification.values.includes(classificationValue)) {
+          listOfItemWithValue.push({ link: { title: item.name, source: `../${urlifyString(item.name)}/index.md` } })
+        }
+      }
+    })
+  })
+  if (listOfItemWithValue.length > 0) valueContentArray.push({ ul: sortUnorderedListOfLinks(listOfItemWithValue) })
+
+  return json2md(valueContentArray)
+}
+
 export const createClassifications = async (collection:Collection, outputDirectoryPath:string) => {
   for (const classification of collection.classifications) {
     await makeDirectory(`${outputDirectoryPath}/${classification.name}`)
@@ -78,23 +99,7 @@ export const createClassifications = async (collection:Collection, outputDirecto
     for (const classificationValue of classification.values) {
       listOfValues.push({ link: { title: classificationValue, source: `../${urlifyString(classification.name)}/${urlifyString(classificationValue)}.md` } })
 
-      const valueContentArray = []
-      const listOfItemWithValue: any[] = []
-      valueContentArray.push({ h1: classificationValue })
-      // Go through the items and its classifications.
-      collection.content.items.forEach(item => {
-        item.classifications.forEach(itemClassification => {
-          // If the item has the classification
-          if (itemClassification.name === classification.name) {
-            // If the items has values in that classification and includes the value
-            if (itemClassification.values.length > 0 && itemClassification.values.includes(classificationValue)) {
-              listOfItemWithValue.push({ link: { title: item.name, source: `../${urlifyString(item.name)}/index.md` } })
-            }
-          }
-        })
-      })
-      if (listOfItemWithValue.length > 0) valueContentArray.push({ ul: sortUnorderedListOfLinks(listOfItemWithValue) })
-      await writeFile(`${outputDirectoryPath}/${classification.name}/${classificationValue}.md`, json2md(valueContentArray))
+      await writeFile(`${outputDirectoryPath}/${classification.name}/${classificationValue}.md`, await getClassificationValueFileContent(classificationValue, collection, classification))
     }
 
     // Finish creating the index file

@@ -1,5 +1,5 @@
 import { defaultCollection } from './mocks/defaultCollection'
-import { createOutputDirectory, getItemIndexFileContent, getMainIndexFileContent, saveCollection } from '../saveCollection'
+import { createOutputDirectory, getClassificationValueFileContent, getItemIndexFileContent, getMainIndexFileContent, saveCollection } from '../saveCollection'
 const fs = require('fs')
 
 describe('Save collection', () => {
@@ -65,6 +65,56 @@ describe('Save collection', () => {
     const itemIndexFileContent = await getItemIndexFileContent(mockedItem)
 
     expect(itemIndexFileContent).toEqual(mockedItemIndexFileContent)
+  })
+
+  it('Gets the Classification value file content', async () => {
+    const mockedClassificationValue = 'Green'
+    const mockedCollection = {
+      name: 'Fruits Collection',
+      description: '# This is my awesome collection of fruits',
+      classifications: [
+        { name: 'Color', values: ['Green', 'Orange', 'Red', 'Yellow'] },
+        { name: 'Size', values: ['Big', 'Medium'] }
+      ],
+      content: {
+        name: 'items',
+        items: [
+          {
+            containerName: 'apple',
+            name: 'Apple',
+            content: 'Apples are **amazing.**',
+            classifications: [
+              { name: 'Color', values: ['Green', 'Red', 'Yellow'] },
+              { name: 'Size', values: ['Medium'] }
+            ]
+          },
+          {
+            containerName: 'orange',
+            name: 'Orange',
+            content: 'Is my favourite fruit',
+            classifications: [
+              { name: 'Color', values: ['Orange'] },
+              { name: 'Size', values: ['Medium'] }
+            ]
+          },
+          {
+            containerName: 'watermelon',
+            name: 'Watermelon',
+            content: 'I like this watermelon picture\n\n![watermelon](./assets/watermelon.png)',
+            classifications: [
+              { name: 'Color', values: ['Green'] },
+              { name: 'Size', values: ['Big'] }
+            ]
+          }
+        ]
+      }
+    }
+    const mockedClassification = { name: 'Color', values: ['Green', 'Orange', 'Red', 'Yellow'] }
+    const mockedClassificationValueFileContent = '# Green\n\n\n - [Apple](../Apple/index.md)\n    \n - [Watermelon](../Watermelon/index.md)\n    \n'
+
+    const classificationValueFileContent = await getClassificationValueFileContent(mockedClassificationValue, mockedCollection, mockedClassification)
+
+    expect(classificationValueFileContent).toEqual(mockedClassificationValueFileContent)
   })
 
   it.skip('saves a collection in a directory with markdown files', async () => {
