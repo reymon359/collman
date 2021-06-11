@@ -54,4 +54,3 @@ export const getIndexHtmlContent = (collection:Collection, docsifyConfiguration:
 </body>
 </html>`
 }
-// TODO test this
