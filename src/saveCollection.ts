@@ -9,7 +9,7 @@ export const createOutputDirectory = async (outputDirectoryPath:string) => {
   await makeDirectory(outputDirectoryPath)
 }
 
-export const getIndexFileContent = async (collection:Collection) => {
+export const getMainIndexFileContent = async (collection:Collection) => {
   const contentArray = []
   contentArray.push({ h1: collection.name })
   contentArray.push({ p: collection.description })
@@ -107,7 +107,7 @@ export const saveCollection = async (collection:Collection, configuration:Config
   await createOutputDirectory(outputDirectoryPath)
 
   // 2. Create the index file
-  await writeFile(`${outputDirectoryPath}/index.md`, await getIndexFileContent(collection))
+  await writeFile(`${outputDirectoryPath}/index.md`, await getMainIndexFileContent(collection))
 
   // 3. copy and paste the items in the folder removing the frontmatter. Or create the items with just the content and then copy the assets from the previous one
   const inputDirectoryPath = `${pathRootDirectory}${inputDirectory}`
