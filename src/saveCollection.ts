@@ -1,4 +1,4 @@
-import { Classification, Collection, Configuration, defaultConfiguration, Item } from './types'
+import { Classification, Collection, Configuration, defaultConfiguration, Item, Json2mdLink } from './types'
 import { urlifyString } from './helpers/urlifyString'
 import { sortUnorderedListOfLinks } from './helpers/sortUnorderedListOfLinks'
 import { copy, emptyDirectory, makeDirectory, pathExists, writeFile } from './helpers/fileSystem'
@@ -16,7 +16,7 @@ export const getMainIndexFileContent = async (collection:Collection) => {
 
   // Content
   contentArray.push({ h2: `Content: ${collection.content.name}` })
-  const unorderedListOfContent: any[] = []
+  const unorderedListOfContent: Json2mdLink[] = []
   collection.content.items.forEach(item => {
     unorderedListOfContent.push({ link: { title: item.name, source: `${urlifyString(item.name)}/index.md` } })
   })
@@ -25,7 +25,7 @@ export const getMainIndexFileContent = async (collection:Collection) => {
   // Classifications
   if (collection.classifications.length > 0) {
     contentArray.push({ h2: 'Classifications' })
-    const unorderedListOfClassifications: any[] = []
+    const unorderedListOfClassifications: Json2mdLink[] = []
     collection.classifications.forEach(classification => {
       unorderedListOfClassifications.push({ link: { title: classification.name, source: `${urlifyString(classification.name)}/index.md` } })
     })
@@ -38,7 +38,7 @@ export const getMainIndexFileContent = async (collection:Collection) => {
 
 export const getItemIndexFileContent = async (item:Item) => {
   // Get classifications to add in bottom
-  const itemClassifications: any[] = []
+  const itemClassifications: string[] = []
   if (item.classifications.length > 0) {
     item.classifications.forEach((classification, i) => {
       itemClassifications[i] = `[${classification.name}:](../${urlifyString(classification.name)}/index.md)`
@@ -67,7 +67,7 @@ const createItemsInOutputDirectory = async (collection:Collection, inputDirector
 
 export const getClassificationValueFileContent = async (classificationValue:string, collection:Collection, classification:Classification) => {
   const valueContentArray = []
-  const listOfItemWithValue: any[] = []
+  const listOfItemWithValue: Json2mdLink[] = []
   valueContentArray.push({ h1: classificationValue })
   // Go through the items and its classifications.
   collection.content.items.forEach(item => {
@@ -87,8 +87,8 @@ export const getClassificationValueFileContent = async (classificationValue:stri
 }
 
 export const getClassificationIndexFileContent = async (classification:Classification) => {
-  const classificationIndexContent: any[] = []
-  const listOfValues: any[] = [] // List of values for index.md
+  const classificationIndexContent = []
+  const listOfValues = [] // List of values for index.md
 
   classificationIndexContent.push({ h1: classification.name })
 
