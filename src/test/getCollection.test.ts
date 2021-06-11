@@ -9,7 +9,7 @@ import {
   transformObjectItemsToJsonItems
 } from '../getCollection'
 import { defaultCollection } from './mocks/defaultCollection'
-import { Item, JsonItem } from '../types'
+import { JsonItem } from '../types'
 
 describe('Get collection', () => {
   it('Transforms an Input Directory Json To a Collection', async () => {
@@ -208,9 +208,31 @@ describe('Get collection', () => {
     expect(expectedCollectionItems).toEqual(mockedExpectedCollectionItems)
   })
 
-  it.skip('Gets the classifications from the collection items', async () => {
-    const mockedCollectionItems = [] as Item[]
-    const mockedExpectedClassifications = {}
+  it('Gets all the collection classifications from the collection items', async () => {
+    const mockedCollectionItems = [
+      {
+        containerName: 'apple',
+        name: 'Apple',
+        content: 'Apples are **amazing.**',
+        classifications: [{ name: 'Color', values: ['Green', 'Red', 'Yellow'] }, { name: 'Size', values: ['Medium'] }]
+      },
+      {
+        containerName: 'orange',
+        name: 'Orange',
+        content: 'Is my favourite fruit',
+        classifications: [{ name: 'Color', values: ['Orange'] }, { name: 'Size', values: ['Medium'] }]
+      },
+      {
+        containerName: 'watermelon',
+        name: 'Watermelon',
+        content: 'I like this watermelon picture\n\n![watermelon](./assets/watermelon.png)',
+        classifications: [{ name: 'Color', values: ['Green'] }, { name: 'Size', values: ['Big'] }]
+      }
+    ]
+    const mockedExpectedClassifications = [
+      { name: 'Color', values: ['Green', 'Orange', 'Red', 'Yellow'] },
+      { name: 'Size', values: ['Big', 'Medium'] }
+    ]
 
     const expectedClassifications = await getClassificationsFromCollectionItems(mockedCollectionItems)
 
