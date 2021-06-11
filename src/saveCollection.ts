@@ -1,4 +1,4 @@
-import { Collection, Configuration, defaultConfiguration } from './types'
+import { Collection, Configuration, defaultConfiguration, Item } from './types'
 import { urlifyString } from './helpers/urlifyString'
 import { sortUnorderedListOfLinks } from './helpers/sortUnorderedListOfLinks'
 import { copy, emptyDirectory, makeDirectory, pathExists, writeFile } from './helpers/fileSystem'
@@ -32,27 +32,32 @@ export const getMainIndexFileContent = async (collection:Collection) => {
     contentArray.push({ ul: sortUnorderedListOfLinks(unorderedListOfClassifications) })
   }
 
-  const indexContent = json2md(contentArray) + '<br/><br/><br/>' + 'Made with [Collman](https://github.com/reymon359/collman)'
+  const indexContent = `${json2md(contentArray)}<br/><br/><br/>Made with [Collman](https://github.com/reymon359/collman)`
   return indexContent
 }
 
+const getItemIndexFileContent = async (item:Item) => {
+      // Get classifications to add in bottom
+      const itemClassifications: any[] = []
+      if (item.classifications.length > 0) {
+        item.classifications.forEach((classification, i) => {
+          itemClassifications[i] = `[${classification.name}:](../${urlifyString(classification.name)}/index.md)`
+  
+          classification.values.forEach((value) => {
+            itemClassifications[i] += ` [${value}](../${urlifyString(classification.name)}/${urlifyString(value)}.md)`
+          })
+        })
+      }
+      const classificationsContent = itemClassifications.join('<br/>')
+
+      const itemIndexFileContent = `${item.content}<br/>${classificationsContent}`
+      return itemIndexFileContent
+}
+
+
 const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPath:string, outputDirectoryPath:string) => {
   for (const item of collection.content.items) {
-    // Get classifications to add in bottom and top
-    const itemClassifications: any[] = []
-    if (item.classifications.length > 0) {
-      item.classifications.forEach((classification, i) => {
-        itemClassifications[i] = `[${classification.name}:](../${urlifyString(classification.name)}/index.md)`
-
-        classification.values.forEach((value) => {
-          itemClassifications[i] += ` [${value}](../${urlifyString(classification.name)}/${urlifyString(value)}.md)`
-        })
-      })
-    }
-    const classificationsContent = itemClassifications.join('<br/>')
-    const itemIndexContent = item.content + '<br/>' + classificationsContent
-
-    await writeFile(`${outputDirectoryPath}/${item.name}/index.md`, itemIndexContent)
+    await writeFile(`${outputDirectoryPath}/${item.name}/index.md`, await getItemIndexFileContent(item))
 
     const itemHasAssets = await pathExists(`${inputDirectoryPath}/${item.containerName}/assets`)
     if (itemHasAssets) {
