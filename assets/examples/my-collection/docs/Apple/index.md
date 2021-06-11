@@ -1,1 +1,1 @@
-[Color:](../Color/index.md) [Green](../Color/Green.md) [Red](../Color/Red.md) [Yellow](../Color/Yellow.md)<br>[Size:](../Size/index.md) [Medium](../Size/Medium.md)<br>Apples are **amazing.**<br>[Color:](../Color/index.md) [Green](../Color/Green.md) [Red](../Color/Red.md) [Yellow](../Color/Yellow.md)<br>[Size:](../Size/index.md) [Medium](../Size/Medium.md)
+Apples are **amazing.**<br/>[Color:](../Color/index.md) [Green](../Color/Green.md) [Red](../Color/Red.md) [Yellow](../Color/Yellow.md)<br/>[Size:](../Size/index.md) [Medium](../Size/Medium.md)
