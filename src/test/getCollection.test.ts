@@ -9,7 +9,6 @@ import {
   transformObjectItemsToJsonItems
 } from '../getCollection'
 import { defaultCollection } from './mocks/defaultCollection'
-import { JsonItem } from '../types'
 
 describe('Get collection', () => {
   it('Transforms an Input Directory Json To a Collection', async () => {
@@ -239,9 +238,20 @@ describe('Get collection', () => {
     expect(expectedClassifications).toEqual(mockedExpectedClassifications)
   })
 
-  it.skip('Gets the Item classifications from a Json item', async () => {
-    const mockedJsonItem = {} as JsonItem
-    const mockedExpectedItemClassifications = {}
+  it('Gets the Item classifications from a Json item', async () => {
+    const mockedJsonItem = {
+      containerName: 'apple',
+      index: {
+        name: 'Apple',
+        Color: ['Green', 'Red', 'Yellow'],
+        Size: ['Medium'],
+        contents: 'Apples are **amazing.**'
+      }
+    }
+    const mockedExpectedItemClassifications = [
+      { name: 'Color', values: ['Green', 'Red', 'Yellow'] },
+      { name: 'Size', values: ['Medium'] }
+    ]
 
     const expectedItemClassifications = await getItemClassificationsFromJsonItem(mockedJsonItem)
 
@@ -275,8 +285,8 @@ describe('Get collection', () => {
 
   it.skip('gets Item Classifications from Json Item', async () => {
     const mockedJsonItem = {
+      containerName: 'irrelevant containerName',
       index: {
-        containerName: 'irrelevant containerName',
         contents: 'irrelevant contents',
         name: 'irrelevant name',
         categories: ['Category1', 'Category2'],
