@@ -58,17 +58,15 @@ export const transformJsonItemsToCollectionItems = async (jsonItems:any) => {
   return transformedItems
 }
 
-export const getJsonItemsFromObjectItems = (objectItems:any) => {
-  const jsonItems = Object.keys(objectItems).map(key => {
-    return { containerName: key, ...objectItems[key] }
-  })
+export const transformObjectItemsToJsonItems = async (objectItems:any) => {
+  const jsonItems = Object.keys(objectItems).map(key => ({ containerName: key, ...objectItems[key] }))
   return jsonItems
 }
 
 export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson: any, inputDirectory:string) => {
   const jsonCollection = inputDirectoryJson
   const { index, ...objectItems } = jsonCollection
-  const jsonItems = await getJsonItemsFromObjectItems(objectItems)
+  const jsonItems = await transformObjectItemsToJsonItems(objectItems)
   const collectionItems = await transformJsonItemsToCollectionItems(jsonItems)
   const collectionClassifications = await getClassificationsFromCollectionItems(collectionItems)
 
@@ -85,6 +83,7 @@ export const transformInputDirectoryJsonToCollection = async (inputDirectoryJson
 
 export const getCollection = async (path:string, inputDirectory:string) => {
   const inputDirectoryJson = await transformMarkdownDirectoryToJson(path + inputDirectory)
+
   const collection = await transformInputDirectoryJsonToCollection(inputDirectoryJson, inputDirectory)
   return collection
 }
