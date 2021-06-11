@@ -153,15 +153,62 @@ describe('Get collection', () => {
   })
 
   it('Transforms Json Items to Collection Items', async () => {
-    const mockedJsonItems = {}
-    const mockedExpectedCollectionItems = {}
+    const mockedJsonItems = [
+      {
+        containerName: 'apple',
+        index: {
+          name: 'Apple',
+          Color: ['Green', 'Red', 'Yellow'],
+          Size: ['Medium'],
+          contents: 'Apples are **amazing.**'
+        }
+      },
+      {
+        containerName: 'orange',
+        index: {
+          name: 'Orange',
+          Color: ['Orange'],
+          Size: ['Medium'],
+          contents: 'Is my favourite fruit'
+        }
+      },
+      {
+        containerName: 'watermelon',
+        index: {
+          name: 'Watermelon',
+          Color: ['Green'],
+          Size: ['Big'],
+          contents: 'I like this watermelon picture\n\n![watermelon](./assets/watermelon.png)'
+        }
+      }
+    ]
+    const mockedExpectedCollectionItems = [
+      {
+        containerName: 'apple',
+        name: 'Apple',
+        content: 'Apples are **amazing.**',
+        classifications: [{ name: 'Color', values: ['Green', 'Red', 'Yellow'] }, { name: 'Size', values: ['Medium'] }]
+      },
+      {
+        containerName: 'orange',
+        name: 'Orange',
+        content: 'Is my favourite fruit',
+        classifications: [{ name: 'Color', values: ['Orange'] }, { name: 'Size', values: ['Medium'] }]
+      },
+      {
+        containerName: 'watermelon',
+        name: 'Watermelon',
+        content: 'I like this watermelon picture\n\n![watermelon](./assets/watermelon.png)',
+        classifications: [{ name: 'Color', values: ['Green'] }, { name: 'Size', values: ['Big'] }]
+      }
+    ]
 
     const expectedCollectionItems = await transformJsonItemsToCollectionItems(mockedJsonItems)
 
     expect(expectedCollectionItems).toEqual(mockedExpectedCollectionItems)
   })
 
-  it('Gets the classifications from the collection items', async () => {
+  it.skip('Gets the classifications from the collection items', async () => {
     const mockedCollectionItems = [] as Item[]
     const mockedExpectedClassifications = {}
 
@@ -170,7 +217,7 @@ describe('Get collection', () => {
     expect(expectedClassifications).toEqual(mockedExpectedClassifications)
   })
 
-  it('Gets the Item classifications from a Json item', async () => {
+  it.skip('Gets the Item classifications from a Json item', async () => {
     const mockedJsonItem = {} as JsonItem
     const mockedExpectedItemClassifications = {}
 
