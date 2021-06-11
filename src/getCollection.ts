@@ -11,7 +11,7 @@ export const transformMarkdownDirectoryToJson = async (path:string) => {
 export const getItemClassificationsFromJsonItem = async (jsonItem: JsonItem) => {
   const jsonItemKeys = (Object.keys(jsonItem.index))
   const itemClassifications: Classification[] = []
-  await jsonItemKeys.forEach((key:string) => {
+  jsonItemKeys.forEach((key:string) => {
     // @ts-ignore
     const value = jsonItem.index[key]
     if (Array.isArray(value)) {
