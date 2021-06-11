@@ -1,8 +1,56 @@
 import { defaultCollection } from './mocks/defaultCollection'
-import { createOutputDirectory, saveCollection } from '../saveCollection'
+import { createOutputDirectory, getIndexFileContent, saveCollection } from '../saveCollection'
 const fs = require('fs')
 
-describe.skip('Markdown repository save collection', () => {
+describe('Save collection', () => {
+  it('Gets the Index File content from a collection before saving it', async () => {
+    const mockedCollection = {
+      name: 'Fruits Collection',
+      description: '# This is my awesome collection of fruits',
+      classifications: [
+        { name: 'Color', values: ['Green', 'Orange', 'Red', 'Yellow'] },
+        { name: 'Size', values: ['Big', 'Medium'] }
+      ],
+      content: {
+        name: 'items',
+        items: [
+          {
+            containerName: 'apple',
+            name: 'Apple',
+            content: 'Apples are **amazing.**',
+            classifications: [
+              { name: 'Color', values: ['Green', 'Red', 'Yellow'] },
+              { name: 'Size', values: ['Medium'] }
+            ]
+          },
+          {
+            containerName: 'orange',
+            name: 'Orange',
+            content: 'Is my favourite fruit',
+            classifications: [
+              { name: 'Color', values: ['Orange'] },
+              { name: 'Size', values: ['Medium'] }
+            ]
+          },
+          {
+            containerName: 'watermelon',
+            name: 'Watermelon',
+            content: 'I like this watermelon picture\n\n![watermelon](./assets/watermelon.png)',
+            classifications: [
+              { name: 'Color', values: ['Green'] },
+              { name: 'Size', values: ['Big'] }
+            ]
+          }
+        ]
+      }
+    }
+    const mockedIndexFileContent = '# Fruits Collection\n\n\n# This is my awesome collection of fruits\n\n## Content: items\n\n\n - [Apple](Apple/index.md)\n    \n - [Orange](Orange/index.md)\n    \n - [Watermelon](Watermelon/index.md)\n    \n\n## Classifications\n\n\n - [Color](Color/index.md)\n    \n - [Size](Size/index.md)\n    \n<br/><br/><br/>Made with [Collman](https://github.com/reymon359/collman)'
+
+    const indexFileContent = await getIndexFileContent(mockedCollection)
+
+    expect(indexFileContent).toEqual(mockedIndexFileContent)
+  })
+
   it.skip('saves a collection in a directory with markdown files', async () => {
     // Arrange
     const mockedDefaultOutputCollection = 'src/test/mocks/defaultCollection/output/markdown/defaultCollection'
