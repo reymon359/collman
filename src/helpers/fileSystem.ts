@@ -11,7 +11,7 @@ export const emptyDirectory = async (directoryPath:string) => {
 }
 
 export const makeDirectory = async (directoryPath:string) => {
-  await fs.mkdir(directoryPath, { recursive: true }, (err:any) => {
+  fs.mkdir(directoryPath, { recursive: true }, (err) => {
     if (err) {
       console.error(`Error creating directory at path: ${directoryPath}`)
       throw err
