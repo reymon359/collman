@@ -1,28 +1,11 @@
-import { Collection, Configuration, defaultConfiguration } from './types'
+import { Collection, Configuration, defaultConfiguration, DocsifyConfiguration } from './types'
 import { getIndexHtmlContent } from './helpers/indexHtmlContent'
 import { urlifyString } from './helpers/urlifyString'
 import { sortUnorderedListOfLinks } from './helpers/sortUnorderedListOfLinks'
 import { copy, pathExists, writeFile } from './helpers/fileSystem'
 const json2md = require('json2md')
 
-export interface DocsifyConfiguration {
-  main: object
-  scriptsAndLinks: string[]
-}
-
-const createReadmeFile = async (outputDirectoryPath:string) => {
-  await copy(`${outputDirectoryPath}/index.md`, `${outputDirectoryPath}/README.md`)
-}
-
-const createNojekillFile = async (outputDirectoryPath:string) => {
-  await writeFile(`${outputDirectoryPath}/.nojekill`, '')
-}
-
-const createIndexHtmlFile = async (collection:Collection, outputDirectoryPath:string, docsifyConfiguration:DocsifyConfiguration) => {
-  await writeFile(`${outputDirectoryPath}/index.html`, getIndexHtmlContent(collection, docsifyConfiguration))
-}
-
-const createSidebarFile = async (collection: Collection, outputDirectoryPath:string) => {
+export const getSidebarFileContent = async (collection: Collection) => {
   const mainUnorderedList: any[] = []
 
   // Content
@@ -48,9 +31,23 @@ const createSidebarFile = async (collection: Collection, outputDirectoryPath:str
     mainUnorderedList.push({ ul: classificationUnorderedList })
   })
 
-  const sidebarContent = json2md(mainUnorderedList)
+  return json2md(mainUnorderedList)
+}
 
-  await writeFile(`${outputDirectoryPath}/_sidebar.md`, sidebarContent)
+const createReadmeFile = async (outputDirectoryPath:string) => {
+  await copy(`${outputDirectoryPath}/index.md`, `${outputDirectoryPath}/README.md`)
+}
+
+const createNojekillFile = async (outputDirectoryPath:string) => {
+  await writeFile(`${outputDirectoryPath}/.nojekill`, '')
+}
+
+const createIndexHtmlFile = async (collection:Collection, outputDirectoryPath:string, docsifyConfiguration:DocsifyConfiguration) => {
+  await writeFile(`${outputDirectoryPath}/index.html`, getIndexHtmlContent(collection, docsifyConfiguration))
+}
+
+const createSidebarFile = async (collection: Collection, outputDirectoryPath:string) => {
+  await writeFile(`${outputDirectoryPath}/_sidebar.md`, await getSidebarFileContent(collection))
 }
 
 export const addDocsify = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
@@ -59,6 +56,7 @@ export const addDocsify = async (collection:Collection, configuration:Configurat
   const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
   const existsConfig = await pathExists(`${pathRootDirectory}docsify.config.js`)
   const docsifyConfiguration = existsConfig ? require(`${pathRootDirectory}docsify.config.js`) : {}
+
   // 1. Copy the index and create a README.md with it
   await createReadmeFile(outputDirectoryPath)
 

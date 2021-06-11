@@ -1,5 +1,4 @@
-import { Collection } from '../types'
-import { DocsifyConfiguration } from '../addDocsify'
+import { Collection, DocsifyConfiguration } from '../types'
 
 const defaultDocsifyConfiguration = (collection:Collection) => ({
   main: {
