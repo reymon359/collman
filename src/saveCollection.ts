@@ -86,25 +86,31 @@ export const getClassificationValueFileContent = async (classificationValue:stri
   return json2md(valueContentArray)
 }
 
-export const createClassifications = async (collection:Collection, outputDirectoryPath:string) => {
+export const getClassificationIndexFileContent = async (classification:Classification) => {
+  const classificationIndexContent: any[] = []
+  const listOfValues: any[] = [] // List of values for index.md
+
+  classificationIndexContent.push({ h1: classification.name })
+
+  for (const classificationValue of classification.values) {
+    listOfValues.push({ link: { title: classificationValue, source: `../${urlifyString(classification.name)}/${urlifyString(classificationValue)}.md` } })
+  }
+
+  classificationIndexContent.push({ ul: sortUnorderedListOfLinks(listOfValues) })
+
+  return json2md(classificationIndexContent)
+}
+
+const createClassifications = async (collection:Collection, outputDirectoryPath:string) => {
   for (const classification of collection.classifications) {
     await makeDirectory(`${outputDirectoryPath}/${classification.name}`)
 
-    // Begin creating the classification index file
-    const classificationIndexContent: any[] = []
-    const listOfValues: any[] = [] // List of values for index.md
-    classificationIndexContent.push({ h1: classification.name })
-
     // Create a file for each value
     for (const classificationValue of classification.values) {
-      listOfValues.push({ link: { title: classificationValue, source: `../${urlifyString(classification.name)}/${urlifyString(classificationValue)}.md` } })
-
       await writeFile(`${outputDirectoryPath}/${classification.name}/${classificationValue}.md`, await getClassificationValueFileContent(classificationValue, collection, classification))
     }
 
-    // Finish creating the index file
-    classificationIndexContent.push({ ul: sortUnorderedListOfLinks(listOfValues) })
-    await writeFile(`${outputDirectoryPath}/${classification.name}/index.md`, json2md(classificationIndexContent))
+    await writeFile(`${outputDirectoryPath}/${classification.name}/index.md`, await getClassificationIndexFileContent(classification))
   }
 }
 

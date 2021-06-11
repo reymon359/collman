@@ -1,5 +1,5 @@
 import { defaultCollection } from './mocks/defaultCollection'
-import { createOutputDirectory, getClassificationValueFileContent, getItemIndexFileContent, getMainIndexFileContent, saveCollection } from '../saveCollection'
+import { createOutputDirectory, getClassificationIndexFileContent, getClassificationValueFileContent, getItemIndexFileContent, getMainIndexFileContent, saveCollection } from '../saveCollection'
 const fs = require('fs')
 
 describe('Save collection', () => {
@@ -115,6 +115,15 @@ describe('Save collection', () => {
     const classificationValueFileContent = await getClassificationValueFileContent(mockedClassificationValue, mockedCollection, mockedClassification)
 
     expect(classificationValueFileContent).toEqual(mockedClassificationValueFileContent)
+  })
+
+  it('Gets the Classification index file content', async () => {
+    const mockedClassification = { name: 'Color', values: ['Green', 'Orange', 'Red', 'Yellow'] }
+    const mockedClassificationIndexFileContent = '# Color\n\n\n - [Green](../Color/Green.md)\n    \n - [Orange](../Color/Orange.md)\n    \n - [Red](../Color/Red.md)\n    \n - [Yellow](../Color/Yellow.md)\n    \n'
+
+    const classificationIndexFileContent = await getClassificationIndexFileContent(mockedClassification)
+
+    expect(classificationIndexFileContent).toEqual(mockedClassificationIndexFileContent)
   })
 
   it.skip('saves a collection in a directory with markdown files', async () => {
