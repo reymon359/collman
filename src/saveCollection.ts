@@ -36,24 +36,23 @@ export const getMainIndexFileContent = async (collection:Collection) => {
   return indexContent
 }
 
-const getItemIndexFileContent = async (item:Item) => {
-      // Get classifications to add in bottom
-      const itemClassifications: any[] = []
-      if (item.classifications.length > 0) {
-        item.classifications.forEach((classification, i) => {
-          itemClassifications[i] = `[${classification.name}:](../${urlifyString(classification.name)}/index.md)`
-  
-          classification.values.forEach((value) => {
-            itemClassifications[i] += ` [${value}](../${urlifyString(classification.name)}/${urlifyString(value)}.md)`
-          })
-        })
-      }
-      const classificationsContent = itemClassifications.join('<br/>')
+export const getItemIndexFileContent = async (item:Item) => {
+  // Get classifications to add in bottom
+  const itemClassifications: any[] = []
+  if (item.classifications.length > 0) {
+    item.classifications.forEach((classification, i) => {
+      itemClassifications[i] = `[${classification.name}:](../${urlifyString(classification.name)}/index.md)`
 
-      const itemIndexFileContent = `${item.content}<br/>${classificationsContent}`
-      return itemIndexFileContent
+      classification.values.forEach((value) => {
+        itemClassifications[i] += ` [${value}](../${urlifyString(classification.name)}/${urlifyString(value)}.md)`
+      })
+    })
+  }
+  const classificationsContent = itemClassifications.join('<br/>')
+
+  const itemIndexFileContent = `${item.content}<br/>${classificationsContent}`
+  return itemIndexFileContent
 }
-
 
 const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPath:string, outputDirectoryPath:string) => {
   for (const item of collection.content.items) {

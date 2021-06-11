@@ -1,9 +1,9 @@
 import { defaultCollection } from './mocks/defaultCollection'
-import { createOutputDirectory, getMainIndexFileContent, saveCollection } from '../saveCollection'
+import { createOutputDirectory, getItemIndexFileContent, getMainIndexFileContent, saveCollection } from '../saveCollection'
 const fs = require('fs')
 
 describe('Save collection', () => {
-  it('Gets the Index File content from a collection before saving it', async () => {
+  it('Gets the main index file content from a collection before saving it', async () => {
     const mockedCollection = {
       name: 'Fruits Collection',
       description: '# This is my awesome collection of fruits',
@@ -49,6 +49,22 @@ describe('Save collection', () => {
     const indexFileContent = await getMainIndexFileContent(mockedCollection)
 
     expect(indexFileContent).toEqual(mockedIndexFileContent)
+  })
+  it('Gets the Item index file content from a collection item before saving it', async () => {
+    const mockedItem = {
+      containerName: 'apple',
+      name: 'Apple',
+      content: 'Apples are **amazing.**',
+      classifications: [
+        { name: 'Color', values: ['Green', 'Red', 'Yellow'] },
+        { name: 'Size', values: ['Medium'] }
+      ]
+    }
+    const mockedItemIndexFileContent = 'Apples are **amazing.**<br/>[Color:](../Color/index.md) [Green](../Color/Green.md) [Red](../Color/Red.md) [Yellow](../Color/Yellow.md)<br/>[Size:](../Size/index.md) [Medium](../Size/Medium.md)'
+
+    const itemIndexFileContent = await getItemIndexFileContent(mockedItem)
+
+    expect(itemIndexFileContent).toEqual(mockedItemIndexFileContent)
   })
 
   it.skip('saves a collection in a directory with markdown files', async () => {
