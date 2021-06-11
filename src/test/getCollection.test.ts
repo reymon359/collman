@@ -6,7 +6,7 @@ import {
   transformMarkdownDirectoryToJson
   , getCollection,
   transformInputDirectoryJsonToCollection,
-  getJsonItemsFromObjectItems
+  transformObjectItemsToJsonItems
 } from '../getCollection'
 import { defaultCollection } from './mocks/defaultCollection'
 import { Item, JsonItem } from '../types'
@@ -90,11 +90,64 @@ describe('Get collection', () => {
     expect(expectedCollection).toEqual(mockedExpectedCollection)
   })
 
-  it('Gets Json Items from Object Items', async () => {
-    const mockedObjectItems = {}
-    const mockedExpectedJsonItems = {}
+  it('Transforms Object Items to Json Items', async () => {
+    const mockedObjectItems = {
+      apple: {
+        index: {
+          name: 'Apple',
+          Color: ['Green', 'Red', 'Yellow'],
+          Size: ['Medium'],
+          contents: 'Apples are **amazing.**'
+        }
+      },
+      orange: {
+        index: {
+          name: 'Orange',
+          Color: ['Orange'],
+          Size: ['Medium'],
+          contents: 'Is my favourite fruit'
+        }
+      },
+      watermelon: {
+        index: {
+          name: 'Watermelon',
+          Color: ['Green'],
+          Size: ['Big'],
+          contents: 'I like this watermelon picture\n\n![watermelon](./assets/watermelon.png)'
+        }
+      }
+    }
+    const mockedExpectedJsonItems = [
+      {
+        containerName: 'apple',
+        index: {
+          name: 'Apple',
+          Color: ['Green', 'Red', 'Yellow'],
+          Size: ['Medium'],
+          contents: 'Apples are **amazing.**'
+        }
+      },
+      {
+        containerName: 'orange',
+        index: {
+          name: 'Orange',
+          Color: ['Orange'],
+          Size: ['Medium'],
+          contents: 'Is my favourite fruit'
+        }
+      },
+      {
+        containerName: 'watermelon',
+        index: {
+          name: 'Watermelon',
+          Color: ['Green'],
+          Size: ['Big'],
+          contents: 'I like this watermelon picture\n\n![watermelon](./assets/watermelon.png)'
+        }
+      }
+    ]
 
-    const expectedJsonItems = await getJsonItemsFromObjectItems(mockedObjectItems)
+    const expectedJsonItems = await transformObjectItemsToJsonItems(mockedObjectItems)
 
     expect(expectedJsonItems).toEqual(mockedExpectedJsonItems)
   })
