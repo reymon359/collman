@@ -1,4 +1,4 @@
-import { Collection, Configuration, defaultConfiguration, DocsifyConfiguration } from './types'
+import { Collection, Configuration, defaultConfiguration, DocsifyConfiguration, Json2mdLink } from './types'
 import { getIndexHtmlContent } from './helpers/indexHtmlContent'
 import { urlifyString } from './helpers/urlifyString'
 import { sortUnorderedListOfLinks } from './helpers/sortUnorderedListOfLinks'
@@ -6,12 +6,12 @@ import { copy, pathExists, writeFile } from './helpers/fileSystem'
 const json2md = require('json2md')
 
 export const getSidebarFileContent = async (collection: Collection) => {
-  const mainUnorderedList: any[] = []
+  const mainUnorderedList = []
 
   // Content
-  const contentUnorderedList: any[] = []
+  const contentUnorderedList = []
   contentUnorderedList.push(`Content: ${collection.content.name}`)
-  const itemsUnorderedList: any[] = []
+  const itemsUnorderedList: Json2mdLink[] = []
   collection.content.items.sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? 0 : -1)).forEach(item => {
     itemsUnorderedList.push({ link: { title: item.name, source: `${urlifyString(item.name)}/index.md` } })
   })
@@ -20,9 +20,9 @@ export const getSidebarFileContent = async (collection: Collection) => {
 
   // Classifications
   collection.classifications.forEach(classification => {
-    const classificationUnorderedList: any[] = []
+    const classificationUnorderedList = []
     classificationUnorderedList.push(classification.name)
-    const classificationValuesUnorderedList: any[] = []
+    const classificationValuesUnorderedList = []
     classificationValuesUnorderedList.push({ link: { title: 'All', source: `${urlifyString(classification.name)}/index.md` } })
     classification.values.sort().forEach(value => {
       classificationValuesUnorderedList.push({ link: { title: value, source: `../${urlifyString(classification.name)}/${urlifyString(value)}.md` } })
