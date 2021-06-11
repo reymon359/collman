@@ -54,7 +54,7 @@ export const getItemIndexFileContent = async (item:Item) => {
   return itemIndexFileContent
 }
 
-const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPath:string, outputDirectoryPath:string) => {
+const createItemsInOutputDirectory = async (collection:Collection, inputDirectoryPath:string, outputDirectoryPath:string) => {
   for (const item of collection.content.items) {
     await writeFile(`${outputDirectoryPath}/${item.name}/index.md`, await getItemIndexFileContent(item))
 
@@ -106,16 +106,16 @@ export const createClassifications = async (collection:Collection, outputDirecto
 export const saveCollection = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
   const { pathRootDirectory, outputDirectory, inputDirectory } = configuration
   const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
+  const inputDirectoryPath = `${pathRootDirectory}${inputDirectory}`
 
   // 1. Create the output directory. Default docs
   await createOutputDirectory(outputDirectoryPath)
 
-  // 2. Create the index file
+  // 2. Create the Main index file
   await writeFile(`${outputDirectoryPath}/index.md`, await getMainIndexFileContent(collection))
 
-  // 3. copy and paste the items in the folder removing the frontmatter. Or create the items with just the content and then copy the assets from the previous one
-  const inputDirectoryPath = `${pathRootDirectory}${inputDirectory}`
-  await addItemsInOutputDirectory(collection, inputDirectoryPath, outputDirectoryPath)
+  // 3. Create the items and then copy the assets from the original one
+  await createItemsInOutputDirectory(collection, inputDirectoryPath, outputDirectoryPath)
 
   // 4. Generate the classifications
   await createClassifications(collection, outputDirectoryPath)
