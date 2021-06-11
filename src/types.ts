@@ -37,16 +37,21 @@ export interface Collection {
 }
 
 export interface JsonItemIndex {
-  containerName: string
   name: string
   categories?: string[]
   contents?: string
 }
 
 export interface JsonItem {
+  containerName: string
   index: JsonItemIndex
 }
 
 export interface JsonCollection {
   items: JsonItem[]
+}
+
+export interface DocsifyConfiguration {
+  main: object
+  scriptsAndLinks: string[]
 }

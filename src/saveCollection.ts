@@ -1,4 +1,4 @@
-import { Collection, Configuration, defaultConfiguration } from './types'
+import { Classification, Collection, Configuration, defaultConfiguration, Item } from './types'
 import { urlifyString } from './helpers/urlifyString'
 import { sortUnorderedListOfLinks } from './helpers/sortUnorderedListOfLinks'
 import { copy, emptyDirectory, makeDirectory, pathExists, writeFile } from './helpers/fileSystem'
@@ -9,7 +9,7 @@ export const createOutputDirectory = async (outputDirectoryPath:string) => {
   await makeDirectory(outputDirectoryPath)
 }
 
-const createIndexFile = async (collection:Collection, outputDirectoryPath:string) => {
+export const getMainIndexFileContent = async (collection:Collection) => {
   const contentArray = []
   contentArray.push({ h1: collection.name })
   contentArray.push({ p: collection.description })
@@ -32,28 +32,31 @@ const createIndexFile = async (collection:Collection, outputDirectoryPath:string
     contentArray.push({ ul: sortUnorderedListOfLinks(unorderedListOfClassifications) })
   }
 
-  const indexContent = json2md(contentArray) + '<br/><br/><br/>' + 'Made with [Collman](https://github.com/reymon359/collman)'
-
-  await writeFile(`${outputDirectoryPath}/index.md`, indexContent)
+  const indexContent = `${json2md(contentArray)}<br/><br/><br/>Made with [Collman](https://github.com/reymon359/collman)`
+  return indexContent
 }
 
-const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPath:string, outputDirectoryPath:string) => {
-  for (const item of collection.content.items) {
-    // Get classifications to add in bottom and top
-    const itemClassifications: any[] = []
-    if (item.classifications.length > 0) {
-      item.classifications.forEach((classification, i) => {
-        itemClassifications[i] = `[${classification.name}:](../${urlifyString(classification.name)}/index.md)`
+export const getItemIndexFileContent = async (item:Item) => {
+  // Get classifications to add in bottom
+  const itemClassifications: any[] = []
+  if (item.classifications.length > 0) {
+    item.classifications.forEach((classification, i) => {
+      itemClassifications[i] = `[${classification.name}:](../${urlifyString(classification.name)}/index.md)`
 
-        classification.values.forEach((value) => {
-          itemClassifications[i] += ` [${value}](../${urlifyString(classification.name)}/${urlifyString(value)}.md)`
-        })
+      classification.values.forEach((value) => {
+        itemClassifications[i] += ` [${value}](../${urlifyString(classification.name)}/${urlifyString(value)}.md)`
       })
-    }
-    const classificationsContent = itemClassifications.join('<br/>')
-    const itemIndexContent = item.content + '<br/>' + classificationsContent
+    })
+  }
+  const classificationsContent = itemClassifications.join('<br/>')
 
-    await writeFile(`${outputDirectoryPath}/${item.name}/index.md`, itemIndexContent)
+  const itemIndexFileContent = `${item.content}<br/>${classificationsContent}`
+  return itemIndexFileContent
+}
+
+const createItemsInOutputDirectory = async (collection:Collection, inputDirectoryPath:string, outputDirectoryPath:string) => {
+  for (const item of collection.content.items) {
+    await writeFile(`${outputDirectoryPath}/${item.name}/index.md`, await getItemIndexFileContent(item))
 
     const itemHasAssets = await pathExists(`${inputDirectoryPath}/${item.containerName}/assets`)
     if (itemHasAssets) {
@@ -62,57 +65,68 @@ const addItemsInOutputDirectory = async (collection:Collection, inputDirectoryPa
   }
 }
 
-export const createClassifications = async (collection:Collection, outputDirectoryPath:string) => {
+export const getClassificationValueFileContent = async (classificationValue:string, collection:Collection, classification:Classification) => {
+  const valueContentArray = []
+  const listOfItemWithValue: any[] = []
+  valueContentArray.push({ h1: classificationValue })
+  // Go through the items and its classifications.
+  collection.content.items.forEach(item => {
+    item.classifications.forEach(itemClassification => {
+      // If the item has the classification
+      if (itemClassification.name === classification.name) {
+        // If the items has values in that classification and includes the value
+        if (itemClassification.values.length > 0 && itemClassification.values.includes(classificationValue)) {
+          listOfItemWithValue.push({ link: { title: item.name, source: `../${urlifyString(item.name)}/index.md` } })
+        }
+      }
+    })
+  })
+  if (listOfItemWithValue.length > 0) valueContentArray.push({ ul: sortUnorderedListOfLinks(listOfItemWithValue) })
+
+  return json2md(valueContentArray)
+}
+
+export const getClassificationIndexFileContent = async (classification:Classification) => {
+  const classificationIndexContent: any[] = []
+  const listOfValues: any[] = [] // List of values for index.md
+
+  classificationIndexContent.push({ h1: classification.name })
+
+  for (const classificationValue of classification.values) {
+    listOfValues.push({ link: { title: classificationValue, source: `../${urlifyString(classification.name)}/${urlifyString(classificationValue)}.md` } })
+  }
+
+  classificationIndexContent.push({ ul: sortUnorderedListOfLinks(listOfValues) })
+
+  return json2md(classificationIndexContent)
+}
+
+const createClassifications = async (collection:Collection, outputDirectoryPath:string) => {
   for (const classification of collection.classifications) {
     await makeDirectory(`${outputDirectoryPath}/${classification.name}`)
 
-    // Begin creating the classification index file
-    const classificationIndexContent: any[] = []
-    const listOfValues: any[] = [] // List of values for index.md
-    classificationIndexContent.push({ h1: classification.name })
-
     // Create a file for each value
     for (const classificationValue of classification.values) {
-      listOfValues.push({ link: { title: classificationValue, source: `../${urlifyString(classification.name)}/${urlifyString(classificationValue)}.md` } })
-
-      const valueContentArray = []
-      const listOfItemWithValue: any[] = []
-      valueContentArray.push({ h1: classificationValue })
-      // Go through the items and its classifications.
-      collection.content.items.forEach(item => {
-        item.classifications.forEach(itemClassification => {
-          // If the item has the classification
-          if (itemClassification.name === classification.name) {
-            // If the items has values in that classification and includes the value
-            if (itemClassification.values.length > 0 && itemClassification.values.includes(classificationValue)) {
-              listOfItemWithValue.push({ link: { title: item.name, source: `../${urlifyString(item.name)}/index.md` } })
-            }
-          }
-        })
-      })
-      if (listOfItemWithValue.length > 0) valueContentArray.push({ ul: sortUnorderedListOfLinks(listOfItemWithValue) })
-      await writeFile(`${outputDirectoryPath}/${classification.name}/${classificationValue}.md`, json2md(valueContentArray))
+      await writeFile(`${outputDirectoryPath}/${classification.name}/${classificationValue}.md`, await getClassificationValueFileContent(classificationValue, collection, classification))
     }
 
-    // Finish creating the index file
-    classificationIndexContent.push({ ul: sortUnorderedListOfLinks(listOfValues) })
-    await writeFile(`${outputDirectoryPath}/${classification.name}/index.md`, json2md(classificationIndexContent))
+    await writeFile(`${outputDirectoryPath}/${classification.name}/index.md`, await getClassificationIndexFileContent(classification))
   }
 }
 
 export const saveCollection = async (collection:Collection, configuration:Configuration = defaultConfiguration) => {
   const { pathRootDirectory, outputDirectory, inputDirectory } = configuration
   const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
+  const inputDirectoryPath = `${pathRootDirectory}${inputDirectory}`
 
   // 1. Create the output directory. Default docs
   await createOutputDirectory(outputDirectoryPath)
 
-  // 2. Create the index file
-  await createIndexFile(collection, outputDirectoryPath)
+  // 2. Create the Main index file
+  await writeFile(`${outputDirectoryPath}/index.md`, await getMainIndexFileContent(collection))
 
-  // 3. copy and paste the items in the folder removing the frontmatter. Or create the items with just the content and then copy the assets from the previous one
-  const inputDirectoryPath = `${pathRootDirectory}${inputDirectory}`
-  await addItemsInOutputDirectory(collection, inputDirectoryPath, outputDirectoryPath)
+  // 3. Create the items and then copy the assets from the original one
+  await createItemsInOutputDirectory(collection, inputDirectoryPath, outputDirectoryPath)
 
   // 4. Generate the classifications
   await createClassifications(collection, outputDirectoryPath)
