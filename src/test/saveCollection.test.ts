@@ -1,6 +1,4 @@
-import { defaultCollection } from './mocks/defaultCollection'
-import { createOutputDirectory, getClassificationIndexFileContent, getClassificationValueFileContent, getItemIndexFileContent, getMainIndexFileContent, saveCollection } from '../saveCollection'
-const fs = require('fs')
+import { getClassificationIndexFileContent, getClassificationValueFileContent, getItemIndexFileContent, getMainIndexFileContent } from '../saveCollection'
 
 describe('Save collection', () => {
   it('Gets the main index file content from a collection before saving it', async () => {
@@ -124,28 +122,5 @@ describe('Save collection', () => {
     const classificationIndexFileContent = await getClassificationIndexFileContent(mockedClassification)
 
     expect(classificationIndexFileContent).toEqual(mockedClassificationIndexFileContent)
-  })
-
-  it.skip('saves a collection in a directory with markdown files', async () => {
-    // Arrange
-    const mockedDefaultOutputCollection = 'src/test/mocks/defaultCollection/output/markdown/defaultCollection'
-    const mockedCollection = defaultCollection
-    // Act
-    await saveCollection(mockedCollection)
-    // Assert
-    expect('the docs folder').toEqual(mockedDefaultOutputCollection)
-  })
-
-  it.skip('creates the output directory', async () => {
-    const mockedPathRootDirectory = './'
-    const mockedOutputDirectory = 'docs'
-
-    // Expect the docs folder to not exist
-    expect(fs.existsSync(mockedOutputDirectory)).toEqual(false)
-
-    await createOutputDirectory(mockedPathRootDirectory + mockedOutputDirectory)
-
-    // Expect the docs folder to exist
-    expect(fs.existsSync(mockedOutputDirectory)).toEqual(true)
   })
 })
