@@ -5,7 +5,7 @@ Have a look at it! https://gist.github.com/reymon359/a0880e5b3bfcbac54f58b52b3ad
 
 <!-- Logo (with link) -->
 <p align="center">
- <a href="https://github.com/reymon359/collman">
+ <a href="https://reymon359.github.io/collman">
    <img alt="collman" src="https://raw.githubusercontent.com/reymon359/collman/master/assets/watermelon.png" width="100" />
  </a>
 </p>

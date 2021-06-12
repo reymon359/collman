@@ -1,6 +1,6 @@
 {
   "name": "collman",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "easily manage and display agnostic collections",
   "main": "./bin/index.js",
   "files": [
@@ -31,7 +31,7 @@
     "collections", "manager", "agnostic", "docsify"
   ],
   "author": "reymon359",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/reymon359/collman/issues"
   },
