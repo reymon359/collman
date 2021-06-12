@@ -56,7 +56,7 @@ Create anything with just Markdown to edit the content effortlessly.
 
 ## How to use it
 
-Basic commands and usage example
+Basic commands and usage example. You can see the docs generated for the example [here](https://codesandbox.io/s/example-fruits-collection-kuc8n)
 
 ### Install Collman
 
@@ -69,13 +69,13 @@ Let's create a _fruits' collection_ as an example. You can find it in the `asset
 First, create a directory with any name you want.
 
 ```text
-📁 my-collection
+📁 fruits-collection
 ```
 
 Now create a directory for your **items** and add an `index.md` file to it. In this example the `fruits`.
 
 ```text
-📁 my-collection
+📁 fruits-collection
 └── 📁 fruits
     └── 📄 index.md
 ```
@@ -92,7 +92,7 @@ name: 'Fruits Collection'
 Now lets add an **item** to the **items** directory. An **item** is nothing but a directory that contains at least an `index.md` file with the _content_ of your **item.**
 
 ```text
-📁 my-collection
+📁 fruits-collection
 └── 📁 fruits
     └── 📁 apple
     │   └── 📄 index.md
@@ -111,7 +111,7 @@ Apples are **amazing.**
 Additionally, an **item** can contain an `assets` directory to store images referenced in the `index.md`. Have a look at the watermelon item in our example.
 
 ```text
-📁 my-collection
+📁 fruits-collection
 └── 📁 fruits
     └── 📁 apple
     │   └── 📄 index.md
@@ -155,7 +155,7 @@ Once we have the collection ready, in a terminal in the collection directory, we
 You will see this output:
 
 ```shell
-user@user-pc my-collection % collman --id fruits
+user@user-pc fruits-collection % collman --id fruits
 👀 Getting collection based on the configuration
 ✅ Collection got: Fruits Collection
 🚧 Processing collection and saving in directory: docs
@@ -166,11 +166,11 @@ user@user-pc my-collection % collman --id fruits
 2. Run: docsify serve docs
 ```
 
-This will create a `docs` directory with the collection ready. Go to https://github.com/reymon359/collman/tree/master/assets/examples/my-collection/docs to see the one auto generated for the example.
+This will create a `docs` directory with the collection ready. Go to https://github.com/reymon359/collman/tree/master/assets/examples/fruits-collection/docs to see the one auto generated for the example. [Here is a sandbox](https://codesandbox.io/s/example-fruits-collection-kuc8n) with it.
 
 ## Visualize it
 
-By default, the collection generated is made to be easily visualized on a markdown viewer or GitHub. Have a look at the example collection [my-collection docs](https://github.com/reymon359/collman/tree/master/assets/examples/my-collection/docs).
+By default, the collection generated is made to be easily visualized on a markdown viewer or GitHub. Have a look at the example collection [fruits-collection docs](https://github.com/reymon359/collman/tree/master/assets/examples/fruits-collection/docs).
 
 To visualize a Collection in a better way, Collman generates the files needed to integrate with [Docsify.](https://github.com/docsifyjs/docsify/). Therefore, you just have to:
 
@@ -179,7 +179,9 @@ To visualize a Collection in a better way, Collman generates the files needed to
 
 Here is how the example collection will be visualized with Docsify
 
-![Example fruits collection](assets/example-fruits-collection.gif)
+[![Example fruits collection](assets/example-fruits-collection.gif)](https://codesandbox.io/s/example-fruits-collection-kuc8n)
+
+You can browse it [here](https://codesandbox.io/s/example-fruits-collection-kuc8n)
 
 ### Why Docsify
 
