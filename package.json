@@ -1,6 +1,6 @@
 {
   "name": "collman",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "easily manage and display agnostic collections",
   "main": "./bin/index.js",
   "files": [
@@ -27,8 +27,8 @@
     "url": "git+https://github.com/reymon359/collman.git"
   },
   "keywords": [
-    "collection",
-    "manager"
+    "markdown", "cli", "typescript", "collection", 
+    "collections", "manager", "agnostic", "docsify"
   ],
   "author": "reymon359",
   "license": "ISC",
