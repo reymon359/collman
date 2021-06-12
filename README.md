@@ -170,6 +170,8 @@ This will create a `docs` directory with the collection ready. Go to https://git
 
 ## Visualize it
 
+By default, the collection generated is made to be easily visualized on a markdown viewer or GitHub. Have a look at the example collection [my-collection docs](https://github.com/reymon359/collman/tree/master/assets/examples/my-collection/docs).
+
 To visualize a Collection in a better way, Collman generates the files needed to integrate with [Docsify.](https://github.com/docsifyjs/docsify/). Therefore, you just have to:
 
 1. Install Docsify: `npm i docsify-cli -g`
