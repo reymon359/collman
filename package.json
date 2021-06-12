@@ -1,6 +1,6 @@
 {
   "name": "collman",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "easily manage and display agnostic collections",
   "main": "./bin/index.js",
   "files": [
@@ -33,9 +33,9 @@
   "author": "reymon359",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/reymon359/collection-manager/issues"
+    "url": "https://github.com/reymon359/collman/issues"
   },
-  "homepage": "https://github.com/reymon359/collection-manager#readme",
+  "homepage": "https://github.com/reymon359/collman#readme",
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
