@@ -58,7 +58,7 @@ describe('Save collection', () => {
         { name: 'Size', values: ['Medium'] }
       ]
     }
-    const mockedItemIndexFileContent = 'Apples are **amazing.**<br/>[Color:](../Color/index.md) [Green](../Color/Green.md) [Red](../Color/Red.md) [Yellow](../Color/Yellow.md)<br/>[Size:](../Size/index.md) [Medium](../Size/Medium.md)'
+    const mockedItemIndexFileContent = 'Apples are **amazing.**<hr/><br/>[Color:](../Color/index.md) [Green](../Color/Green.md) [Red](../Color/Red.md) [Yellow](../Color/Yellow.md)<br/>[Size:](../Size/index.md) [Medium](../Size/Medium.md)'
 
     const itemIndexFileContent = await getItemIndexFileContent(mockedItem)
 

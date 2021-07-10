@@ -50,7 +50,7 @@ export const getItemIndexFileContent = async (item:Item) => {
   }
   const classificationsContent = itemClassifications.join('<br/>')
 
-  const itemIndexFileContent = `${item.content}<br/>${classificationsContent}`
+  const itemIndexFileContent = `${item.content}<hr/><br/>${classificationsContent}`
   return itemIndexFileContent
 }
 
