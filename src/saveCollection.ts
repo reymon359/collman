@@ -43,7 +43,7 @@ export const getItemIndexFileContent = async (item:Item) => {
     item.classifications.forEach((classification, i) => {
       itemClassifications[i] = `[${classification.name}:](../${urlifyString(classification.name)}/index.md)`
 
-      classification.values.forEach((value) => {
+      classification.values.sort().forEach((value) => {
         itemClassifications[i] += ` [${value}](../${urlifyString(classification.name)}/${urlifyString(value)}.md)`
       })
     })
