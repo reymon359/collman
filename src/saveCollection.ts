@@ -93,7 +93,7 @@ export const getClassificationIndexFileContent = async (classification:Classific
   classificationIndexContent.push({ h1: classification.name })
 
   for (const classificationValue of classification.values) {
-    listOfValues.push({ link: { title: classificationValue, source: `/${urlifyString(classification.name)}/${urlifyString(classificationValue)}.md` } })
+    listOfValues.push({ link: { title: classificationValue, source: `${urlifyString(classification.name)}/${urlifyString(classificationValue)}.md` } })
   }
 
   classificationIndexContent.push({ ul: sortUnorderedListOfLinks(listOfValues) })
