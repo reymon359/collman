@@ -3,6 +3,8 @@ import { getIndexHtmlContent } from './helpers/indexHtmlContent'
 import { urlifyString } from './helpers/urlifyString'
 import { sortUnorderedListOfLinks } from './helpers/sortUnorderedListOfLinks'
 import { copy, pathExists, writeFile } from './helpers/fileSystem'
+import path from 'path'
+
 const json2md = require('json2md')
 
 export const getSidebarFileContent = async (collection: Collection) => {
@@ -54,8 +56,10 @@ export const addDocsify = async (collection:Collection, configuration:Configurat
   console.log('🎨 Docsify enabled. Adding it to the collection')
   const { pathRootDirectory, outputDirectory } = configuration
   const outputDirectoryPath = `${pathRootDirectory}${outputDirectory}`
-  const existsConfig = await pathExists(`${pathRootDirectory}docsify.config.js`)
-  const docsifyConfiguration = existsConfig ? require(`${pathRootDirectory}docsify.config.js`) : {}
+
+  const docsifyConfigurationPath = path.join(process.cwd(), 'docsify.config.js')
+  const existsConfig = await pathExists(docsifyConfigurationPath)
+  const docsifyConfiguration = existsConfig ? require(docsifyConfigurationPath) : {}
 
   // 1. Copy the index and create a README.md with it
   await createReadmeFile(outputDirectoryPath)
