@@ -2,7 +2,8 @@ import { Collection, DocsifyConfiguration } from '../types'
 
 const defaultDocsifyConfiguration = (collection:Collection) => ({
   main: {
-    name: collection.name ? collection.name : 'A Collman Collection',
+    /* General */
+    name: collection.name || '',
 
     /* Navbars */
     loadSidebar: true,
