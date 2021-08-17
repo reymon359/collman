@@ -53,6 +53,8 @@ Create anything with just Markdown to edit the content effortlessly.
   - [Configuration file](#configuration-file)
   - [Command line arguments](#command-line-arguments)
   - [Docsify config file](#docsify-config-file)
+- [Deploy](#deploy)
+- [Examples](#examples)
 
 ## How to use it
 
@@ -61,6 +63,8 @@ Basic commands and usage example. You can see the docs generated for the example
 ### Install Collman
 
 Running `npm i -g collman` will do
+
+If you are using a npm version `5.2.0` or above you can just run `npx collman`
 
 ### Create a collection
 
@@ -150,7 +154,7 @@ It is my favourite fruit
 
 ### Run `collman`
 
-Once we have the collection ready, in a terminal in the collection directory, we run `collman --id name-input-directory`. Going on with the previous example it would be `collman --id fruits`. The input directory name is not needed if you name your directory `ìtems` which is the default one. As we named it `fruits` we have to pass the command line argument.
+Once we have the collection ready, in a terminal in the collection directory, we run `collman --id name-input-directory` (or `npx collman --id name-input-directory` if you are using at least npm version `5.2.0`). Going on with the previous example it would be `collman --id fruits`. The input directory name is not needed if you name your directory `ìtems` which is the default one. As we named it `fruits` we have to pass the command line argument.
 
 You will see this output:
 
@@ -249,13 +253,12 @@ Here is an example with the default Collman values:
 module.exports = {
   main: {
     name: 'Default Collection',
-    themeColor: '#20304a',
     loadSidebar: true,
-    mergeNavbar: true,
     alias: {
       '/.*/_sidebar.md': '/_sidebar.md'
     },
     subMaxLevel: 3,
+    sidebarDisplayLevel: 1,
     search: 'auto'
   },
   scriptsAndLinks:[
@@ -270,3 +273,18 @@ module.exports = {
   ]
 }
 ```
+
+## Deploy
+
+You can deploy a Collman project by serving the output directory on your own or using platforms like [Netlify](https://www.netlify.com/) or [GitHub Pages.](https://pages.github.com/)
+
+Just select the branch and directory where you have the docs (or the name you gave to the output directory).
+
+For GitHub Pages you will need to add a basePath to the docsify config. Therefore you will need to create a `docsify.config.js` file with it. Have a look at this example repository https://github.com/reymon359/collman-fruits-example
+
+## Examples
+
+This is a list of examples of collections projects made with Collman. Feel free to submit a Pull Request adding yours too!
+
+- [Collman fruits example](https://reymon359.github.io/collman-fruits-example/). A fruit collection.
+- [How to live](https://reymon359.github.io/how-to-live/). A collectin of life advices.

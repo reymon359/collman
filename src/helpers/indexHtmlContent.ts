@@ -2,16 +2,16 @@ import { Collection, DocsifyConfiguration } from '../types'
 
 const defaultDocsifyConfiguration = (collection:Collection) => ({
   main: {
-    name: collection.name ? collection.name : 'Default Collection',
-    themeColor: '#20304a',
+    /* General */
+    name: collection.name || '',
 
     /* Navbars */
     loadSidebar: true,
-    mergeNavbar: true,
     alias: {
       '/.*/_sidebar.md': '/_sidebar.md'
     },
     subMaxLevel: 3,
+    sidebarDisplayLevel: 1,
 
     /* Search */
     search: 'auto'
