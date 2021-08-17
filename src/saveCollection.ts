@@ -41,10 +41,10 @@ export const getItemIndexFileContent = async (item:Item) => {
   const itemClassifications: string[] = []
   if (item.classifications.length > 0) {
     item.classifications.forEach((classification, i) => {
-      itemClassifications[i] = `[${classification.name}:](../${urlifyString(classification.name)}/index.md)`
+      itemClassifications[i] = `[${classification.name}:](${urlifyString(classification.name)}/index.md)`
 
       classification.values.sort().forEach((value) => {
-        itemClassifications[i] += ` [${value}](../${urlifyString(classification.name)}/${urlifyString(value)}.md)`
+        itemClassifications[i] += ` [${value}](${urlifyString(classification.name)}/${urlifyString(value)}.md)`
       })
     })
   }
@@ -76,7 +76,7 @@ export const getClassificationValueFileContent = async (classificationValue:stri
       if (itemClassification.name === classification.name) {
         // If the items has values in that classification and includes the value
         if (itemClassification.values.length > 0 && itemClassification.values.includes(classificationValue)) {
-          listOfItemWithValue.push({ link: { title: item.name, source: `../${urlifyString(item.name)}/index.md` } })
+          listOfItemWithValue.push({ link: { title: item.name, source: `${urlifyString(item.name)}/index.md` } })
         }
       }
     })
@@ -93,7 +93,7 @@ export const getClassificationIndexFileContent = async (classification:Classific
   classificationIndexContent.push({ h1: classification.name })
 
   for (const classificationValue of classification.values) {
-    listOfValues.push({ link: { title: classificationValue, source: `../${urlifyString(classification.name)}/${urlifyString(classificationValue)}.md` } })
+    listOfValues.push({ link: { title: classificationValue, source: `/${urlifyString(classification.name)}/${urlifyString(classificationValue)}.md` } })
   }
 
   classificationIndexContent.push({ ul: sortUnorderedListOfLinks(listOfValues) })

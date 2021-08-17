@@ -42,7 +42,7 @@ describe('Add Docsify', () => {
         ]
       }
     }
-    const mockedSidebarFileContent = '\n - Content: items\n     - [Apple](Apple/index.md)\n        \n     - [Orange](Orange/index.md)\n        \n     - [Watermelon](Watermelon/index.md)\n        \n    \n\n\n - Color\n     - [All](Color/index.md)\n        \n     - [Green](../Color/Green.md)\n        \n     - [Orange](../Color/Orange.md)\n        \n     - [Red](../Color/Red.md)\n        \n     - [Yellow](../Color/Yellow.md)\n        \n    \n\n\n - Size\n     - [All](Size/index.md)\n        \n     - [Big](../Size/Big.md)\n        \n     - [Medium](../Size/Medium.md)\n        \n    \n'
+    const mockedSidebarFileContent = '\n - Content: items\n     - [Apple](Apple/index.md)\n        \n     - [Orange](Orange/index.md)\n        \n     - [Watermelon](Watermelon/index.md)\n        \n    \n\n\n - Color\n     - [All](Color/index.md)\n        \n     - [Green](./Color/Green.md)\n        \n     - [Orange](./Color/Orange.md)\n        \n     - [Red](./Color/Red.md)\n        \n     - [Yellow](./Color/Yellow.md)\n        \n    \n\n\n - Size\n     - [All](Size/index.md)\n        \n     - [Big](./Size/Big.md)\n        \n     - [Medium](./Size/Medium.md)\n        \n    \n'
 
     const sidebarFileContent = await getSidebarFileContent(mockedCollection)
 

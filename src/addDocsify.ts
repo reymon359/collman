@@ -27,7 +27,7 @@ export const getSidebarFileContent = async (collection: Collection) => {
     const classificationValuesUnorderedList = []
     classificationValuesUnorderedList.push({ link: { title: 'All', source: `${urlifyString(classification.name)}/index.md` } })
     classification.values.sort().forEach(value => {
-      classificationValuesUnorderedList.push({ link: { title: value, source: `../${urlifyString(classification.name)}/${urlifyString(value)}.md` } })
+      classificationValuesUnorderedList.push({ link: { title: value, source: `./${urlifyString(classification.name)}/${urlifyString(value)}.md` } })
     })
     classificationUnorderedList.push({ ul: sortUnorderedListOfLinks(classificationValuesUnorderedList) })
     mainUnorderedList.push({ ul: classificationUnorderedList })

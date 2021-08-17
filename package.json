@@ -1,6 +1,6 @@
 {
   "name": "collman",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "easily manage and display agnostic collections",
   "main": "./bin/index.js",
   "files": [

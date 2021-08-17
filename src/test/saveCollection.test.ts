@@ -58,7 +58,7 @@ describe('Save collection', () => {
         { name: 'Size', values: ['Medium'] }
       ]
     }
-    const mockedItemIndexFileContent = 'Apples are **amazing.**<hr/><br/>[Color:](../Color/index.md) [Green](../Color/Green.md) [Red](../Color/Red.md) [Yellow](../Color/Yellow.md)<br/>[Size:](../Size/index.md) [Medium](../Size/Medium.md)'
+    const mockedItemIndexFileContent = 'Apples are **amazing.**<hr/><br/>[Color:](Color/index.md) [Green](Color/Green.md) [Red](Color/Red.md) [Yellow](Color/Yellow.md)<br/>[Size:](Size/index.md) [Medium](Size/Medium.md)'
 
     const itemIndexFileContent = await getItemIndexFileContent(mockedItem)
 
@@ -108,7 +108,7 @@ describe('Save collection', () => {
       }
     }
     const mockedClassification = { name: 'Color', values: ['Green', 'Orange', 'Red', 'Yellow'] }
-    const mockedClassificationValueFileContent = '# Green\n\n\n - [Apple](../Apple/index.md)\n    \n - [Watermelon](../Watermelon/index.md)\n    \n'
+    const mockedClassificationValueFileContent = '# Green\n\n\n - [Apple](Apple/index.md)\n    \n - [Watermelon](Watermelon/index.md)\n    \n'
 
     const classificationValueFileContent = await getClassificationValueFileContent(mockedClassificationValue, mockedCollection, mockedClassification)
 
@@ -117,7 +117,7 @@ describe('Save collection', () => {
 
   it('Gets the Classification index file content', async () => {
     const mockedClassification = { name: 'Color', values: ['Green', 'Orange', 'Red', 'Yellow'] }
-    const mockedClassificationIndexFileContent = '# Color\n\n\n - [Green](../Color/Green.md)\n    \n - [Orange](../Color/Orange.md)\n    \n - [Red](../Color/Red.md)\n    \n - [Yellow](../Color/Yellow.md)\n    \n'
+    const mockedClassificationIndexFileContent = '# Color\n\n\n - [Green](/Color/Green.md)\n    \n - [Orange](/Color/Orange.md)\n    \n - [Red](/Color/Red.md)\n    \n - [Yellow](/Color/Yellow.md)\n    \n'
 
     const classificationIndexFileContent = await getClassificationIndexFileContent(mockedClassification)
 
