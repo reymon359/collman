@@ -64,6 +64,8 @@ Basic commands and usage example. You can see the docs generated for the example
 
 Running `npm i -g collman` will do
 
+If you are using a npm version `5.2.0` or above you can just run `npx collman`
+
 ### Create a collection
 
 Let's create a _fruits' collection_ as an example. You can find it in the `assets/examples` directory from this repository.
@@ -152,7 +154,7 @@ It is my favourite fruit
 
 ### Run `collman`
 
-Once we have the collection ready, in a terminal in the collection directory, we run `collman --id name-input-directory`. Going on with the previous example it would be `collman --id fruits`. The input directory name is not needed if you name your directory `ìtems` which is the default one. As we named it `fruits` we have to pass the command line argument.
+Once we have the collection ready, in a terminal in the collection directory, we run `collman --id name-input-directory` (or `npx collman --id name-input-directory` if you are using at least npm version `5.2.0`). Going on with the previous example it would be `collman --id fruits`. The input directory name is not needed if you name your directory `ìtems` which is the default one. As we named it `fruits` we have to pass the command line argument.
 
 You will see this output:
 
