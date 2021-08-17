@@ -53,6 +53,8 @@ Create anything with just Markdown to edit the content effortlessly.
   - [Configuration file](#configuration-file)
   - [Command line arguments](#command-line-arguments)
   - [Docsify config file](#docsify-config-file)
+- [Deploy](#deploy)
+- [Examples](#examples)
 
 ## How to use it
 
@@ -249,13 +251,12 @@ Here is an example with the default Collman values:
 module.exports = {
   main: {
     name: 'Default Collection',
-    themeColor: '#20304a',
     loadSidebar: true,
-    mergeNavbar: true,
     alias: {
       '/.*/_sidebar.md': '/_sidebar.md'
     },
     subMaxLevel: 3,
+    sidebarDisplayLevel: 1,
     search: 'auto'
   },
   scriptsAndLinks:[
@@ -270,3 +271,18 @@ module.exports = {
   ]
 }
 ```
+
+## Deploy
+
+You can deploy a Collman project by serving the output directory on your own or using platforms like [Netlify](https://www.netlify.com/) or [GitHub Pages.](https://pages.github.com/)
+
+Just select the branch and directory where you have the docs (or the name you gave to the output directory).
+
+For GitHub Pages you will need to add a basePath to the docsify config. Therefore you will need to create a `docsify.config.js` file with it. Have a look at this example repository https://github.com/reymon359/collman-fruits-example
+
+## Examples
+
+This is a list of examples of collections projects made with Collman. Feel free to submit a Pull Request adding yours too!
+
+- [Collman fruits example](https://reymon359.github.io/collman-fruits-example/). A fruit collection.
+- [How to live](https://reymon359.github.io/how-to-live/). A collectin of life advices.
