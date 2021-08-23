@@ -288,3 +288,4 @@ This is a list of examples of collections projects made with Collman. Feel free 
 
 - [Collman fruits example](https://reymon359.github.io/collman-fruits-example/). A fruit collection.
 - [How to live](https://reymon359.github.io/how-to-live/). A collectin of life advices.
+- [Book Sentences](https://reymon359.github.io/book-sentences/). A collection of sentences from different books.
